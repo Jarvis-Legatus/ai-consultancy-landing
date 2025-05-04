@@ -2,8 +2,11 @@
 
 import type React from "react"
 
-import { useRef, useState } from "react"
+import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { z } from "zod"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -12,19 +15,40 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { format } from "date-fns"
 import { CalendarIcon, Check } from "lucide-react"
 import { useLanguage } from "./language-selector"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+
+const formSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  company: z.string().min(2, "Company name must be at least 2 characters"),
+  email: z.string().email("Invalid email address"),
+  phone: z.string().optional(),
+  date: z.date().optional(),
+  message: z.string().optional()
+})
 
 export function BookConsultation() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
-  const [date, setDate] = useState<Date | undefined>(undefined)
-  const [submitted, setSubmitted] = useState(false)
   const { t } = useLanguage()
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      company: "",
+      email: "",
+      phone: "",
+      message: ""
+    }
+  })
+
+  const onSubmit = (values: z.infer<typeof formSchema>) => {
     // In a real implementation, you would send the form data to your backend
-    setSubmitted(true)
+    form.reset()
+    return true
   }
+
+  const submitted = form.formState.isSubmitSuccessful
 
   const container = {
     hidden: { opacity: 0 },
@@ -111,7 +135,7 @@ export function BookConsultation() {
                   <h3 className="text-2xl font-bold text-gray-900 mb-4">{t("consultation.success.title")}</h3>
                   <p className="text-gray-600 mb-6">{t("consultation.success.message")}</p>
                   <Button
-                    onClick={() => setSubmitted(false)}
+                    onClick={() => form.reset()}
                     variant="outline"
                     className="button-hover rounded-xl border-2"
                   >
@@ -121,80 +145,127 @@ export function BookConsultation() {
               ) : (
                 <>
                   <h3 className="text-2xl font-bold text-gray-900 mb-6">{t("consultation.form.title")}</h3>
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                          {t("consultation.form.name")}
-                        </label>
-                        <Input id="name" placeholder="John Smith" required className="rounded-lg border-2" />
-                      </div>
-                      <div>
-                        <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-1">
-                          {t("consultation.form.company")}
-                        </label>
-                        <Input id="company" placeholder="Acme Inc." required className="rounded-lg border-2" />
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                          {t("consultation.form.email")}
-                        </label>
-                        <Input
-                          id="email"
-                          type="email"
-                          placeholder="john@example.com"
-                          required
-                          className="rounded-lg border-2"
+                  <Form {...form}>
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <FormField
+                          control={form.control}
+                          name="name"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>{t("consultation.form.name")}</FormLabel>
+                              <FormControl>
+                                <Input placeholder="John Smith" className="rounded-lg border-2" {...field} />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        <FormField
+                          control={form.control}
+                          name="company"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>{t("consultation.form.company")}</FormLabel>
+                              <FormControl>
+                                <Input placeholder="Acme Inc." className="rounded-lg border-2" {...field} />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
                         />
                       </div>
-                      <div>
-                        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-                          {t("consultation.form.phone")}
-                        </label>
-                        <Input id="phone" placeholder="+1 (555) 123-4567" className="rounded-lg border-2" />
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <FormField
+                          control={form.control}
+                          name="email"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>{t("consultation.form.email")}</FormLabel>
+                              <FormControl>
+                                <Input type="email" placeholder="john@example.com" className="rounded-lg border-2" {...field} />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        <FormField
+                          control={form.control}
+                          name="phone"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>{t("consultation.form.phone")}</FormLabel>
+                              <FormControl>
+                                <Input placeholder="+1 (555) 123-4567" className="rounded-lg border-2" {...field} />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
                       </div>
-                    </div>
 
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        {t("consultation.form.date")}
-                      </label>
-                      <Popover>
-                        <PopoverTrigger asChild>
-                          <Button
-                            variant="outline"
-                            className="w-full justify-start text-left font-normal rounded-lg border-2"
-                          >
-                            <CalendarIcon className="mr-2 h-4 w-4" />
-                            {date ? format(date, "PPP") : <span>{t("consultation.form.selectDate")}</span>}
-                          </Button>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-auto p-0">
-                          <Calendar mode="single" selected={date} onSelect={setDate} initialFocus />
-                        </PopoverContent>
-                      </Popover>
-                    </div>
-
-                    <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-                        {t("consultation.form.message")}
-                      </label>
-                      <Textarea
-                        id="message"
-                        placeholder={t("consultation.form.messagePlaceholder")}
-                        className="min-h-[120px] rounded-lg border-2"
+                      <FormField
+                        control={form.control}
+                        name="date"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>{t("consultation.form.date")}</FormLabel>
+                            <Popover>
+                              <PopoverTrigger asChild>
+                                <FormControl>
+                                  <Button
+                                    variant="outline"
+                                    className="w-full justify-start text-left font-normal rounded-lg border-2"
+                                  >
+                                    <CalendarIcon className="mr-2 h-4 w-4" />
+                                    {field.value ? format(field.value, "PPP") : <span>{t("consultation.form.selectDate")}</span>}
+                                  </Button>
+                                </FormControl>
+                              </PopoverTrigger>
+                              <PopoverContent className="w-auto p-0">
+                                <Calendar
+                                  mode="single"
+                                  selected={field.value}
+                                  onSelect={field.onChange}
+                                  initialFocus
+                                />
+                              </PopoverContent>
+                            </Popover>
+                            <FormMessage />
+                          </FormItem>
+                        )}
                       />
-                    </div>
 
-                    <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 rounded-xl py-6 button-hover">
-                      <span>{t("consultation.form.submit")}</span>
-                    </Button>
+                      <FormField
+                        control={form.control}
+                        name="message"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>{t("consultation.form.message")}</FormLabel>
+                            <FormControl>
+                              <Textarea
+                                placeholder={t("consultation.form.messagePlaceholder")}
+                                className="min-h-[120px] rounded-lg border-2"
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
 
-                    <p className="text-xs text-gray-500 text-center mt-4">{t("consultation.form.privacy")}</p>
-                  </form>
+                      <Button
+                        type="submit"
+                        disabled={form.formState.isSubmitting}
+                        className="w-full bg-blue-600 hover:bg-blue-700 rounded-xl py-6 button-hover"
+                      >
+                        <span>{t("consultation.form.submit")}</span>
+                      </Button>
+
+                      <p className="text-xs text-gray-500 text-center mt-4">{t("consultation.form.privacy")}</p>
+                    </form>
+                  </Form>
                 </>
               )}
             </motion.div>

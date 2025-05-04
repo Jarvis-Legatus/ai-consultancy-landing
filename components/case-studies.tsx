@@ -100,7 +100,24 @@ export function CaseStudies() {
   )
 }
 
-function CaseStudyCard({ study, item, t }) {
+interface CaseStudy {
+  company: string;
+  title: string;
+  description: string;
+  outcome: string;
+  tags: string[];
+  roi: string;
+}
+
+function CaseStudyCard({
+  study,
+  item,
+  t
+}: {
+  study: CaseStudy;
+  item: any; // Motion variant type would be more specific if available
+  t: (key: string) => string;
+}) {
   return (
     <motion.div variants={item}>
       <Card className="h-full transition-all duration-500 hover:shadow-xl border-2 border-gray-200 hover:border-indigo-200 rounded-xl overflow-hidden group">
@@ -115,7 +132,7 @@ function CaseStudyCard({ study, item, t }) {
             <p className="text-sm font-medium text-indigo-600 mb-2">{t("caseStudy.outcome")}</p>
             <p className="text-gray-700 mb-4">{study.outcome}</p>
             <div className="flex flex-wrap gap-2 mb-4">
-              {study.tags.map((tag, i) => (
+              {study.tags.map((tag: string, i: number) => (
                 <Badge key={i} variant="secondary" className="bg-indigo-50 text-indigo-700 hover:bg-indigo-100">
                   {tag}
                 </Badge>
