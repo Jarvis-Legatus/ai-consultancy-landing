@@ -126,7 +126,7 @@ function CaseStudyCard({
           <div className="text-sm text-gray-500 mb-1">{study.company}</div>
           <CardTitle className="text-2xl font-semibold">{study.title}</CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="min-h-[200px]">
           <CardDescription className="text-gray-600 mb-4 text-base">{study.description}</CardDescription>
           <div className="pt-4 border-t border-gray-100">
             <p className="text-sm font-medium text-indigo-600 mb-2">{t("caseStudy.outcome")}</p>
@@ -140,8 +140,8 @@ function CaseStudyCard({
             </div>
           </div>
         </CardContent>
-        <CardFooter className="flex justify-between items-center border-t border-gray-100 pt-4">
-          <div className="font-semibold text-green-600">{study.roi}</div>
+        <CardFooter className="flex justify-between items-center border-t border-gray-100 pt-4 px-6 pb-6">
+          <div className="font-semibold text-green-600 text-sm">{study.roi}</div>
           <motion.button
             whileHover={{ x: 5 }}
             className="text-blue-600 hover:text-blue-800 flex items-center text-sm font-medium"
