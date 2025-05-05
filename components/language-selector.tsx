@@ -23,10 +23,10 @@ const languages: Language[] = [
 type LanguageContextType = {
   currentLanguage: string
   setLanguage: (code: string) => void
-  t: (key: string) => string
+  t: (key: string) => string | string[]
 }
 
-const defaultTranslate = (key: string) => key
+const defaultTranslate = (key: string): string | string[] => key
 
 const LanguageContext = createContext<LanguageContextType>({
   currentLanguage: "en",
@@ -45,9 +45,10 @@ const translations = {
     "cta.bookConsultation": "Book Consultation",
 
     // Hero section
-    "hero.title": "AI Solutions That Deliver Real Results",
+    "hero.title": "AI Solutions That Deliver",
     "hero.subtitle":
       "We transform how SMEs operate with practical AI implementations that provide measurable ROI and tangible business outcomes.",
+    "hero.morphingTexts": ["real results", "slashed costs", "superior productivity", "revenue growth"],
     "hero.cta.primary": "Book a Consultation",
     "hero.cta.secondary": "Explore Services",
 
@@ -167,9 +168,10 @@ const translations = {
     "cta.bookConsultation": "Réserver une consultation",
 
     // Hero section
-    "hero.title": "Solutions d'IA qui Offrent des Résultats Concrets",
+    "hero.title": "Solutions IA qui fournissent",
     "hero.subtitle":
       "Nous transformons le fonctionnement des PME grâce à des implémentations d'IA pratiques qui fournissent un ROI mesurable et des résultats commerciaux tangibles.",
+    "hero.morphingTexts": ["résultats concrets", "coûts réduits", "productivité supérieure", "croissance des revenus"],
     "hero.cta.primary": "Réserver une consultation",
     "hero.cta.secondary": "Explorer les services",
 
@@ -295,9 +297,10 @@ const translations = {
     "cta.bookConsultation": "Reservar Consulta",
 
     // Hero section
-    "hero.title": "Soluciones de IA que Entregan Resultados Reales",
+    "hero.title": "Soluciones de IA que Entregan",
     "hero.subtitle":
       "Transformamos cómo operan las PYMES con implementaciones prácticas de IA que proporcionan ROI medible y resultados comerciales tangibles.",
+    "hero.morphingTexts": ["resultados tangibles", "costos reducidos", "productividad superior", "más ingresos"],
     "hero.cta.primary": "Reservar una Consulta",
     "hero.cta.secondary": "Explorar Servicios",
 
@@ -422,9 +425,10 @@ const translations = {
     "cta.bookConsultation": "Prenota Consulenza",
 
     // Hero section
-    "hero.title": "Soluzioni AI che Offrono Risultati Reali",
+    "hero.title": "Soluzioni AI che Offrono",
     "hero.subtitle":
       "Trasformiamo il modo in cui operano le PMI con implementazioni pratiche di AI che forniscono ROI misurabile e risultati aziendali tangibili.",
+    "hero.morphingTexts": ["risultati concreti", "costi ridotti", "produttività superiore", "crescita dei ricavi"],
     "hero.cta.primary": "Prenota una Consulenza",
     "hero.cta.secondary": "Esplora i Servizi",
 
@@ -552,8 +556,9 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     document.documentElement.lang = code
   }
 
-  const t = (key: string): string => {
-    return translations[currentLanguage as keyof typeof translations]?.[key as keyof typeof translations.en] || key
+  const t = (key: string): string | string[] => {
+    const translation = translations[currentLanguage as keyof typeof translations]?.[key as keyof typeof translations.en];
+    return translation !== undefined ? translation : key;
   }
 
   useEffect(() => {

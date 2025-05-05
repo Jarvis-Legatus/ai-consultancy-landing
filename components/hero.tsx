@@ -6,6 +6,8 @@ import { motion, useScroll, useTransform } from "framer-motion"
 import { useLanguage } from "./language-selector"
 
 import { FlickeringGrid } from "@/components/magicui/flickering-grid"
+import { MorphingText } from "@/components/magicui/morphing-text";
+
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
@@ -24,6 +26,15 @@ export function Hero() {
     setMounted(true)
   }, [])
 
+  useEffect(() => {
+    if (containerRef.current) {
+      const textContainer = containerRef.current.querySelector('.max-w-3xl');
+      if (textContainer) {
+        console.log('Text container width:', textContainer.clientWidth);
+      }
+    }
+  }, [mounted]);
+
   if (!mounted) return null
 
   return (
@@ -36,14 +47,15 @@ export function Hero() {
  <FlickeringGrid className="absolute right-0 top-0 h-full w-1/6" color="blue" style={{ maskImage: 'linear-gradient(to left, black, transparent)' }} />
 
       <motion.div style={{ opacity, scale, y }} className="container mx-auto px-4 z-10 py-20">
-        <div className="max-w-3xl mx-auto text-center">
+        <div className="max-w-5xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-foreground leading-tight mb-6 tracking-tight">
-              {t("hero.title")}
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-foreground leading-tight mb-16 tracking-tight">
+              {t("hero.title") as string}
+              <MorphingText texts={t("hero.morphingTexts") as string[]} className="inline-block ml-2" />
             </h1>
           </motion.div>
 
@@ -52,7 +64,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           >
-            <p className="text-xl md:text-2xl text-foreground/90 mb-10 max-w-2xl mx-auto">{t("hero.subtitle")}</p>
+            <p className="text-xl md:text-2xl text-foreground/90 mb-10 max-w-2xl mx-auto">{t("hero.subtitle") as string}</p>
           </motion.div>
 
           <motion.div
@@ -62,10 +74,10 @@ export function Hero() {
             className="flex flex-col sm:flex-row gap-6 justify-center"
           >
             <Button size="lg" className="bg-primary hover:bg-primary/90 text-lg px-8 py-6 rounded-xl button-hover">
-              <span>{t("hero.cta.primary")}</span>
+              <span>{t("hero.cta.primary") as string}</span>
             </Button>
             <Button size="lg" variant="outline" className="text-lg px-8 py-6 rounded-xl border-2 button-hover text-foreground">
-              <span>{t("hero.cta.secondary")}</span>
+              <span>{t("hero.cta.secondary") as string}</span>
             </Button>
           </motion.div>
         </div>
