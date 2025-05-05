@@ -93,7 +93,7 @@ export function CaseStudies() {
           variants={container}
           initial="hidden"
           animate={isInView ? "show" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch"
         >
           {caseStudies.map((study, index) => (
             <CaseStudyCard key={index} study={study} item={item} t={t} />
@@ -128,29 +128,31 @@ function CaseStudyCard({
   return (
     <motion.div variants={item}>
       <MagicCard
-        className="h-full transition-all duration-500 hover:shadow-xl border-2 border-border hover:border-primary/50 rounded-xl overflow-hidden group bg-card"
+        className="h-full transition-all duration-500 hover:shadow-xl rounded-xl overflow-hidden group bg-card"
         gradientColor={spotlightColor}
       >
-        <Card className="h-full w-full border-none shadow-none">
-          <CardHeader className="pb-2">
+        <Card className="h-full w-full border-none shadow-none flex flex-col">
+          <CardHeader className="pb-2 flex-shrink-0">
             <div className="text-sm text-muted-foreground mb-1">{study.company}</div>
             <CardTitle className="text-2xl font-semibold text-foreground">{study.title}</CardTitle>
           </CardHeader>
-          <CardContent className="min-h-[200px]">
-            <CardDescription className="text-muted-foreground mb-4 text-base">{study.description}</CardDescription>
-            <div className="pt-4 border-t border-border">
-              <p className="text-sm font-medium text-primary mb-2">{t("caseStudy.outcome")}</p>
-              <p className="text-foreground/90 mb-4">{study.outcome}</p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {study.tags.map((tag: string, i: number) => (
-                  <Badge key={i} variant="secondary" className="bg-primary/10 text-primary hover:bg-primary/20">
-                    {tag}
-                  </Badge>
-                ))}
+          <CardContent>
+            <div className="flex flex-col h-[320px]"> {/* New inner div with fixed height */}
+              <CardDescription className="text-muted-foreground mb-4 text-base">{study.description}</CardDescription>
+              <div className="pt-4 border-t border-border flex-grow overflow-hidden"> {/* Outcome and tags div, now flex-growing */}
+                <p className="text-sm font-medium text-primary mb-2">{t("caseStudy.outcome")}</p>
+                <p className="text-foreground/90 mb-4">{study.outcome}</p>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {study.tags.map((tag: string, i: number) => (
+                    <Badge key={i} variant="secondary" className="bg-primary/10 text-primary hover:bg-primary/20">
+                      {tag}
+                    </Badge>
+                  ))}
+                </div>
               </div>
-            </div>
+            </div> {/* End of new inner div */}
           </CardContent>
-          <CardFooter className="flex justify-between items-center border-t border-border pt-4 px-6 pb-6">
+          <CardFooter className="flex justify-between items-center border-t border-border pt-4 px-6 pb-6 flex-shrink-0">
             <div className="font-semibold text-green-600 text-sm">{study.roi}</div>
             <motion.button
               whileHover={{ x: 5 }}
