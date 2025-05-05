@@ -128,24 +128,6 @@
 
 }
 
-.pulsating-container {
-  position: relative;
-  display: inline-block; /* Or block, depending on desired layout */
-}
-
-.pulsating-container::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: inherit; /* Inherit border-radius from the wrapped element */
-  --pulse-color: var(--primary); /* Use primary color for pulse */
-  --duration: 2s; /* Set pulse duration */
-  animation: pulse var(--duration) ease-out infinite;
-  z-index: -1; /* Place behind the content */
-}
 
 
 /* Fix for dropdown menu causing layout shift */
@@ -153,29 +135,6 @@
   margin-right: calc(100% - 100vw);
 }
 
-.animated-gradient {
-  background: linear-gradient(
-    -45deg,
-    rgba(59, 130, 246, 0.3),
-    rgba(37, 99, 235, 0.3),
-    rgba(29, 78, 216, 0.3),
-    rgba(30, 64, 175, 0.3)
-  );
-  background-size: 400% 400%;
-  animation: gradient 15s ease infinite;
-}
-
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
 
 /* @theme inline { */
   @keyframes marquee {
