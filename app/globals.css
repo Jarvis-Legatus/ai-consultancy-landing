@@ -249,3 +249,10 @@
     }
   }
 }
+.app-background {
+  background-color: #f4f4f4; /* green-500 */
+}
+
+.dark .app-background {
+  background-color: #121212; /* orange-500 */
+}

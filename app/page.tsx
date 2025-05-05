@@ -12,7 +12,7 @@ import { LanguageProvider } from "@/components/language-selector"
 export default function Home() {
   return (
     <LanguageProvider>
-      <div className="min-h-screen">
+      <div className="min-h-screen app-background">
         <Header />
         <main>
           <Hero />
