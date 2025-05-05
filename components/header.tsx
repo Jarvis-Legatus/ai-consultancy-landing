@@ -5,6 +5,7 @@ import Link from "next/link"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { LanguageSelector, useLanguage } from "./language-selector"
+import { ThemeToggle } from "./theme-toggle"
 import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
 
@@ -36,7 +37,7 @@ export function Header() {
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled ? "bg-white/95 backdrop-blur-sm shadow-sm py-3" : "bg-transparent py-5",
+        isScrolled ? "bg-background/95 backdrop-blur-sm shadow-sm py-3" : "bg-transparent py-5",
       )}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
@@ -48,7 +49,7 @@ export function Header() {
             <span className="text-white font-bold">FO</span>
           </motion.div>
           <span
-            className={cn("font-semibold text-xl transition-colors", isScrolled ? "text-gray-900" : "text-gray-800")}
+            className={cn("font-semibold text-xl transition-colors", isScrolled ? "text-foreground" : "text-foreground")}
           >
             FasterOperations
           </span>
@@ -58,15 +59,16 @@ export function Header() {
         <nav className="hidden md:flex items-center space-x-8">
           <NavLinks isScrolled={isScrolled} />
           <div className="flex items-center space-x-4">
+            <ThemeToggle />
             <LanguageSelector onDropdownChange={setIsDropdownOpen} />
-            <Button className="bg-blue-600 hover:bg-blue-700 rounded-xl button-hover">
+            <Button className="bg-primary hover:bg-primary/90 rounded-xl button-hover">
               <span>{t("cta.bookConsultation")}</span>
             </Button>
           </div>
         </nav>
 
         {/* Mobile Menu Button */}
-        <button className="md:hidden text-gray-700" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+        <button className="md:hidden text-foreground" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
@@ -78,13 +80,16 @@ export function Header() {
           animate={{ opacity: 1, height: "auto" }}
           exit={{ opacity: 0, height: 0 }}
           transition={{ duration: 0.3 }}
-          className="md:hidden bg-white absolute top-full left-0 right-0 shadow-lg"
+          className="md:hidden bg-background absolute top-full left-0 right-0 shadow-lg"
         >
           <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
             <NavLinks mobile />
-            <div className="flex flex-col space-y-4 pt-4 border-t border-gray-100">
-              <LanguageSelector onDropdownChange={setIsDropdownOpen} />
-              <Button className="bg-blue-600 hover:bg-blue-700 w-full rounded-xl button-hover">
+            <div className="flex flex-col space-y-4 pt-4 border-t border-border">
+              <div className="flex items-center justify-between">
+                <ThemeToggle />
+                <LanguageSelector onDropdownChange={setIsDropdownOpen} />
+              </div>
+              <Button className="bg-primary hover:bg-primary/90 w-full rounded-xl button-hover">
                 <span>{t("cta.bookConsultation")}</span>
               </Button>
             </div>
@@ -101,7 +106,7 @@ function NavLinks({ isScrolled = false, mobile = false }) {
   const linkClass = cn(
     "transition-colors font-medium",
     mobile ? "block py-2" : "",
-    isScrolled ? "text-gray-800 hover:text-blue-600" : "text-gray-700 hover:text-blue-500",
+    isScrolled ? "text-foreground hover:text-primary" : "text-foreground hover:text-primary",
   )
 
   const links = [

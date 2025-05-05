@@ -64,14 +64,14 @@ export function CaseStudies() {
 
   return (
     <section id="case-studies" className="py-20">
-      <div className="section-container bg-white py-16 shadow-sm">
+      <div className="section-container bg-background py-16 shadow-sm">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.h2
             ref={ref}
             initial={{ opacity: 0, y: 50 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
+            className="text-4xl md:text-5xl font-bold text-foreground mb-6"
           >
             {t("caseStudies.title")}
           </motion.h2>
@@ -79,7 +79,7 @@ export function CaseStudies() {
             initial={{ opacity: 0, y: 50 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="text-xl text-gray-600"
+            className="text-xl text-muted-foreground"
           >
             {t("caseStudies.subtitle")}
           </motion.p>
@@ -120,31 +120,31 @@ function CaseStudyCard({
 }) {
   return (
     <motion.div variants={item}>
-      <Card className="h-full transition-all duration-500 hover:shadow-xl border-2 border-gray-200 hover:border-indigo-200 rounded-xl overflow-hidden group">
-        <div className="h-2 bg-gradient-to-r from-blue-500 to-blue-600"></div>
+      <Card className="h-full transition-all duration-500 hover:shadow-xl border-2 border-border hover:border-primary/50 rounded-xl overflow-hidden group">
+        <div className="h-2 bg-gradient-to-r from-primary to-primary/90"></div>
         <CardHeader className="pb-2">
-          <div className="text-sm text-gray-500 mb-1">{study.company}</div>
-          <CardTitle className="text-2xl font-semibold">{study.title}</CardTitle>
+          <div className="text-sm text-muted-foreground mb-1">{study.company}</div>
+          <CardTitle className="text-2xl font-semibold text-foreground">{study.title}</CardTitle>
         </CardHeader>
         <CardContent className="min-h-[200px]">
-          <CardDescription className="text-gray-600 mb-4 text-base">{study.description}</CardDescription>
-          <div className="pt-4 border-t border-gray-100">
-            <p className="text-sm font-medium text-indigo-600 mb-2">{t("caseStudy.outcome")}</p>
-            <p className="text-gray-700 mb-4">{study.outcome}</p>
+          <CardDescription className="text-muted-foreground mb-4 text-base">{study.description}</CardDescription>
+          <div className="pt-4 border-t border-border">
+            <p className="text-sm font-medium text-primary mb-2">{t("caseStudy.outcome")}</p>
+            <p className="text-foreground/90 mb-4">{study.outcome}</p>
             <div className="flex flex-wrap gap-2 mb-4">
               {study.tags.map((tag: string, i: number) => (
-                <Badge key={i} variant="secondary" className="bg-indigo-50 text-indigo-700 hover:bg-indigo-100">
+                <Badge key={i} variant="secondary" className="bg-primary/10 text-primary hover:bg-primary/20">
                   {tag}
                 </Badge>
               ))}
             </div>
           </div>
         </CardContent>
-        <CardFooter className="flex justify-between items-center border-t border-gray-100 pt-4 px-6 pb-6">
+        <CardFooter className="flex justify-between items-center border-t border-border pt-4 px-6 pb-6">
           <div className="font-semibold text-green-600 text-sm">{study.roi}</div>
           <motion.button
             whileHover={{ x: 5 }}
-            className="text-blue-600 hover:text-blue-800 flex items-center text-sm font-medium"
+            className="text-primary hover:text-primary/90 flex items-center text-sm font-medium"
           >
             {t("caseStudy.readMore")} <ArrowRight size={16} className="ml-1" />
           </motion.button>

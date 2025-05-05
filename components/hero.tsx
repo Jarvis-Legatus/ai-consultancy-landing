@@ -31,33 +31,9 @@ export function Hero() {
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
     >
       {/* Animated gradient background */}
-      <div className="absolute inset-0 animated-gradient opacity-80"></div>
+      {/* Removed animated gradient background */}
 
-      {/* Floating elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(10)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute rounded-full bg-white/10 backdrop-blur-md"
-            style={{
-              width: Math.random() * 100 + 50,
-              height: Math.random() * 100 + 50,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              x: [0, Math.random() * 50 - 25],
-              y: [0, Math.random() * 50 - 25],
-            }}
-            transition={{
-              duration: Math.random() * 10 + 10,
-              repeat: Number.POSITIVE_INFINITY,
-              repeatType: "reverse",
-              ease: "easeInOut",
-            }}
-          />
-        ))}
-      </div>
+      {/* Removed floating elements */}
 
       <motion.div style={{ opacity, scale, y }} className="container mx-auto px-4 z-10 py-20">
         <div className="max-w-3xl mx-auto text-center">
@@ -66,7 +42,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-gray-900 leading-tight mb-6 tracking-tight">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-foreground leading-tight mb-6 tracking-tight">
               {t("hero.title")}
             </h1>
           </motion.div>
@@ -76,7 +52,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           >
-            <p className="text-xl md:text-2xl text-gray-700 mb-10 max-w-2xl mx-auto">{t("hero.subtitle")}</p>
+            <p className="text-xl md:text-2xl text-foreground/90 mb-10 max-w-2xl mx-auto">{t("hero.subtitle")}</p>
           </motion.div>
 
           <motion.div
@@ -85,10 +61,10 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-col sm:flex-row gap-6 justify-center"
           >
-            <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-lg px-8 py-6 rounded-xl button-hover">
+            <Button size="lg" className="bg-primary hover:bg-primary/90 text-lg px-8 py-6 rounded-xl button-hover">
               <span>{t("hero.cta.primary")}</span>
             </Button>
-            <Button size="lg" variant="outline" className="text-lg px-8 py-6 rounded-xl border-2 button-hover">
+            <Button size="lg" variant="outline" className="text-lg px-8 py-6 rounded-xl border-2 button-hover text-foreground">
               <span>{t("hero.cta.secondary")}</span>
             </Button>
           </motion.div>

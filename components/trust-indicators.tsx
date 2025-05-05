@@ -60,14 +60,14 @@ export function TrustIndicators() {
 
   return (
     <section className="py-20">
-      <div className="section-container bg-white py-16 shadow-sm">
+      <div className="section-container bg-background py-16 shadow-sm">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.h2
             ref={ref}
             initial={{ opacity: 0, y: 50 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
+            className="text-4xl md:text-5xl font-bold text-foreground mb-6"
           >
             {t("trust.title")}
           </motion.h2>
@@ -75,7 +75,7 @@ export function TrustIndicators() {
             initial={{ opacity: 0, y: 50 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="text-xl text-gray-600"
+            className="text-xl text-muted-foreground"
           >
             {t("trust.subtitle")}
           </motion.p>
@@ -113,7 +113,7 @@ export function TrustIndicators() {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.5, delay: 0.2 * index, ease: [0.22, 1, 0.36, 1] }}
               whileHover={{ y: -10 }}
-              className="bg-white p-8 rounded-xl shadow-md border-2 border-gray-100"
+              className="bg-card p-8 rounded-xl shadow-md border-2 border-border"
             >
               <div className="flex items-center mb-6">
                 <div className="mr-4">
@@ -126,11 +126,11 @@ export function TrustIndicators() {
                   />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">{testimonial.author}</h4>
-                  <p className="text-gray-600 text-sm">{testimonial.position}</p>
+                  <h4 className="font-semibold text-card-foreground">{testimonial.author}</h4>
+                  <p className="text-muted-foreground text-sm">{testimonial.position}</p>
                 </div>
               </div>
-              <blockquote className="text-gray-700 italic">"{testimonial.quote}"</blockquote>
+              <blockquote className="text-foreground/90 italic">"{testimonial.quote}"</blockquote>
             </motion.div>
           ))}
         </div>

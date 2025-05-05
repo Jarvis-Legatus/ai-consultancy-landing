@@ -553,7 +553,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   }
 
   const t = (key: string): string => {
-    return translations[currentLanguage as keyof typeof translations]?.[key] || key
+    return translations[currentLanguage as keyof typeof translations]?.[key as keyof typeof translations.en] || key
   }
 
   useEffect(() => {
@@ -588,19 +588,19 @@ export function LanguageSelector({ onDropdownChange }: { onDropdownChange?: (isO
   return (
     <DropdownMenu open={isOpen} onOpenChange={handleOpenChange}>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm" className="flex items-center gap-1 px-2 rounded-lg">
+        <Button variant="ghost" size="sm" className="flex items-center gap-1 px-2 rounded-lg text-foreground">
           <Globe size={16} />
           <span className="ml-1 text-sm font-medium">
             {languages.find((lang) => lang.code === currentLanguage)?.name}
           </span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="rounded-lg border-2">
+      <DropdownMenuContent align="end" className="rounded-lg border-2 bg-background">
         {languages.map((language) => (
           <DropdownMenuItem
             key={language.code}
             onClick={() => handleLanguageChange(language.code)}
-            className={`${currentLanguage === language.code ? "bg-gray-100" : ""} rounded-md my-1 cursor-pointer`}
+            className={`${currentLanguage === language.code ? "bg-muted text-foreground" : "text-muted-foreground"} rounded-md my-1 cursor-pointer`}
           >
             {language.name}
           </DropdownMenuItem>

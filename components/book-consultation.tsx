@@ -52,7 +52,7 @@ export function BookConsultation() {
 
   return (
     <section id="contact" className="py-20">
-      <div className="section-container bg-gray-50 py-16 shadow-sm">
+      <div className="section-container bg-muted/20 py-16 shadow-sm">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 gap-12">
             <motion.div
@@ -62,8 +62,8 @@ export function BookConsultation() {
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               className="text-center"
             >
-              <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">{t("consultation.title")}</h2>
-              <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">{t("consultation.subtitle")}</p>
+              <h2 className="text-5xl md:text-6xl font-bold text-foreground mb-6">{t("consultation.title")}</h2>
+              <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">{t("consultation.subtitle")}</p>
               <motion.ul
                 variants={container}
                 initial="hidden"
@@ -72,10 +72,10 @@ export function BookConsultation() {
               >
                 {benefits.map((benefit, index) => (
                   <motion.li key={index} variants={item} className="flex items-start justify-center text-center">
-                    <div className="mr-3 mt-1 bg-green-100 rounded-full p-1">
-                      <Check size={16} className="text-green-600" />
+                    <div className="mr-3 mt-1 bg-primary/10 rounded-full p-1">
+                      <Check size={16} className="text-primary" />
                     </div>
-                    <span className="text-gray-700">{benefit}</span>
+                    <span className="text-foreground/90">{benefit}</span>
                   </motion.li>
                 ))}
               </motion.ul>
@@ -85,9 +85,9 @@ export function BookConsultation() {
               initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="bg-white rounded-xl shadow-lg p-8 border-2 border-gray-100"
+              className="bg-card rounded-xl shadow-lg p-8 border-2 border-border"
             >
-              <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">{t("consultation.form.title")}</h3>
+              <h3 className="text-2xl font-bold text-card-foreground mb-6 text-center">{t("consultation.form.title")}</h3>
               <Cal
                 namespace="30min"
                 calLink="fasteroperations/30min"
