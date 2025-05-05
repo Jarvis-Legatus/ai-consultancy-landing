@@ -209,7 +209,7 @@
   }
 }
 .app-background {
-  background-color: #ffffff; /* green-500 */
+  background-color: rgb(42, 127, 170); /* green-500 */
 }
 
 .dark .app-background {

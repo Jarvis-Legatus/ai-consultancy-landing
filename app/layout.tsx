@@ -30,8 +30,8 @@ export default function RootLayout({
           <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
         </head>
         <body>
-          <FlickeringGrid className="fixed left-0 top-0 h-screen w-1/6 z-[1]" color="blue" style={{ maskImage: 'linear-gradient(to right, cyan, transparent)' }} />
-          <FlickeringGrid className="fixed right-0 top-0 h-screen w-1/6 z-[1]" color="blue" style={{ maskImage: 'linear-gradient(to left, cyan, transparent)' }} />
+          <FlickeringGrid className="fixed left-0 top-0 h-screen w-1/6 z-[0]" color="blue" style={{ maskImage: 'linear-gradient(to right, cyan, transparent)' }} />
+          <FlickeringGrid className="fixed right-0 top-0 h-screen w-1/3 z-[0]" color="blue" style={{ maskImage: 'linear-gradient(to left, cyan, transparent)' }} />
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
             {children}
             <Toaster />
