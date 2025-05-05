@@ -96,6 +96,7 @@ export function Header() {
           </div>
         </motion.div>
       )}
+    <ScrollProgress className="absolute bottom-0 left-0 right-0" />
     </header>
     </>
   )
