@@ -31,7 +31,6 @@ export function Hero() {
     if (containerRef.current) {
       const textContainer = containerRef.current.querySelector('.max-w-3xl');
       if (textContainer) {
-        console.log('Text container width:', textContainer.clientWidth);
       }
     }
   }, [mounted]);

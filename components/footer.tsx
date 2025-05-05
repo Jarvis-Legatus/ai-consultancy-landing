@@ -6,16 +6,6 @@ import { useLanguage } from "./language-selector"
 export function Footer() {
   const { t } = useLanguage()
 
-  const services = [
-    "Customer Support Chatbots",
-    "Document Processing",
-    "Business Intelligence",
-    "Process Automation",
-    "Custom AI Solutions",
-  ]
-
-  const companyLinks = ["About Us", "Case Studies", "Blog", "Careers", "Contact"]
-
   return (
     <footer className="text-foreground border-t border-border">
       <div className="section-container py-12">
@@ -35,43 +25,83 @@ export function Footer() {
           <div>
             <h3 className="text-foreground font-semibold text-lg mb-4">{t("footer.services")}</h3>
             <ul className="space-y-3">
-              {services.map((item, index) => (
-                <li key={index}>
-                  <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                    {item}
-                  </Link>
-                </li>
-              ))}
+              <li>
+                <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                  {t("footer.services.chatbot")}
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                  {t("footer.services.document")}
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                  {t("footer.services.bi")}
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                  {t("footer.services.automation")}
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                  {t("footer.services.custom")}
+                </Link>
+              </li>
             </ul>
           </div>
 
           <div>
             <h3 className="text-foreground font-semibold text-lg mb-4">{t("footer.company")}</h3>
             <ul className="space-y-3">
-              {companyLinks.map((item, index) => (
-                <li key={index}>
-                  <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                    {item}
-                  </Link>
-                </li>
-              ))}
+              <li>
+                <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                  {t("footer.company.about")}
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                  {t("footer.company.caseStudies")}
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                  {t("footer.company.blog")}
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                  {t("footer.company.careers")}
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                  {t("footer.company.contact")}
+                </Link>
+              </li>
             </ul>
           </div>
 
           <div>
             <h3 className="text-foreground font-semibold text-lg mb-4">{t("footer.contact")}</h3>
             <ul className="space-y-3 text-muted-foreground">
-              <li>123 AI Boulevard</li>
-              <li>Tech District, CA 94103</li>
-              <li>contact@fasteroperations.com</li>
-              <li>+1 (555) 123-4567</li>
+              <li>{t("footer.contact.address1")}</li>
+              <li>{t("footer.contact.address2")}</li>
+              <li>{t("footer.contact.email")}</li>
+              <li>{t("footer.contact.phone")}</li>
             </ul>
             <div className="flex space-x-4 mt-6">
-              {["Twitter", "LinkedIn", "Facebook"].map((platform, index) => (
-                <Link key={index} href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                  {platform}
-                </Link>
-              ))}
+              <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                {t("footer.social.twitter")}
+              </Link>
+              <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                {t("footer.social.linkedin")}
+              </Link>
+              <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                {t("footer.social.facebook")}
+              </Link>
             </div>
           </div>
         </div>

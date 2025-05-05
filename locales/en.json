@@ -1,0 +1,134 @@
+{
+  "nav.services": "Services",
+  "nav.caseStudies": "Case Studies",
+  "nav.about": "About",
+  "nav.contact": "Contact",
+  "cta.bookConsultation": "Book a Consultation",
+
+  "hero.title": "AI Solutions That Deliver",
+  "hero.subtitle":
+    "We transform how SMEs operate with practical AI implementations that provide measurable ROI and tangible business outcomes.",
+  "hero.morphingTexts": ["real results", "slashed costs", "superior productivity", "revenue growth"],
+  "hero.cta.primary": "Book a Consultation",
+  "hero.cta.secondary": "Explore Services",
+
+  "services.title": "Practical AI Solutions With Measurable Results",
+  "services.subtitle": "We focus on business outcomes, not technical jargon. Our solutions deliver real ROI.",
+
+  "service.chatbot.title": "Customer Support Chatbots",
+  "service.chatbot.description":
+    "Reduce support costs by 40% while improving customer satisfaction with AI-powered chatbots that handle routine inquiries.",
+  "service.chatbot.benefit":
+    "Faster response times, 24/7 availability, and seamless escalation to human agents when needed.",
+
+  "service.document.title": "Document Processing & RAG Systems",
+  "service.document.description":
+    "Transform unstructured documents into searchable knowledge bases that provide instant answers to complex questions.",
+  "service.document.benefit":
+    "Reduce document processing time by 70% and unlock insights hidden in your business documents.",
+
+  "service.bi.title": "Business Intelligence Tools",
+  "service.bi.description":
+    "Convert your data into actionable insights with AI-powered analytics that identify trends and opportunities.",
+  "service.bi.benefit":
+    "Make data-driven decisions with predictive analytics that forecast outcomes based on historical patterns.",
+
+  "service.automation.title": "Process Automation Workflows",
+  "service.automation.description":
+    "Streamline repetitive tasks and business processes with intelligent automation that adapts to changing conditions.",
+  "service.automation.benefit":
+    "Reduce operational costs by 35% while improving accuracy and freeing staff for higher-value work.",
+
+  "service.custom.title": "Custom AI Implementations",
+  "service.custom.description":
+    "Tailored AI solutions designed specifically for your unique business challenges and opportunities.",
+  "service.custom.benefit": "Purpose-built AI that integrates seamlessly with your existing systems and processes.",
+
+  "service.outcome": "Business Outcome:",
+
+  "caseStudies.title": "Real Results for Real Businesses",
+  "caseStudies.subtitle": "See how our AI solutions have delivered measurable ROI for SMEs like yours.",
+
+  "caseStudy.manufacturing.title": "Manufacturing Efficiency Boost",
+  "caseStudy.manufacturing.company": "Precision Parts Co.",
+  "caseStudy.manufacturing.description":
+    "Implemented an AI-powered predictive maintenance system that reduced downtime by 37% and extended equipment lifespan.",
+  "caseStudy.manufacturing.outcome": "Saved $450,000 annually in maintenance costs and prevented critical failures.",
+  "caseStudy.manufacturing.roi": "320% ROI in first year",
+
+  "caseStudy.support.title": "Customer Support Transformation",
+  "caseStudy.support.company": "Regional Insurance Provider",
+  "caseStudy.support.description":
+    "Deployed an intelligent chatbot handling 78% of routine customer inquiries without human intervention.",
+  "caseStudy.support.outcome":
+    "Reduced response time from 24 hours to instant for common questions while cutting support costs by 42%.",
+  "caseStudy.support.roi": "215% ROI in first year",
+
+  "caseStudy.legal.title": "Document Processing Revolution",
+  "caseStudy.legal.company": "Legal Services Firm",
+  "caseStudy.legal.description":
+    "Built a custom RAG system to analyze thousands of legal documents and extract relevant case information automatically.",
+  "caseStudy.legal.outcome": "Reduced research time by 65% and improved case preparation accuracy by 28%.",
+  "caseStudy.legal.roi": "180% ROI in first year",
+
+  "caseStudy.readMore": "Read full case study",
+  "caseStudy.outcome": "Business Outcome:",
+
+  "consultation.title": "Ready to Transform Your Business with Practical AI?",
+  "consultation.subtitle":
+    "Schedule a free 30-minute consultation to discuss your business challenges and discover how our AI solutions can deliver measurable results.",
+  "consultation.benefit1": "No technical jargon, just clear business outcomes",
+  "consultation.benefit2": "Custom solutions tailored to your specific needs",
+  "consultation.benefit3": "Transparent pricing with ROI projections",
+  "consultation.benefit4": "Ongoing support and optimization",
+
+  "consultation.form.title": "Book Your Free Consultation",
+  "consultation.form.name": "Full Name",
+  "consultation.form.company": "Company Name",
+  "consultation.form.email": "Email Address",
+  "consultation.form.phone": "Phone Number",
+  "consultation.form.date": "Preferred Date",
+  "consultation.form.selectDate": "Select a date",
+  "consultation.form.message": "Tell us about your business challenges",
+  "consultation.form.messagePlaceholder": "What specific challenges are you looking to solve with AI?",
+  "consultation.form.submit": "Book Your Consultation",
+  "consultation.form.privacy": "By submitting this form, you agree to our privacy policy and terms of service.",
+
+  "consultation.success.title": "Thank You!",
+  "consultation.success.message":
+    "Your consultation request has been received. We'll contact you shortly to confirm your appointment.",
+  "consultation.success.button": "Book Another Consultation",
+
+  "trust.title": "Trusted by Businesses Like Yours",
+  "trust.subtitle": "We partner with leading technology providers to deliver secure, reliable AI solutions.",
+
+  "footer.description":
+    "Practical AI solutions for small and medium businesses that deliver measurable ROI and tangible business outcomes.",
+  "footer.services": "Services",
+  "footer.company": "Company",
+  "footer.contact": "Contact",
+  "footer.copyright": "© 2023 FasterOperations. All rights reserved.",
+  "footer.privacy": "Privacy Policy",
+  "footer.terms": "Terms of Service",
+  "footer.cookies": "Cookie Policy",
+"footer.services.chatbot": "Customer Support Chatbots",
+  "footer.services.document": "Document Processing",
+  "footer.services.bi": "Business Intelligence",
+  "footer.services.automation": "Process Automation",
+  "footer.services.custom": "Custom AI Solutions",
+
+  "footer.company.about": "About Us",
+  "footer.company.caseStudies": "Case Studies",
+  "footer.company.blog": "Blog",
+  "footer.company.careers": "Careers",
+  "footer.company.contact": "Contact",
+
+  "footer.contact.address1": "123 AI Boulevard",
+  "footer.contact.address2": "Tech District, CA 94103",
+  "footer.contact.email": "contact@fasteroperations.com",
+  "footer.contact.phone": "+1 (555) 123-4567",
+
+  "footer.social.twitter": "Twitter",
+  "footer.social.linkedin": "LinkedIn",
+  "footer.social.facebook": "Facebook"
+}

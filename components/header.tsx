@@ -15,7 +15,7 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-  const { t } = useLanguage?.() || { t: (key: string) => key }
+  const { t } = useLanguage()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -103,7 +103,7 @@ export function Header() {
 }
 
 function NavLinks({ isScrolled = false, mobile = false }) {
-  const { t } = useLanguage?.() || { t: (key: string) => key }
+  const { t } = useLanguage()
 
   const linkClass = cn(
     "transition-colors font-medium",

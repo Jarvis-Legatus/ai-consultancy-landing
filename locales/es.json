@@ -1,0 +1,139 @@
+{
+  "nav.services": "Servicios",
+  "nav.caseStudies": "Casos de Éxito",
+  "nav.about": "Acerca de",
+  "nav.contact": "Contacto",
+  "cta.bookConsultation": "Reservar Consulta",
+
+  "hero.title": "Soluciones de IA que Entregan",
+  "hero.subtitle":
+    "Transformamos cómo operan las PYMES con implementaciones prácticas de IA que proporcionan ROI medible y resultados comerciales tangibles.",
+  "hero.morphingTexts": ["resultados tangibles", "costos reducidos", "productividad superior", "más ingresos"],
+  "hero.cta.primary": "Reservar una Consulta",
+  "hero.cta.secondary": "Explorar Servicios",
+
+  "services.title": "Soluciones Prácticas de IA con Resultados Medibles",
+  "services.subtitle":
+    "Nos enfocamos en resultados comerciales, no en jerga técnica. Nuestras soluciones entregan ROI real.",
+
+  "service.chatbot.title": "Chatbots de Atención al Cliente",
+  "service.chatbot.description":
+    "Reduzca los costos de soporte en un 40% mientras mejora la satisfacción del cliente con chatbots impulsados por IA que manejan consultas rutinarias.",
+  "service.chatbot.benefit":
+    "Tiempos de respuesta más rápidos, disponibilidad 24/7 y escalamiento sin problemas a agentes humanos cuando sea necesario.",
+
+  "service.document.title": "Procesamiento de Documentos y Sistemas RAG",
+  "service.document.description":
+    "Transforme documentos no estructurados en bases de conocimiento consultables que proporcionan respuestas instantáneas a preguntas complejas.",
+  "service.document.benefit":
+    "Reduzca el tiempo de procesamiento de documentos en un 70% y desbloquee información oculta en sus documentos comerciales.",
+
+  "service.bi.title": "Herramientas de Inteligencia Empresarial",
+  "service.bi.description":
+    "Convierta sus datos en información procesable con análisis impulsados por IA que identifican tendencias y oportunidades.",
+  "service.bi.benefit":
+    "Tome decisiones basadas en datos con análisis predictivos que pronostican resultados basados en patrones históricos.",
+
+  "service.automation.title": "Flujos de Automatización de Procesos",
+  "service.automation.description":
+    "Optimice tareas repetitivas y procesos comerciales con automatización inteligente que se adapta a condiciones cambiantes.",
+  "service.automation.benefit":
+    "Reduzca los costos operativos en un 35% mientras mejora la precisión y libera al personal para trabajo de mayor valor.",
+
+  "service.custom.title": "Implementaciones Personalizadas de IA",
+  "service.custom.description":
+    "Soluciones de IA a medida diseñadas específicamente para sus desafíos y oportunidades comerciales únicas.",
+  "service.custom.benefit": "IA creada a medida que se integra perfectamente con sus sistemas y procesos existentes.",
+
+  "service.outcome": "Resultado Comercial:",
+
+  "caseStudies.title": "Resultados Reales para Negocios Reales",
+  "caseStudies.subtitle": "Vea cómo nuestras soluciones de IA han entregado ROI medible para PYMES como la suya.",
+
+  "caseStudy.manufacturing.title": "Aumento de Eficiencia en Manufactura",
+  "caseStudy.manufacturing.company": "Precision Parts Co.",
+  "caseStudy.manufacturing.description":
+    "Implementamos un sistema de mantenimiento predictivo impulsado por IA que redujo el tiempo de inactividad en un 37% y extendió la vida útil del equipo.",
+  "caseStudy.manufacturing.outcome":
+    "Ahorró $450,000 anualmente en costos de mantenimiento y previno fallas críticas.",
+  "caseStudy.manufacturing.roi": "320% ROI en el primer año",
+
+  "caseStudy.support.title": "Transformación de Atención al Cliente",
+  "caseStudy.support.company": "Proveedor Regional de Seguros",
+  "caseStudy.support.description":
+    "Desplegamos un chatbot inteligente que maneja el 78% de las consultas rutinarias de los clientes sin intervención humana.",
+  "caseStudy.support.outcome":
+    "Tiempo de respuesta reducido de 24 horas a instantáneo para preguntas comunes mientras se reducen los costos de soporte en un 42%.",
+  "caseStudy.support.roi": "215% ROI en el primer año",
+
+  "caseStudy.legal.title": "Revolución en Procesamiento de Documentos",
+  "caseStudy.legal.company": "Firma de Servicios Legales",
+  "caseStudy.legal.description":
+    "Construimos un sistema RAG personalizado para analizar miles de documentos legales y extraer automáticamente información relevante del caso.",
+  "caseStudy.legal.outcome":
+    "Tiempo de investigación reducido en un 65% y precisión mejorada en la preparación de casos en un 28%.",
+  "caseStudy.legal.roi": "180% ROI en el primer año",
+
+  "caseStudy.readMore": "Leer caso de éxito completo",
+  "caseStudy.outcome": "Resultado Comercial:",
+
+  "consultation.title": "¿Listo para Transformar su Negocio con IA Práctica?",
+  "consultation.subtitle":
+    "Programe una consulta gratuita de 30 minutos para discutir sus desafíos comerciales y descubrir cómo nuestras soluciones de IA pueden entregar resultados medibles.",
+  "consultation.benefit1": "Sin jerga técnica, solo resultados comerciales claros",
+  "consultation.benefit2": "Soluciones personalizadas adaptadas a sus necesidades específicas",
+  "consultation.benefit3": "Precios transparentes con proyecciones de ROI",
+  "consultation.benefit4": "Soporte y optimización continuos",
+
+  "consultation.form.title": "Reserve su Consulta Gratuita",
+  "consultation.form.name": "Nombre Completo",
+  "consultation.form.company": "Nombre de la Empresa",
+  "consultation.form.email": "Dirección de Correo Electrónico",
+  "consultation.form.phone": "Número de Teléfono",
+  "consultation.form.date": "Fecha Preferida",
+  "consultation.form.selectDate": "Seleccione una fecha",
+  "consultation.form.message": "Cuéntenos sobre sus desafíos comerciales",
+  "consultation.form.messagePlaceholder": "¿Qué desafíos específicos está buscando resolver con IA?",
+  "consultation.form.submit": "Reserve su Consulta",
+  "consultation.form.privacy":
+    "Al enviar este formulario, acepta nuestra política de privacidad y términos de servicio.",
+
+  "consultation.success.title": "¡Gracias!",
+  "consultation.success.message":
+    "Su solicitud de consulta ha sido recibida. Nos pondremos en contacto con usted en breve para confirmar su cita.",
+  "consultation.success.button": "Reservar Otra Consulta",
+
+  "trust.title": "Confiado por Empresas Como la Suya",
+  "trust.subtitle":
+    "Nos asociamos con proveedores de tecnología líderes para ofrecer soluciones de IA seguras y confiables.",
+
+  "footer.description":
+    "Soluciones prácticas de IA para pequeñas y medianas empresas que entregan ROI medible y resultados comerciales tangibles.",
+  "footer.services": "Servicios",
+  "footer.company": "Empresa",
+  "footer.contact": "Contacto",
+  "footer.copyright": "© 2023 FasterOperations. Todos los derechos reservados.",
+  "footer.privacy": "Política de Privacidad",
+  "footer.terms": "Términos de Servicio",
+  "footer.cookies": "Política de Cookies",
+"footer.services.chatbot": "Chatbots de Atención al Cliente",
+  "footer.services.document": "Procesamiento de Documentos",
+  "footer.services.bi": "Inteligencia Empresarial",
+  "footer.services.automation": "Automatización de Procesos",
+  "footer.services.custom": "Implementaciones Personalizadas de IA",
+
+  "footer.company.about": "Acerca de",
+  "footer.company.caseStudies": "Casos de Éxito",
+  "footer.company.blog": "Blog",
+  "footer.company.careers": "Carreras",
+  "footer.company.contact": "Contacto",
+
+  "footer.contact.address1": "123 Bulevar de la IA",
+  "footer.contact.address2": "Distrito Tecnológico, CA 94103",
+  "footer.contact.email": "contact@fasteroperations.com",
+  "footer.contact.phone": "+1 (555) 123-4567",
+
+  "footer.social.twitter": "Twitter",
+  "footer.social.linkedin": "LinkedIn",
+  "footer.social.facebook": "Facebook"
+}
