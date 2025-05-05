@@ -5,6 +5,10 @@ import { motion, useInView } from "framer-motion"
 import { MessageSquare, FileText, BarChart3, Workflow, Code } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { useLanguage } from "./language-selector"
+import { useTheme } from "next-themes"
+import dynamic from 'next/dynamic';
+
+const MagicCard = dynamic(() => import('@/components/magicui/magic-card').then(mod => mod.MagicCard), { ssr: false });
 
 export function Services() {
   const ref = useRef(null)
@@ -119,29 +123,37 @@ interface ServiceCardProps {
 
 function ServiceCard({ service, index, item, t }: ServiceCardProps) {
   const Icon = service.icon
+  const { theme } = useTheme()
+
+  const spotlightColor = theme === 'light' ? '#E5E7EB' : '#262626';
 
   return (
     <motion.div variants={item}>
-      <Card className="h-full transition-all duration-500 hover:shadow-xl border border-border hover:border-primary/50 rounded-xl overflow-hidden group bg-card">
-        <CardHeader className="pb-2">
-          <motion.div
-            initial={{ scale: 1 }}
-            whileHover={{ scale: 1.1, rotate: 5 }}
-            transition={{ type: "spring", stiffness: 400, damping: 10 }}
-            className="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors duration-300"
-          >
-            <Icon className="h-7 w-7 text-primary" />
-          </motion.div>
-          <CardTitle className="text-2xl font-semibold">{service.title}</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <CardDescription className="text-muted-foreground mb-4 text-base">{service.description}</CardDescription>
-          <div className="pt-4 border-t border-border">
-            <p className="text-sm font-medium text-primary mb-2">{t("service.outcome")}</p>
-            <p className="text-foreground/90 mt-1">{service.benefit}</p>
-          </div>
-        </CardContent>
-      </Card>
+      <MagicCard
+        className="h-full transition-all duration-500 hover:shadow-xl border border-border hover:border-primary/50 rounded-xl overflow-hidden group bg-card"
+        gradientColor={spotlightColor}
+      >
+        <Card className="h-full w-full border-none shadow-none">
+          <CardHeader className="pb-2">
+            <motion.div
+              initial={{ scale: 1 }}
+              whileHover={{ scale: 1.1, rotate: 5 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              className="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors duration-300"
+            >
+              <Icon className="h-7 w-7 text-primary" />
+            </motion.div>
+            <CardTitle className="text-2xl font-semibold">{service.title}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <CardDescription className="text-muted-foreground mb-4 text-base">{service.description}</CardDescription>
+            <div className="pt-4 border-t border-border">
+              <p className="text-sm font-medium text-primary mb-2">{t("service.outcome")}</p>
+              <p className="text-foreground/90 mt-1">{service.benefit}</p>
+            </div>
+          </CardContent>
+        </Card>
+      </MagicCard>
     </motion.div>
   )
 }

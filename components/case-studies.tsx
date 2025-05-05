@@ -6,6 +6,10 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from "@/components/ui/badge"
 import { ArrowRight } from "lucide-react"
 import { useLanguage } from "./language-selector"
+import dynamic from 'next/dynamic';
+import { useTheme } from "next-themes"
+
+const MagicCard = dynamic(() => import('@/components/magicui/magic-card').then(mod => mod.MagicCard), { ssr: false });
 
 export function CaseStudies() {
   const ref = useRef(null)
@@ -118,38 +122,45 @@ function CaseStudyCard({
   item: any; // Motion variant type would be more specific if available
   t: (key: string) => string | string[];
 }) {
+  const { theme } = useTheme();
+  const spotlightColor = theme === 'light' ? '#E5E7EB' : '#262626';
+
   return (
     <motion.div variants={item}>
-      <Card className="h-full transition-all duration-500 hover:shadow-xl border-2 border-border hover:border-primary/50 rounded-xl overflow-hidden group bg-card">
-        <div className="h-2 bg-gradient-to-r from-primary to-primary/90"></div>
-        <CardHeader className="pb-2">
-          <div className="text-sm text-muted-foreground mb-1">{study.company}</div>
-          <CardTitle className="text-2xl font-semibold text-foreground">{study.title}</CardTitle>
-        </CardHeader>
-        <CardContent className="min-h-[200px]">
-          <CardDescription className="text-muted-foreground mb-4 text-base">{study.description}</CardDescription>
-          <div className="pt-4 border-t border-border">
-            <p className="text-sm font-medium text-primary mb-2">{t("caseStudy.outcome")}</p>
-            <p className="text-foreground/90 mb-4">{study.outcome}</p>
-            <div className="flex flex-wrap gap-2 mb-4">
-              {study.tags.map((tag: string, i: number) => (
-                <Badge key={i} variant="secondary" className="bg-primary/10 text-primary hover:bg-primary/20">
-                  {tag}
-                </Badge>
-              ))}
+      <MagicCard
+        className="h-full transition-all duration-500 hover:shadow-xl border-2 border-border hover:border-primary/50 rounded-xl overflow-hidden group bg-card"
+        gradientColor={spotlightColor}
+      >
+        <Card className="h-full w-full border-none shadow-none">
+          <CardHeader className="pb-2">
+            <div className="text-sm text-muted-foreground mb-1">{study.company}</div>
+            <CardTitle className="text-2xl font-semibold text-foreground">{study.title}</CardTitle>
+          </CardHeader>
+          <CardContent className="min-h-[200px]">
+            <CardDescription className="text-muted-foreground mb-4 text-base">{study.description}</CardDescription>
+            <div className="pt-4 border-t border-border">
+              <p className="text-sm font-medium text-primary mb-2">{t("caseStudy.outcome")}</p>
+              <p className="text-foreground/90 mb-4">{study.outcome}</p>
+              <div className="flex flex-wrap gap-2 mb-4">
+                {study.tags.map((tag: string, i: number) => (
+                  <Badge key={i} variant="secondary" className="bg-primary/10 text-primary hover:bg-primary/20">
+                    {tag}
+                  </Badge>
+                ))}
+              </div>
             </div>
-          </div>
-        </CardContent>
-        <CardFooter className="flex justify-between items-center border-t border-border pt-4 px-6 pb-6">
-          <div className="font-semibold text-green-600 text-sm">{study.roi}</div>
-          <motion.button
-            whileHover={{ x: 5 }}
-            className="text-primary hover:text-primary/90 flex items-center text-sm font-medium"
-          >
-            {t("caseStudy.readMore")} <ArrowRight size={16} className="ml-1" />
-          </motion.button>
-        </CardFooter>
-      </Card>
+          </CardContent>
+          <CardFooter className="flex justify-between items-center border-t border-border pt-4 px-6 pb-6">
+            <div className="font-semibold text-green-600 text-sm">{study.roi}</div>
+            <motion.button
+              whileHover={{ x: 5 }}
+              className="text-primary hover:text-primary/90 flex items-center text-sm font-medium"
+            >
+              {t("caseStudy.readMore")} <ArrowRight size={16} className="ml-1" />
+            </motion.button>
+          </CardFooter>
+        </Card>
+      </MagicCard>
     </motion.div>
-  )
+  );
 }
