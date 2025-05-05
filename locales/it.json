@@ -6,135 +6,100 @@
   "cta.bookConsultation": "Prenota Consulenza",
 
   "hero.title": "Soluzioni AI che Offrono",
-  "hero.subtitle":
-    "Trasformiamo il modo in cui operano le PMI con implementazioni pratiche di AI che forniscono ROI misurabile e risultati aziendali tangibili.",
+  "hero.subtitle": "Trasformiamo il modo in cui operano le PMI con implementazioni pratiche di AI che forniscono ROI misurabile e risultati aziendali tangibili.",
   "hero.morphingTexts": ["risultati concreti", "costi ridotti", "produttività superiore", "crescita dei ricavi"],
   "hero.cta.primary": "Prenota una Consulenza",
   "hero.cta.secondary": "Esplora i Servizi",
 
   "services.title": "Soluzioni AI Pratiche con Risultati Misurabili",
-  "services.subtitle":
-    "Ci concentriamo sui risultati aziendali, non sul gergo tecnico. Le nostre soluzioni offrono un ROI reale.",
-
-  "service.chatbot.title": "Chatbot per il Supporto Clienti",
-  "service.chatbot.description":
-    "Riduci i costi di supporto del 40% migliorando la soddisfazione del cliente con chatbot alimentati da AI che gestiscono richieste di routine.",
-  "service.chatbot.benefit":
-    "Tempi di risposta più rapidi, disponibilità 24/7 e passaggio senza problemi agli agenti umani quando necessario.",
-
-  "service.document.title": "Elaborazione Documenti e Sistemi RAG",
-  "service.document.description":
-    "Trasforma documenti non strutturati in basi di conoscenza ricercabili che forniscono risposte istantanee a domande complesse.",
-  "service.document.benefit":
-    "Riduci il tempo di elaborazione dei documenti del 70% e sblocca informazioni nascoste nei tuoi documenti aziendali.",
-
-  "service.bi.title": "Strumenti di Business Intelligence",
-  "service.bi.description":
-    "Converti i tuoi dati in informazioni utilizzabili con analisi alimentate da AI che identificano tendenze e opportunità.",
-  "service.bi.benefit":
-    "Prendi decisioni basate sui dati con analisi predittive che prevedono risultati basati su modelli storici.",
-
-  "service.automation.title": "Flussi di Automazione dei Processi",
-  "service.automation.description":
-    "Ottimizza attività ripetitive e processi aziendali con automazione intelligente che si adatta alle condizioni mutevoli.",
-  "service.automation.benefit":
-    "Riduci i costi operativi del 35% migliorando la precisione e liberando il personale per lavori di maggior valore.",
-
-  "service.custom.title": "Implementazioni AI Personalizzate",
-  "service.custom.description":
-    "Soluzioni AI su misura progettate specificamente per le tue sfide e opportunità aziendali uniche.",
-  "service.custom.benefit":
-    "AI costruita su misura che si integra perfettamente con i tuoi sistemi e processi esistenti.",
-
+  "services.subtitle": "Ci concentriamo sui risultati aziendali, non sul gergo tecnico. Le nostre soluzioni offrono un ROI reale.",
   "service.outcome": "Risultato Aziendale:",
+  "service.chatbot.title": "Chatbot per il Supporto Clienti",
+  "service.chatbot.description": "Riduci i costi di supporto del 40% migliorando la soddisfazione del cliente con chatbot alimentati da AI che gestiscono richieste di routine.",
+  "service.chatbot.benefit": "Tempi di risposta più rapidi, disponibilità 24/7 e passaggio senza problemi agli agenti umani quando necessario.",
+  "service.document.title": "Elaborazione Documenti e Sistemi RAG",
+  "service.document.description": "Trasforma documenti non strutturati in basi di conoscenza ricercabili che forniscono risposte istantanee a domande complesse.",
+  "service.document.benefit": "Riduci il tempo di elaborazione dei documenti del 70% e sblocca informazioni nascoste nei tuoi documenti aziendali.",
+  "service.bi.title": "Strumenti di Business Intelligence",
+  "service.bi.description": "Converti i tuoi dati in informazioni utilizzabili con analisi alimentate da AI che identificano tendenze e opportunità.",
+  "service.bi.benefit": "Prendi decisioni basate sui dati con analisi predittive che prevedono risultati basati su modelli storici.",
+  "service.automation.title": "Flussi di Automazione dei Processi",
+  "service.automation.description": "Ottimizza attività ripetitive e processi aziendali con automazione intelligente che si adatta alle condizioni mutevoli.",
+  "service.automation.benefit": "Riduci i costi operativi del 35% migliorando la precisione e liberando il personale per lavori di maggior valore.",
+  "service.custom.title": "Implementazioni AI Personalizzate",
+  "service.custom.description": "Soluzioni AI su misura progettate specificamente per le tue sfide e opportunità aziendali uniche.",
+  "service.custom.benefit": "AI costruita su misura che si integra perfettamente con i tuoi sistemi e processi esistenti.",
 
   "caseStudies.title": "Risultati Reali per Aziende Reali",
   "caseStudies.subtitle": "Scopri come le nostre soluzioni AI hanno fornito ROI misurabile per PMI come la tua.",
-
+  "caseStudy.outcome": "Risultato Aziendale:",
+  "caseStudy.readMore": "Leggi il caso studio completo",
   "caseStudy.manufacturing.title": "Aumento dell'Efficienza Produttiva",
   "caseStudy.manufacturing.company": "Precision Parts Co.",
-  "caseStudy.manufacturing.description":
-    "Implementato un sistema di manutenzione predittiva alimentato da AI che ha ridotto i tempi di inattività del 37% e prolungato la durata delle apparecchiature.",
-  "caseStudy.manufacturing.outcome":
-    "Risparmiato $450.000 all'anno in costi di manutenzione e prevenuto guasti critici.",
+  "caseStudy.manufacturing.description": "Implementato un sistema di manutenzione predittiva alimentato da AI che ha ridotto i tempi di inattività del 37% e prolungato la durata delle apparecchiature.",
+  "caseStudy.manufacturing.outcome": "Risparmiato $450.000 all'anno in costi di manutenzione e prevenuto guasti critici.",
   "caseStudy.manufacturing.roi": "320% ROI nel primo anno",
-
   "caseStudy.support.title": "Trasformazione del Supporto Clienti",
   "caseStudy.support.company": "Fornitore Regionale di Assicurazioni",
-  "caseStudy.support.description":
-    "Implementato un chatbot intelligente che gestisce il 78% delle richieste di routine dei clienti senza intervento umano.",
-  "caseStudy.support.outcome":
-    "Tempo di risposta ridotto da 24 ore a istantaneo per domande comuni riducendo i costi di supporto del 42%.",
+  "caseStudy.support.description": "Implementato un chatbot intelligente che gestisce il 78% delle richieste di routine dei clienti senza intervento umano.",
+  "caseStudy.support.outcome": "Tempo di risposta ridotto da 24 ore a istantaneo per domande comuni riducendo i costi di supporto del 42%.",
   "caseStudy.support.roi": "215% ROI nel primo anno",
-
   "caseStudy.legal.title": "Rivoluzione nell'Elaborazione dei Documenti",
   "caseStudy.legal.company": "Studio di Servizi Legali",
-  "caseStudy.legal.description":
-    "Costruito un sistema RAG personalizzato per analizzare migliaia di documenti legali ed estrarre automaticamente informazioni rilevanti sui casi.",
-  "caseStudy.legal.outcome":
-    "Tempo di ricerca ridotto del 65% e precisione nella preparazione dei casi migliorata del 28%.",
+  "caseStudy.legal.description": "Costruito un sistema RAG personalizzato per analizzare migliaia di documenti legali ed estrarre automaticamente informazioni rilevanti sui casi.",
+  "caseStudy.legal.outcome": "Tempo di ricerca ridotto del 65% e precisione nella preparazione dei casi migliorata del 28%.",
   "caseStudy.legal.roi": "180% ROI nel primo anno",
 
-  "caseStudy.readMore": "Leggi l'étude de cas complète",
-  "caseStudy.outcome": "Risultato Aziendale:",
-
   "consultation.title": "Pronto a Trasformare la Tua Attività con l'AI Pratica?",
-  "consultation.subtitle":
-    "Pianifica una consulenza gratuita di 30 minuti per discutere le tue sfide aziendali e scoprire come le nostre soluzioni AI possono fornire risultati misurabili.",
+  "consultation.subtitle": "Pianifica una consulenza gratuita di 30 minuti per discutere le tue sfide aziendali e scoprire come le nostre soluzioni AI possono fornire risultati misurabili.",
   "consultation.benefit1": "Nessun gergo tecnico, solo risultati aziendali chiari",
   "consultation.benefit2": "Soluzioni personalizzate adattate alle tue esigenze specifiche",
   "consultation.benefit3": "Prezzi trasparenti con proiezioni di ROI",
   "consultation.benefit4": "Supporto e ottimizzazione continui",
-
   "consultation.form.title": "Prenota la Tua Consulenza Gratuita",
-  "consultation.form.name": "Nome Completo",
-  "consultation.form.company": "Nome dell'Azienda",
-  "consultation.form.email": "Indirizzo Email",
-  "consultation.form.phone": "Numero di Telefono",
-  "consultation.form.date": "Data Preferita",
-  "consultation.form.selectDate": "Seleziona una data",
-  "consultation.form.message": "Parlaci delle tue sfide aziendali",
-  "consultation.form.messagePlaceholder": "Quali sfide specifiche stai cercando di risolvere con l'AI?",
-  "consultation.form.submit": "Prenota la Tua Consulenza",
-  "consultation.form.privacy":
-    "Inviando questo modulo, accetti la nostra politica sulla privacy e i termini di servizio.",
-
   "consultation.success.title": "Grazie!",
-  "consultation.success.message":
-    "La tua richiesta di consulenza è stata ricevuta. Ti contatteremo a breve per confermare il tuo appuntamento.",
+  "consultation.success.message": "La tua richiesta di consulenza è stata ricevuta. Ti contatteremo a breve per confermare il tuo appuntamento.",
   "consultation.success.button": "Prenota un'Altra Consulenza",
 
   "trust.title": "Scelto da Aziende Come la Tua",
-  "trust.subtitle":
-    "Collaboriamo con i principali fornitori di tecnologia per offrire soluzioni AI sicure e affidabili.",
+  "trust.subtitle": "Collaboriamo con i principali fornitori di tecnologia per offrire soluzioni AI sicure e affidabili.",
 
-  "footer.description":
-    "Soluzioni AI pratiche per piccole e medie imprese che offrono ROI misurabile e risultati aziendali tangibili.",
+  "testimonial1.quote": "FasterOperations ci ha aiutato a implementare una soluzione AI che ha ridotto i tempi di risposta ai clienti del 75%, migliorando al contempo i punteggi di soddisfazione.",
+  "testimonial1.author": "Sarah Johnson",
+  "testimonial1.position": "COO, Catena di Vendita al Dettaglio",
+  "testimonial2.quote": "Il loro approccio pratico all'AI ha fornito esattamente ciò di cui avevamo bisogno: risultati aziendali reali senza la complessità tecnica.",
+  "testimonial2.author": "Michael Chen",
+  "testimonial2.position": "CEO, PMI Manifatturiera",
+  "testimonial3.quote": "Gli insight basati sull'AI di FasterOperations hanno identificato un nuovo segmento di mercato, portando a un aumento del 15% dei ricavi entro sei mesi.",
+  "testimonial3.author": "David Rodriguez",
+  "testimonial3.position": "Direttore Marketing, Azienda Logistica",
+  "testimonial4.quote": "Automatizzare il nostro processo di fatturazione con la loro soluzione AI ha ridotto il lavoro manuale di oltre 50 ore al mese. Una svolta decisiva!",
+  "testimonial4.author": "Emily White",
+  "testimonial4.position": "Responsabile Finanziario, Fornitore di Servizi",
+
+  "footer.description": "Soluzioni AI pratiche per piccole e medie imprese che offrono ROI misurabile e risultati aziendali tangibili.",
   "footer.services": "Servizi",
   "footer.company": "Azienda",
   "footer.contact": "Contatto",
-  "footer.copyright": "© 2023 FasterOperations. Tutti i diritti riservati.",
-  "footer.privacy": "Informativa sulla Privacy",
-  "footer.terms": "Termini di Servizio",
-  "footer.cookies": "Informativa sui Cookie",
-"footer.services.chatbot": "Chatbot per il Supporto Clienti",
+  "footer.services.chatbot": "Chatbot per il Supporto Clienti",
   "footer.services.document": "Elaborazione Documenti",
   "footer.services.bi": "Business Intelligence",
   "footer.services.automation": "Automazione dei Processi",
   "footer.services.custom": "Implementazioni AI Personalizzate",
-
   "footer.company.about": "Chi Siamo",
   "footer.company.caseStudies": "Casi di Studio",
   "footer.company.blog": "Blog",
   "footer.company.careers": "Carriere",
   "footer.company.contact": "Contatto",
-
   "footer.contact.address1": "123 Viale AI",
   "footer.contact.address2": "Quartiere Tecnologico, CA 94103",
   "footer.contact.email": "contact@fasteroperations.com",
   "footer.contact.phone": "+1 (555) 123-4567",
-
   "footer.social.twitter": "Twitter",
   "footer.social.linkedin": "LinkedIn",
-  "footer.social.facebook": "Facebook"
+  "footer.social.facebook": "Facebook",
+  "footer.copyright": "© 2023 FasterOperations. Tutti i diritti riservati.",
+  "footer.privacy": "Informativa sulla Privacy",
+  "footer.terms": "Termini di Servizio",
+  "footer.cookies": "Informativa sui Cookie"
 }
