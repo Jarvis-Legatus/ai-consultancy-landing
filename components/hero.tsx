@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { useLanguage } from "./language-selector"
 
-import { FlickeringGrid } from "@/components/magicui/flickering-grid"
 import { MorphingText } from "@/components/magicui/morphing-text";
 
 export function Hero() {
@@ -43,8 +42,6 @@ export function Hero() {
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
     >
 
- <FlickeringGrid className="absolute left-0 top-0 h-full w-1/6" color="blue" style={{ maskImage: 'linear-gradient(to right, black, transparent)' }} /> 
- <FlickeringGrid className="absolute right-0 top-0 h-full w-1/6" color="blue" style={{ maskImage: 'linear-gradient(to left, black, transparent)' }} />
 
       <motion.div style={{ opacity, scale, y }} className="container mx-auto px-4 z-10 py-20">
         <div className="max-w-5xl mx-auto text-center">
@@ -73,10 +70,10 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-col sm:flex-row gap-6 justify-center"
           >
-            <Button size="lg" className="bg-primary hover:bg-primary/90 text-lg px-8 py-6 rounded-xl button-hover">
+            <Button size="lg" className="bg-primary hover:bg-primary/90 rounded-xl button-hover dark:text-white">
               <span>{t("hero.cta.primary") as string}</span>
             </Button>
-            <Button size="lg" variant="outline" className="text-lg px-8 py-6 rounded-xl border-2 button-hover text-foreground">
+            <Button size="lg" variant="outline" className="text-lg px-8 py-6 rounded-xl button-hover text-foreground dark:text-white">
               <span>{t("hero.cta.secondary") as string}</span>
             </Button>
           </motion.div>

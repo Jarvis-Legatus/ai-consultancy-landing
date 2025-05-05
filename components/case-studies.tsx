@@ -64,7 +64,7 @@ export function CaseStudies() {
 
   return (
     <section id="case-studies" className="py-20">
-      <div className="section-container bg-background py-16 shadow-sm">
+      <div className="section-container py-16 shadow-sm">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.h2
             ref={ref}
@@ -101,12 +101,12 @@ export function CaseStudies() {
 }
 
 interface CaseStudy {
-  company: string;
-  title: string;
-  description: string;
-  outcome: string;
+  company: string | string[];
+  title: string | string[];
+  description: string | string[];
+  outcome: string | string[];
   tags: string[];
-  roi: string;
+  roi: string | string[];
 }
 
 function CaseStudyCard({
@@ -116,11 +116,11 @@ function CaseStudyCard({
 }: {
   study: CaseStudy;
   item: any; // Motion variant type would be more specific if available
-  t: (key: string) => string;
+  t: (key: string) => string | string[];
 }) {
   return (
     <motion.div variants={item}>
-      <Card className="h-full transition-all duration-500 hover:shadow-xl border-2 border-border hover:border-primary/50 rounded-xl overflow-hidden group">
+      <Card className="h-full transition-all duration-500 hover:shadow-xl border-2 border-border hover:border-primary/50 rounded-xl overflow-hidden group bg-card">
         <div className="h-2 bg-gradient-to-r from-primary to-primary/90"></div>
         <CardHeader className="pb-2">
           <div className="text-sm text-muted-foreground mb-1">{study.company}</div>

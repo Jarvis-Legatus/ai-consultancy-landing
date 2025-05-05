@@ -60,7 +60,7 @@ export function TrustIndicators() {
 
   return (
     <section className="py-20">
-      <div className="section-container bg-background py-16 shadow-sm">
+      <div className="section-container py-16 shadow-sm">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.h2
             ref={ref}
@@ -113,7 +113,7 @@ export function TrustIndicators() {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.5, delay: 0.2 * index, ease: [0.22, 1, 0.36, 1] }}
               whileHover={{ y: -10 }}
-              className="bg-card p-8 rounded-xl shadow-md border-2 border-border"
+              className="bg-card p-8 rounded-xl shadow-md border border-border"
             >
               <div className="flex items-center mb-6">
                 <div className="mr-4">

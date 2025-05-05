@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { LanguageSelector, useLanguage } from "./language-selector"
+import { useLanguage } from "./language-selector"
 
 export function Footer() {
   const { t } = useLanguage()
@@ -17,7 +17,7 @@ export function Footer() {
   const companyLinks = ["About Us", "Case Studies", "Blog", "Careers", "Contact"]
 
   return (
-    <footer className="bg-background text-foreground border-t border-border">
+    <footer className="text-foreground border-t border-border">
       <div className="section-container py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
@@ -29,7 +29,6 @@ export function Footer() {
             </div>
             <p className="text-muted-foreground mb-6">{t("footer.description")}</p>
             <div className="flex items-center">
-              <LanguageSelector />
             </div>
           </div>
 

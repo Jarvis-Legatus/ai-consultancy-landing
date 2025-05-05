@@ -52,7 +52,7 @@ export function BookConsultation() {
 
   return (
     <section id="contact" className="py-20">
-      <div className="section-container bg-muted/20 py-16 shadow-sm">
+      <div className="section-container py-16 shadow-sm">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 gap-12">
             <motion.div

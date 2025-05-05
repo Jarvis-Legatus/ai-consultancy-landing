@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import "@/app/globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
+import { FlickeringGrid } from "@/components/magicui/flickering-grid"
 
 export const metadata: Metadata = {
   title: "FasterOperations - AI Solutions for SMEs",
@@ -27,6 +28,8 @@ export default function RootLayout({
         <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
       </head>
       <body>
+        <FlickeringGrid className="fixed left-0 top-0 h-screen w-1/6 z-[-1]" color="blue" style={{ maskImage: 'linear-gradient(to right, cyan, transparent)' }} />
+        <FlickeringGrid className="fixed right-0 top-0 h-screen w-1/6 z-[-1]" color="blue" style={{ maskImage: 'linear-gradient(to left, cyan, transparent)' }} />
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           {children}
           <Toaster />

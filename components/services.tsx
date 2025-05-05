@@ -69,7 +69,7 @@ export function Services() {
 
   return (
     <section id="services" className="py-20">
-      <div className="section-container bg-muted/20 py-16 shadow-sm">
+      <div className="section-container py-16 shadow-sm">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.h2
             ref={ref}
@@ -108,13 +108,13 @@ export function Services() {
 interface ServiceCardProps {
   service: {
     icon: any; // Replace 'any' with a more specific type if available
-    title: string;
-    description: string;
-    benefit: string;
+    title: string | string[];
+    description: string | string[];
+    benefit: string | string[];
   };
   index: number;
   item: any; // Replace 'any' with a more specific type if available
-  t: (key: string) => string;
+  t: (key: string) => string | string[];
 }
 
 function ServiceCard({ service, index, item, t }: ServiceCardProps) {
@@ -122,7 +122,7 @@ function ServiceCard({ service, index, item, t }: ServiceCardProps) {
 
   return (
     <motion.div variants={item}>
-      <Card className="h-full transition-all duration-500 hover:shadow-xl border-2 border-border hover:border-primary/50 rounded-xl overflow-hidden group">
+      <Card className="h-full transition-all duration-500 hover:shadow-xl border border-border hover:border-primary/50 rounded-xl overflow-hidden group bg-card">
         <CardHeader className="pb-2">
           <motion.div
             initial={{ scale: 1 }}

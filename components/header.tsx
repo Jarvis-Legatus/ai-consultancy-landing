@@ -61,7 +61,7 @@ export function Header() {
           <div className="flex items-center space-x-4">
             <ThemeToggle />
             <LanguageSelector onDropdownChange={setIsDropdownOpen} />
-            <Button className="bg-primary hover:bg-primary/90 rounded-xl button-hover">
+            <Button className="bg-primary hover:bg-primary/90 rounded-xl button-hover dark:text-white">
               <span>{t("cta.bookConsultation")}</span>
             </Button>
           </div>
@@ -89,7 +89,7 @@ export function Header() {
                 <ThemeToggle />
                 <LanguageSelector onDropdownChange={setIsDropdownOpen} />
               </div>
-              <Button className="bg-primary hover:bg-primary/90 w-full rounded-xl button-hover">
+              <Button className="bg-primary hover:bg-primary/90 w-full rounded-xl button-hover dark:text-white">
                 <span>{t("cta.bookConsultation")}</span>
               </Button>
             </div>
