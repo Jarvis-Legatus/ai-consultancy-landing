@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { useLanguage } from "./language-selector"
 
+import { FlickeringGrid } from "@/components/magicui/flickering-grid"
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
@@ -30,10 +31,9 @@ export function Hero() {
       ref={containerRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
     >
-      {/* Animated gradient background */}
-      {/* Removed animated gradient background */}
 
-      {/* Removed floating elements */}
+ <FlickeringGrid className="absolute left-0 top-0 h-full w-1/6" color="blue" style={{ maskImage: 'linear-gradient(to right, black, transparent)' }} /> 
+ <FlickeringGrid className="absolute right-0 top-0 h-full w-1/6" color="blue" style={{ maskImage: 'linear-gradient(to left, black, transparent)' }} />
 
       <motion.div style={{ opacity, scale, y }} className="container mx-auto px-4 z-10 py-20">
         <div className="max-w-3xl mx-auto text-center">
@@ -73,3 +73,4 @@ export function Hero() {
     </section>
   )
 }
+
