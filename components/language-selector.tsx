@@ -42,7 +42,7 @@ const translations = {
     "nav.caseStudies": "Case Studies",
     "nav.about": "About",
     "nav.contact": "Contact",
-    "cta.bookConsultation": "Book Consultation",
+    "cta.bookConsultation": "Book a Consultation",
 
     // Hero section
     "hero.title": "AI Solutions That Deliver",

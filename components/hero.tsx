@@ -6,6 +6,8 @@ import { motion, useScroll, useTransform } from "framer-motion"
 import { useLanguage } from "./language-selector"
 
 import { MorphingText } from "@/components/magicui/morphing-text";
+import SlideArrowButton from "./SlideArrowButton";
+import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -70,12 +72,8 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-col sm:flex-row gap-6 justify-center"
           >
-            <Button size="lg" className="bg-primary hover:bg-primary/90 rounded-xl button-hover dark:text-white">
-              <span>{t("hero.cta.primary") as string}</span>
-            </Button>
-            <Button size="lg" variant="outline" className="text-lg px-8 py-6 rounded-xl button-hover text-foreground dark:text-white">
-              <span>{t("hero.cta.secondary") as string}</span>
-            </Button>
+            <InteractiveHoverButton>{t("hero.cta.primary") as string}</InteractiveHoverButton>
+
           </motion.div>
         </div>
       </motion.div>

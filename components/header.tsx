@@ -8,6 +8,8 @@ import { LanguageSelector, useLanguage } from "./language-selector"
 import { ThemeToggle } from "./theme-toggle"
 import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
+import { ScrollProgress } from "./magicui/scroll-progress"
+import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -34,9 +36,11 @@ export function Header() {
   }, [isDropdownOpen])
 
   return (
-    <header
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+    <>
+      <ScrollProgress />
+      <header
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled ? "bg-background/95 backdrop-blur-sm shadow-sm py-3" : "bg-transparent py-5",
       )}
     >
@@ -61,9 +65,7 @@ export function Header() {
           <div className="flex items-center space-x-4">
             <ThemeToggle />
             <LanguageSelector onDropdownChange={setIsDropdownOpen} />
-            <Button className="bg-primary hover:bg-primary/90 rounded-xl button-hover dark:text-white">
-              <span>{t("cta.bookConsultation")}</span>
-            </Button>
+            <InteractiveHoverButton>{t("cta.bookConsultation")}</InteractiveHoverButton>
           </div>
         </nav>
 
@@ -89,14 +91,13 @@ export function Header() {
                 <ThemeToggle />
                 <LanguageSelector onDropdownChange={setIsDropdownOpen} />
               </div>
-              <Button className="bg-primary hover:bg-primary/90 w-full rounded-xl button-hover dark:text-white">
-                <span>{t("cta.bookConsultation")}</span>
-              </Button>
+              <InteractiveHoverButton className="w-full">{t("cta.bookConsultation")}</InteractiveHoverButton>
             </div>
           </div>
         </motion.div>
       )}
     </header>
+    </>
   )
 }
 
