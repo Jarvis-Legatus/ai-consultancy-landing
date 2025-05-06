@@ -44,7 +44,7 @@ export function Hero() {
     >
 
 
-      <motion.div style={{ opacity, scale, y }} className="container mx-auto px-4 z-10 py-20">
+      <motion.div style={{ opacity, scale, y }} className="container mx-auto px-4 z-10 py-10">
         <div className="max-w-5xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -69,7 +69,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col sm:flex-row gap-6 justify-center"
+            className="flex flex-col items-center sm:flex-row gap-6 justify-center"
           >
             <InteractiveHoverButton>{t("hero.cta.primary") as string}</InteractiveHoverButton>
 

@@ -84,14 +84,14 @@ export function Header() {
           transition={{ duration: 0.3 }}
           className="md:hidden bg-background absolute top-full left-0 right-0 shadow-lg"
         >
-          <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
+          <div className="container mx-auto px-4 py-4 flex flex-col items-center space-y-4">
             <NavLinks mobile />
-            <div className="flex flex-col space-y-4 pt-4 border-t border-border">
+            <div className="flex flex-col items-center space-y-4 pt-4 border-t border-border">
               <div className="flex items-center justify-between">
                 <ThemeToggle />
                 <LanguageSelector onDropdownChange={setIsDropdownOpen} />
               </div>
-              <InteractiveHoverButton className="w-full">{t("cta.bookConsultation")}</InteractiveHoverButton>
+              <InteractiveHoverButton>{t("cta.bookConsultation")}</InteractiveHoverButton>
             </div>
           </div>
         </motion.div>

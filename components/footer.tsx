@@ -10,8 +10,8 @@ export function Footer() {
     <footer className="text-foreground border-t border-border">
       <div className="section-container py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div>
-            <div className="flex items-center space-x-2 mb-6">
+          <div className="text-center md:text-left">
+            <div className="flex items-center justify-center md:justify-start space-x-2 mb-6">
               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
                 <span className="text-white font-bold">FO</span>
               </div>
@@ -22,7 +22,7 @@ export function Footer() {
             </div>
           </div>
 
-          <div>
+          <div className="text-center md:text-left">
             <h3 className="text-foreground font-semibold text-lg mb-4">{t("footer.services")}</h3>
             <ul className="space-y-3">
               <li>
@@ -53,7 +53,7 @@ export function Footer() {
             </ul>
           </div>
 
-          <div>
+          <div className="text-center md:text-left">
             <h3 className="text-foreground font-semibold text-lg mb-4">{t("footer.company")}</h3>
             <ul className="space-y-3">
               <li>
@@ -84,7 +84,7 @@ export function Footer() {
             </ul>
           </div>
 
-          <div>
+          <div className="text-center md:text-left">
             <h3 className="text-foreground font-semibold text-lg mb-4">{t("footer.contact")}</h3>
             <ul className="space-y-3 text-muted-foreground">
               <li>{t("footer.contact.address1")}</li>
@@ -92,7 +92,7 @@ export function Footer() {
               <li>{t("footer.contact.email")}</li>
               <li>{t("footer.contact.phone")}</li>
             </ul>
-            <div className="flex space-x-4 mt-6">
+            <div className="flex justify-center md:justify-start space-x-4 mt-6">
               <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
                 {t("footer.social.twitter")}
               </Link>
@@ -106,7 +106,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-border mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <div className="border-t border-border mt-12 pt-8 flex flex-col md:flex-row justify-center md:justify-between items-center">
           <p className="text-muted-foreground text-sm mb-4 md:mb-0">{t("footer.copyright")}</p>
           <div className="flex space-x-6">
             {[
