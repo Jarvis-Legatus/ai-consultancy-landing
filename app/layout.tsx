@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/toaster"
 import { DotPattern } from "@/components/magicui/dot-pattern"
 import { FlickeringGrid } from "@/components/magicui/flickering-grid"
 import { LanguageProvider, LanguageSetter } from "@/components/language-selector";
+import ScrollToTop from "@/components/ui/scroll-to-top";
 
 export const metadata: Metadata = {
   title: "FasterOperations - AI Solutions for SMEs",
@@ -31,6 +32,7 @@ export default function RootLayout({
           <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
         </head>
         <body>
+          <ScrollToTop />
           { <FlickeringGrid className="fixed left-0 top-0 h-screen w-1/6 z-[0]" color="grey" style={{ maskImage: 'linear-gradient(to right, cyan, transparent)' }} /> }
           { <FlickeringGrid className="fixed right-0 top-0 h-screen w-1/6 z-[0]" color="grey" style={{ maskImage: 'linear-gradient(to left, cyan, transparent)' }} /> }
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
