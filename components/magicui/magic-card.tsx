@@ -30,7 +30,7 @@ export function MagicCard({
   const { theme } = useTheme(); // Get the current theme
 
   // Determine spotlight color based on theme internally
-  const spotlightColor = theme === 'light' ? '#ffffff' : '#262626';
+  const spotlightColor = theme === 'light' ? 'rgb(255, 255, 255)' : 'rgb(22, 25, 25)';
 
   const handleMouseMove = useCallback(
     (e: MouseEvent) => {
