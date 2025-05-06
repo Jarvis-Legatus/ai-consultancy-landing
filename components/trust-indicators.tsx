@@ -79,8 +79,8 @@ export function TrustIndicators() {
   }
 
   return (
-    <section id="about" className="py-20"> {/* Added id="about" assuming this section covers it */}
-      <div className="section-container py-16 shadow-sm">
+    <section id="about" className="py-10"> {/* Added id="about" assuming this section covers it */}
+      <div className="section-container py-8 shadow-sm">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.h2
             ref={ref} // Attach ref to the first animated element in view

@@ -40,11 +40,11 @@ export function Hero() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-10"
     >
 
 
-      <motion.div style={{ opacity, scale, y }} className="container mx-auto px-4 z-10 py-10">
+      <motion.div style={{ opacity, scale, y }} className="container mx-auto px-4 z-10 py-5">
         <div className="max-w-5xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 50 }}

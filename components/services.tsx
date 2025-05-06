@@ -71,8 +71,8 @@ export function Services() {
   }
 
   return (
-    <section id="services" className="py-20">
-      <div className="section-container py-16 shadow-sm">
+    <section id="services" className="py-10">
+      <div className="section-container py-8 shadow-sm">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.h2
             ref={ref}

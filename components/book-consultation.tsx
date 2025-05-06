@@ -54,8 +54,8 @@ export function BookConsultation() {
   ]
 
   return (
-    <section id="contact" className="py-20">
-      <div className="section-container py-16 shadow-sm">
+    <section id="contact" className="py-10">
+      <div className="section-container py-8 shadow-sm">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 gap-12">
             <motion.div
