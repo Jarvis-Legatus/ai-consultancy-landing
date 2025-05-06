@@ -86,7 +86,7 @@ export function BookConsultation() {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               className="bg-card rounded-xl shadow-lg p-8 border-2 border-border"
-              style={{ zIndex: 10 }}
+              style={{ zIndex: 0 }}
             >
               <h3 className="text-2xl font-bold text-card-foreground mb-6 text-center">{t("consultation.form.title")}</h3>
               <Cal

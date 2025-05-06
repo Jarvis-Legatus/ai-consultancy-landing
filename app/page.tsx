@@ -8,6 +8,7 @@ import { TrustIndicators } from "@/components/trust-indicators"
 import { Footer } from "@/components/footer"
 import { Header } from "@/components/header"
 import { LanguageProvider } from "@/components/language-selector"
+import ScrollToTopButton from "@/components/ui/ScrollToTopButton"
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
           <CaseStudies />
           <BookConsultation />
           <TrustIndicators />
+          <ScrollToTopButton />
         </main>
         <Footer />
       </div>
