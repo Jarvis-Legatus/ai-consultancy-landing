@@ -4,7 +4,7 @@ import "@/app/globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
 import { DotPattern } from "@/components/magicui/dot-pattern"
-// import { FlickeringGrid } from "@/components/magicui/flickering-grid"
+import { FlickeringGrid } from "@/components/magicui/flickering-grid"
 import { LanguageProvider, LanguageSetter } from "@/components/language-selector";
 
 export const metadata: Metadata = {
@@ -31,13 +31,8 @@ export default function RootLayout({
           <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
         </head>
         <body>
-          {/* <FlickeringGrid className="fixed left-0 top-0 h-screen w-1/6 z-[0]" color="grey" style={{ maskImage: 'linear-gradient(to right, cyan, transparent)' }} /> */}
-          {/* <FlickeringGrid className="fixed right-0 top-0 h-screen w-1/6 z-[0]" color="grey" style={{ maskImage: 'linear-gradient(to left, cyan, transparent)' }} /> */}
-          <div className="absolute inset-0 h-full w-full z-0">
-          <DotPattern className="h-full w-full fixed fill-neutral-100 [mask-image:radial-gradient(32rem_32rem_at_center,white,transparent)] dark:fill-neutral-950" />
-          </div>
-          
-          
+          { <FlickeringGrid className="fixed left-0 top-0 h-screen w-1/6 z-[0]" color="grey" style={{ maskImage: 'linear-gradient(to right, cyan, transparent)' }} /> }
+          { <FlickeringGrid className="fixed right-0 top-0 h-screen w-1/6 z-[0]" color="grey" style={{ maskImage: 'linear-gradient(to left, cyan, transparent)' }} /> }
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
             {children}
             <Toaster />
