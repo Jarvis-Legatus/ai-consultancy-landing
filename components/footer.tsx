@@ -71,26 +71,26 @@ export function Footer() {
                   {t("footer.company.blog")}
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
                   {t("footer.company.careers")}
                 </Link>
-              </li>
-              <li>
+              </li> */}
+              {/* <li>
                 <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
                   {t("footer.company.contact")}
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
 
           <div className="text-center md:text-left">
             <h3 className="text-foreground font-semibold text-lg mb-4">{t("footer.contact")}</h3>
             <ul className="space-y-3 text-muted-foreground">
-              <li>{t("footer.contact.address1")}</li>
-              <li>{t("footer.contact.address2")}</li>
+              {/* <li>{t("footer.contact.address1")}</li> */}
+              {/* <li>{t("footer.contact.address2")}</li> */}
               <li>{t("footer.contact.email")}</li>
-              <li>{t("footer.contact.phone")}</li>
+              {/* <li>{t("footer.contact.phone")}</li> */}
             </ul>
             <div className="flex justify-center md:justify-start space-x-4 mt-6">
               <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
@@ -110,11 +110,11 @@ export function Footer() {
           <p className="text-muted-foreground text-sm mb-4 md:mb-0">{t("footer.copyright")}</p>
           <div className="flex space-x-6">
             {[
-              { key: "footer.privacy", label: "Privacy Policy" },
+          //  { key: "footer.privacy", label: "Privacy Policy" },
               { key: "footer.terms", label: "Terms of Service" },
               { key: "footer.cookies", label: "Cookie Policy" },
             ].map((item, index) => (
-              <Link key={index} href="#" className="text-muted-foreground hover:text-primary text-sm transition-colors">
+              <Link key={index} href={item.key === "footer.cookies" ? "/cookies-policy" : item.key === "footer.terms" ? "/terms-conditions" : "#"} className="text-muted-foreground hover:text-primary text-sm transition-colors">
                 {t(item.key)}
               </Link>
             ))}

@@ -71,7 +71,7 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-col items-center sm:flex-row gap-6 justify-center"
           >
-            <InteractiveHoverButton>{t("hero.cta.primary") as string}</InteractiveHoverButton>
+            <InteractiveHoverButton onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>{t("hero.cta.primary") as string}</InteractiveHoverButton>
 
           </motion.div>
         </div>

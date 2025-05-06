@@ -65,7 +65,7 @@ export function Header() {
           <div className="flex items-center space-x-4">
             <ThemeToggle />
             <LanguageSelector onDropdownChange={setIsDropdownOpen} />
-            <InteractiveHoverButton>{t("cta.bookConsultation")}</InteractiveHoverButton>
+            <InteractiveHoverButton onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>{t("cta.bookConsultation")}</InteractiveHoverButton>
           </div>
         </nav>
 
@@ -91,7 +91,7 @@ export function Header() {
                 <ThemeToggle />
                 <LanguageSelector onDropdownChange={setIsDropdownOpen} />
               </div>
-              <InteractiveHoverButton>{t("cta.bookConsultation")}</InteractiveHoverButton>
+              <InteractiveHoverButton onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>{t("cta.bookConsultation")}</InteractiveHoverButton>
             </div>
           </div>
         </motion.div>
