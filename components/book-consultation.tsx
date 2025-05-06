@@ -7,6 +7,9 @@ import { motion, useInView } from "framer-motion"
 import { Check } from "lucide-react"
 import { useLanguage } from "./language-selector"
 import Cal, { getCalApi } from "@calcom/embed-react"
+import dynamic from 'next/dynamic';
+
+const MagicCard = dynamic(() => import('@/components/magicui/magic-card').then(mod => mod.MagicCard), { ssr: false });
 
 export function BookConsultation() {
   const ref = useRef(null)
@@ -81,21 +84,24 @@ export function BookConsultation() {
               </motion.ul>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="bg-card rounded-xl shadow-lg p-8 border-2 border-border"
-              style={{ zIndex: 0 }}
+            <MagicCard
+              className="h-full transition-all duration-500 hover:shadow-xl border border-border hover:border-primary/50 rounded-xl overflow-hidden group bg-card p-8"
             >
-              <h3 className="text-2xl font-bold text-card-foreground mb-6 text-center">{t("consultation.form.title")}</h3>
-              <Cal
-                namespace="30min"
-                calLink="fasteroperations/30min"
-                style={{width:"100%",height:"100%",overflow:"scroll"}}
-                config={{"layout":"month_view"}}
-              />
-            </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                style={{ zIndex: 0 }}
+              >
+                <h3 className="text-2xl font-bold text-card-foreground mb-6 text-center">{t("consultation.form.title")}</h3>
+                <Cal
+                  namespace="30min"
+                  calLink="fasteroperations/30min"
+                  style={{width:"100%",height:"100%",overflow:"scroll"}}
+                  config={{"layout":"month_view"}}
+                />
+              </motion.div>
+            </MagicCard>
           </div>
         </div>
       </div>
