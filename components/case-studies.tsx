@@ -7,7 +7,6 @@ import { Badge } from "@/components/ui/badge"
 import { ArrowRight } from "lucide-react"
 import { useLanguage } from "./language-selector"
 import dynamic from 'next/dynamic';
-import { useTheme } from "next-themes"
 
 const MagicCard = dynamic(() => import('@/components/magicui/magic-card').then(mod => mod.MagicCard), { ssr: false });
 
@@ -122,14 +121,10 @@ function CaseStudyCard({
   item: any; // Motion variant type would be more specific if available
   t: (key: string) => string | string[];
 }) {
-  const { theme } = useTheme();
-  const spotlightColor = theme === 'light' ? '#E5E7EB' : '#262626';
-
   return (
     <motion.div variants={item}>
       <MagicCard
         className="h-full transition-all duration-500 hover:shadow-xl rounded-xl overflow-hidden group bg-card"
-        gradientColor={spotlightColor}
       >
         <Card className="h-full w-full border-none shadow-none flex flex-col">
           <CardHeader className="pb-2 flex-shrink-0">

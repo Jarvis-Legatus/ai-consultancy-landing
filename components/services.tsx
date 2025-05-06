@@ -5,7 +5,6 @@ import { motion, useInView } from "framer-motion"
 import { MessageSquare, FileText, BarChart3, Workflow, Code } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { useLanguage } from "./language-selector"
-import { useTheme } from "next-themes"
 import dynamic from 'next/dynamic';
 
 const MagicCard = dynamic(() => import('@/components/magicui/magic-card').then(mod => mod.MagicCard), { ssr: false });
@@ -123,15 +122,11 @@ interface ServiceCardProps {
 
 function ServiceCard({ service, index, item, t }: ServiceCardProps) {
   const Icon = service.icon
-  const { theme } = useTheme()
-
-  const spotlightColor = theme === 'light' ? '#E5E7EB' : '#262626';
 
   return (
     <motion.div variants={item}>
       <MagicCard
         className="h-full transition-all duration-500 hover:shadow-xl border border-border hover:border-primary/50 rounded-xl overflow-hidden group bg-card"
-        gradientColor={spotlightColor}
       >
         <Card className="h-full w-full border-none shadow-none">
           <CardHeader className="pb-2">

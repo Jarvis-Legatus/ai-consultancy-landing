@@ -8,7 +8,6 @@ import { useLanguage } from "./language-selector"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar" // Added Avatar
 import dynamic from 'next/dynamic';
-import { useTheme } from "next-themes"
 
 // Dynamically import MagicCard to avoid SSR issues
 const MagicCard = dynamic(() => import('@/components/magicui/magic-card').then(mod => mod.MagicCard), { ssr: false });
@@ -55,10 +54,6 @@ export function TrustIndicators() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.1 }) // Adjusted amount slightly
   const { t } = useLanguage()
-  const { theme } = useTheme(); // Get current theme
-
-  // Define spotlight color based on theme, similar to other components
-  const spotlightColor = theme === 'light' ? '#E5E7EB' : '#262626';
 
   const container = {
     hidden: { opacity: 0 },
@@ -142,7 +137,6 @@ export function TrustIndicators() {
             <motion.div key={index} variants={item}>
               <MagicCard
                  className="h-full transition-all duration-500 hover:shadow-xl rounded-xl overflow-hidden group bg-card"
-                 gradientColor={spotlightColor}
                >
                 <Card className="h-full w-full border-none shadow-none flex flex-col">
                   <CardHeader className="pb-4 flex-shrink-0"> {/* Adjusted padding */}

@@ -2,6 +2,7 @@
 
 import { motion, useMotionTemplate, useMotionValue } from "motion/react";
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useTheme } from "next-themes";
 
 import { cn } from "@/lib/utils";
 
@@ -9,7 +10,6 @@ interface MagicCardProps {
   children?: React.ReactNode;
   className?: string;
   gradientSize?: number;
-  gradientColor?: string;
   gradientOpacity?: number;
   gradientFrom?: string;
   gradientTo?: string;
@@ -19,14 +19,18 @@ export function MagicCard({
   children,
   className,
   gradientSize = 300,
-  gradientColor = "#262626",
-  gradientOpacity = 0.6,
+  gradientOpacity = 0.9,
   gradientFrom = "#0026ff",
   gradientTo = "#00b3ff",
 }: MagicCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const mouseX = useMotionValue(-gradientSize);
   const mouseY = useMotionValue(-gradientSize);
+
+  const { theme } = useTheme(); // Get the current theme
+
+  // Determine spotlight color based on theme internally
+  const spotlightColor = theme === 'light' ? '#ffffff' : '#262626';
 
   const handleMouseMove = useCallback(
     (e: MouseEvent) => {
@@ -103,7 +107,7 @@ export function MagicCard({
         className="pointer-events-none absolute inset-px rounded-[inherit] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
         style={{
           background: useMotionTemplate`
-            radial-gradient(${gradientSize}px circle at ${mouseX}px ${mouseY}px, ${gradientColor}, transparent 100%)
+            radial-gradient(${gradientSize}px circle at ${mouseX}px ${mouseY}px, ${spotlightColor}, transparent 100%)
           `,
           opacity: gradientOpacity,
         }}
