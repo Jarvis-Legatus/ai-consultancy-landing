@@ -34,7 +34,7 @@ export default function RootLayout({
           {/* <FlickeringGrid className="fixed left-0 top-0 h-screen w-1/6 z-[0]" color="grey" style={{ maskImage: 'linear-gradient(to right, cyan, transparent)' }} /> */}
           {/* <FlickeringGrid className="fixed right-0 top-0 h-screen w-1/6 z-[0]" color="grey" style={{ maskImage: 'linear-gradient(to left, cyan, transparent)' }} /> */}
           <div className="absolute inset-0 h-full w-full z-0">
-            <DotPattern className="h-full w-full fixed fill-neutral-100 [mask-image:radial-gradient(32rem_32rem_at_center,white,transparent)] dark:fill-neutral-950" />
+          <DotPattern className="h-full w-full fixed fill-neutral-100 [mask-image:radial-gradient(32rem_32rem_at_center,white,transparent)] dark:fill-neutral-950" />
           </div>
           
           
