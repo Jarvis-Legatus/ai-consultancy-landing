@@ -34,8 +34,8 @@ export default function RootLayout({
                 </head>
                 <body>
                   <ScrollToTop />
-                    {<FlickeringGrid className="fixed left-0 top-0 h-screen w-1/6 z-[0]" color="rgb(0, 200, 255)" style={{ maskImage: 'linear-gradient(to right, cyan, transparent)' }} />}
-                    {<FlickeringGrid className="fixed right-0 top-0 h-screen w-1/6 z-[0]" color="rgb(0, 200, 255)" style={{ maskImage: 'linear-gradient(to left, cyan, transparent)' }} />}
+                    {<FlickeringGrid className="fixed left-0 top-0 h-screen w-1/6 z-[0]" color="grey" style={{ maskImage: 'linear-gradient(to right, cyan, transparent)' }} />}
+                    {<FlickeringGrid className="fixed right-0 top-0 h-screen w-1/6 z-[0]" color="grey" style={{ maskImage: 'linear-gradient(to left, cyan, transparent)' }} />}
                 <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
                   {children}
                   <Toaster />

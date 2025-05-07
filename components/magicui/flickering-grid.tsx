@@ -24,7 +24,7 @@ export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
   squareSize = 4,
   gridGap = 6,
   flickerChance = 0.3,
-  color = "hsl(var(--foreground))",
+  color = "rgb(0, 0, 0)",
   width,
   height,
   className,
@@ -41,41 +41,6 @@ export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
       if (typeof window === "undefined") {
         return `rgba(0, 0, 0,`;
       }
-
-      // Check if the color is a CSS variable
-      if (color.startsWith("hsl(var(--")) {
-        // Attempt to get the computed style of the body to resolve the CSS variable
-        const style = getComputedStyle(document.body);
-        const hsl = style.getPropertyValue(color.substring(4, color.length - 1)).trim();
-        if (hsl) {
-          // Convert HSL to RGB. This is a simplified conversion and might need a more robust implementation
-          // depending on the exact HSL format used by the CSS variable.
-          // Assuming hsl is in the format "h, s%, l%"
-          const [h, s, l] = hsl.split(',').map(parseFloat);
-          const sNorm = s / 100;
-          const lNorm = l / 100;
-          const c = (1 - Math.abs(2 * lNorm - 1)) * sNorm;
-          const x = c * (1 - Math.abs((h / 60) % 2 - 1));
-          const m = lNorm - c / 2;
-          let r = 0, g = 0, b = 0;
-          if (h >= 0 && h < 60) {
-            r = c; g = x;
-          } else if (h >= 60 && h < 120) {
-            r = x; g = c;
-          } else if (h >= 120 && h < 180) {
-            g = c; b = x;
-          } else if (h >= 180 && h < 240) {
-            g = x; b = c;
-          } else if (h >= 240 && h < 300) {
-            r = x; b = c;
-          } else if (h >= 300 && h < 360) {
-            r = c; b = x;
-          }
-          return `rgba(${Math.round((r + m) * 255)}, ${Math.round((g + m) * 255)}, ${Math.round((b + m) * 255)},`;
-        }
-      }
-
-      // Fallback to canvas method for other color formats
       const canvas = document.createElement("canvas");
       canvas.width = canvas.height = 1;
       const ctx = canvas.getContext("2d");
