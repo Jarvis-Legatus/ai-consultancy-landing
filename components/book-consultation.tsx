@@ -96,7 +96,7 @@ export function BookConsultation() {
                 <h3 className="text-2xl font-bold text-card-foreground mb-6 text-center">{t("consultation.form.title")}</h3>
                 <Cal
                   namespace="30min"
-                  calLink="fasteroperations/30min"
+                  calLink="fasteroperations/20min"
                   style={{width:"100%",height:"100%",overflow:"scroll"}}
                   config={{"layout":"month_view"}}
                 />
