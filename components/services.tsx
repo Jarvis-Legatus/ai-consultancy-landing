@@ -27,12 +27,14 @@ export function Services() {
       description: t("service.document.description"),
       benefit: t("service.document.benefit"),
     },
+    /*
     {
       icon: BarChart3,
       title: t("service.bi.title"),
       description: t("service.bi.description"),
       benefit: t("service.bi.benefit"),
     },
+    */
     {
       icon: Workflow,
       title: t("service.automation.title"),
@@ -97,7 +99,7 @@ export function Services() {
           variants={container}
           initial="hidden"
           animate={isInView ? "show" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8"
         >
           {services.map((service, index) => (
             <ServiceCard key={index} service={service} index={index} item={item} t={t} />
