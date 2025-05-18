@@ -105,6 +105,10 @@
   li {
     font-family: "Satoshi", sans-serif;
   }
+
+  .font-righteous {
+    font-family: "Righteous", sans-serif;
+  }
 }
 
 @layer components {

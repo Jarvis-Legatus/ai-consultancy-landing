@@ -30,6 +30,7 @@ export default function RootLayout({
                     href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800&display=swap"
                     rel="stylesheet"
                   />
+                  <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet" />
                   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
                   <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png"/>
                   <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png"/>
