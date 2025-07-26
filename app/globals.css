@@ -4,7 +4,7 @@
 
 @layer base {
 .app-background {
-  background-color: rgb(244, 247, 247);
+  background-color: rgb(240, 247, 247);
 }
 
 .dark .app-background {
