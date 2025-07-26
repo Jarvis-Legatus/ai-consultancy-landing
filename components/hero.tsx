@@ -84,6 +84,13 @@ export function Hero() {
           </motion.div>
         </div>
       </motion.div>
+      <div
+        className="absolute bottom-0 left-0 w-full h-[400px] z-5"
+        style={{
+          background: 'linear-gradient(to top, hsl(var(--background)) 0%, transparent 100%)',
+          pointerEvents: 'none',
+        }}
+      ></div>
     </section>
   )
 }

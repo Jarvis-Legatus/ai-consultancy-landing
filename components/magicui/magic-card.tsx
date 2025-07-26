@@ -18,8 +18,8 @@ interface MagicCardProps {
 export function MagicCard({
   children,
   className,
-  gradientSize = 300,
-  gradientOpacity = 0.9,
+  gradientSize = 500,
+  gradientOpacity = 0.95,
   gradientFrom = "#0026ff",
   gradientTo = "#00b3ff",
 }: MagicCardProps) {
