@@ -67,10 +67,10 @@ export function Hero() {
 
           <motion.div
             initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: -40 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           >
-            <p className="text-xl md:text-2xl text-foreground/90 mb-10 max-w-2xl mx-auto">{t("hero.subtitle") as string}</p>
+            <p className="text-lg md:text-xl text-foreground/90 mb-8 max-w-2xl mx-auto">{t("hero.subtitle") as string}</p>
           </motion.div>
 
           <motion.div
