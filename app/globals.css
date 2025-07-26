@@ -3,8 +3,16 @@
 @tailwind utilities;
 
 @layer base {
+.app-background {
+  background-color: rgb(244, 247, 247);
+}
+
+.dark .app-background {
+  background-color: rgb(9, 9, 9);
+}
+
   :root {
-    --background: 0 0% 100%;
+    --background: 200 90% 98%;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
@@ -39,7 +47,7 @@
   }
 
   .dark {
-    --background: 0 0% 8%;
+    --background: 0 0% 5%;
     --foreground: 210 40% 98%;
     --card: 0 0% 8%;
     --card-foreground: 210 40% 98%;
@@ -215,13 +223,6 @@
     }
   }
 }
-.app-background {
-  background-color: rgb(252, 255, 255);
-}
-
-.dark .app-background {
-  background-color: rgb(9, 9, 9);
-}
 
 
 /* ORB inside HERO */
@@ -234,11 +235,13 @@
   height: 100%;
   object-fit: cover;
   z-index: 0;
-  transition: filter 0.3s ease;
+  transition: filter 0.3s ease, transform 0.3s ease;
+  transform: scale(1.1);
+  transform-origin: center center;
 }
 
 .light .background-orb {
-  filter: invert(1) sepia(0.5) saturate(0.3) hue-rotate(150deg);
+  filter: invert(1) sepia(0.4) saturate(0.2) hue-rotate(150deg) opacity(0.5);
 }
 
 .dark .background-orb {
