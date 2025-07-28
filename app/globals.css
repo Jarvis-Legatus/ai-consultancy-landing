@@ -12,6 +12,7 @@
 }
 
   :root {
+    --hero-bottom-transition: rgb(240, 243, 250);
     --background: 220 90% 98%;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
@@ -47,6 +48,7 @@
   }
 
   .dark {
+    --hero-bottom-transition: rgb(9, 9, 9);
     --background: 0 0% 5%;
     --foreground: 210 40% 98%;
     --card: 0 0% 8%;
@@ -226,24 +228,27 @@
 
 
 /* ORB inside HERO */
-
+/*
+  Control vertical position with 'top' property.
+  Control zoom level with 'transform: scale()'.
+*/
 .background-orb {
   position: absolute;
-  top: 0;
+  top: -13%; /* Example: Move up by 10% of its height */
   left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   z-index: 0;
   transition: filter 0.3s ease, transform 0.3s ease;
-  transform: scale(1.1);
+  transform: scale(1.35); /* Example: Zoom in by 30% */
   transform-origin: center center;
 }
 
 .light .background-orb {
-  filter: invert(1) sepia(0.4) saturate(0.2) hue-rotate(150deg) opacity(0.5);
+  filter: invert(1) sepia(0.2) saturate(0.2) hue-rotate(150deg) opacity(0.5);
 }
 
 .dark .background-orb {
-  filter: sepia(0.5) saturate(0.2) hue-rotate(300deg) brightness(1.3) opacity(0.4);
+  filter: sepia(0.1) saturate(0.2) hue-rotate(300deg) brightness(1.0) opacity(0.8) contrast(1.1);
 }

@@ -87,7 +87,7 @@ export function Hero() {
       <div
         className="absolute bottom-0 left-0 w-full h-[400px] z-5"
         style={{
-          background: 'linear-gradient(to top, hsl(var(--background)) 0%, transparent 100%)',
+          background: 'linear-gradient(to top, var(--hero-bottom-transition), transparent)',
           pointerEvents: 'none',
         }}
       ></div>
