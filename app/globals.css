@@ -3,23 +3,20 @@
 @tailwind utilities;
 
 @layer base {
-.app-background {
-  background-color: rgb(240, 243, 250);
-}
-
-.dark .app-background {
-  background-color: rgb(9, 9, 9);
-}
-
+  /* CSS Custom Properties for Design System */
   :root {
-    --hero-bottom-transition: rgb(240, 243, 250);
-    --background: 220 90% 98%;
+    /* App backgrounds */
+    --app-background: 223 50% 98%; /* Light mode app background */
+    --hero-bottom-transition: 223 50% 98%;
+    
+    /* Core theme colors */
+    --background: 223 50% 98%;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 221 83% 53%;
+    --primary: 190 53% 53%;
     --primary-foreground: 210 40% 98%;
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
@@ -37,6 +34,8 @@
     /* Chart colors */
     --chart-1: 221 83% 53%;
     --chart-2: 217 91% 60%;
+    
+    /* Sidebar colors */
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
@@ -48,14 +47,18 @@
   }
 
   .dark {
-    --hero-bottom-transition: rgb(9, 9, 9);
-    --background: 0 0% 5%;
+    /* App backgrounds */
+    --app-background: 0 0% 7%; /* Dark mode app background */
+    --hero-bottom-transition: 0 0% 7%;
+    
+    /* Core theme colors */
+    --background: 0 0% 7%;
     --foreground: 210 40% 98%;
     --card: 0 0% 8%;
     --card-foreground: 210 40% 98%;
     --popover: 0 0% 0%;
     --popover-foreground: 210 40% 98%;
-    --primary: 221 83% 53%;
+    --primary: 201 93% 53%;
     --primary-foreground: 222.2 47.4% 11.2%;
     --secondary: 0 0% 0%;
     --secondary-foreground: 210 40% 98%;
@@ -68,6 +71,8 @@
     --border: 0 0% 10%;
     --input: 0 0% 0%;
     --ring: 221 83% 53%;
+    
+    /* Sidebar colors */
     --sidebar-background: 0 0% 0%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -77,178 +82,182 @@
     --sidebar-border: 0 0% 0%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
-  .theme {
-    --animate-marquee: marquee var(--duration) infinite linear;
-    --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
-    --animate-shine: shine var(--duration) infinite linear;
-    --animate-shiny-text: shiny-text 8s infinite;
-    --animate-pulse: pulse var(--duration) ease-out infinite;
-  }
-}
 
-@layer base {
+ .dark .orbal-button {
+   background: white;
+   color: #1a1a1a;
+   box-shadow:
+       0 4px 15px rgba(255, 255, 255, 0.1),
+       0 2px 4px rgba(255, 255, 255, 0.05);
+ }
+
+ .dark .orbal-button::before {
+   background: linear-gradient(
+       90deg,
+       transparent,
+       rgba(0, 0, 0, 0.15),
+       transparent
+   );
+ }
+
+ .dark .orbal-button:hover {
+   background: #f0f0f0;
+   box-shadow:
+       0 8px 25px rgba(255, 255, 255, 0.15),
+       0 4px 8px rgba(255, 255, 255, 0.08);
+ }
+
+ .dark .secondary-button {
+   background: #1a1a1a;
+   color: white;
+   border: 1px solid rgba(255, 255, 255, 0.08);
+ }
+
+ .dark .secondary-button:hover {
+   background: #2a2a2a;
+   border-color: rgba(255, 255, 255, 0.12);
+ }
+
+  /* Global styles */
   html {
     overflow-y: scroll; /* Always show scrollbar to prevent layout shift */
   }
+
   body {
-    color: var(--foreground);
+    @apply text-foreground;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
   }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+
+  /* Typography */
+  h1, h2, h3, h4, h5, h6 {
     font-family: "Urbanist", "Urbanist Placeholder", sans-serif;
   }
-  p,
-  span,
-  div,
-  a,
-  button,
-  input,
-  textarea,
-  select,
-  li {
+
+  p, span, div, a, button, input, textarea, select, li {
     font-family: "Satoshi", sans-serif;
   }
 
-  .font-righteous {
-    font-family: "Righteous", sans-serif;
+  /* Border utility */
+  * {
+    @apply border-border;
+  }
+
+  /* App background utilities */
+  .app-background {
+    background-color: hsl(var(--app-background));
   }
 }
 
 @layer components {
   .section-container {
     max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 3rem;
-    margin-bottom: 3rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    margin: 3rem auto;
+    padding: 0 1rem;
+    border-radius: 1.5rem;
   }
 
   @media (min-width: 768px) {
     .section-container {
-      padding-left: 2rem;
-      padding-right: 2rem;
+      padding: 0 2rem;
     }
   }
 
-  .section-container {
-    border-radius: 1.5rem;
+  /* Fix for dropdown menu causing layout shift */
+  .dropdown-open {
+    margin-right: calc(100% - 100vw);
   }
 
+  /* ORB inside HERO */
+  .background-orb {
+    position: absolute;
+    top: -13%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    transition: filter 0.3s ease, transform 0.3s ease;
+    transform: scale(1.35);
+    transform-origin: center center;
+  }
+
+  .light .background-orb {
+    filter: invert(1) sepia(0.2) saturate(0.2) hue-rotate(150deg) opacity(0.5);
+  }
+
+  .dark .background-orb {
+    filter: sepia(0.1) saturate(0.2) hue-rotate(300deg) brightness(1.0) opacity(0.8) contrast(1.1);
+  }
 }
 
 
+/******* Call to Action Button *****/
 
-/* Fix for dropdown menu causing layout shift */
-.dropdown-open {
-  margin-right: calc(100% - 100vw);
+.orbal-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.55rem 2.0rem;
+    background: #1a1a1a;
+    color: white;
+    border: none;
+    border-radius: 9999px;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.1),
+        0 2px 4px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
 }
 
+.orbal-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.15),
+        transparent
+    );
+    transition: left 0.6s ease;
+}
 
-/* @theme inline { */
-  @keyframes marquee {
-  from {
-    transform: translateX(0);
-    }
-  to {
-    transform: translateX(calc(-100% - var(--gap)));
-    }
-  }
-  @keyframes marquee-vertical {
-  from {
+.orbal-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.15),
+        0 4px 8px rgba(0, 0, 0, 0.08);
+    background: #2a2a2a;
+}
+
+.orbal-button:hover::before {
+    left: 100%;
+}
+
+.orbal-button:active {
     transform: translateY(0);
-    }
-  to {
-    transform: translateY(calc(-100% - var(--gap)));
-    }
-  }
-  @keyframes shine {
-  0% {
-    background-position: 0% 0%;
-    }
-  50% {
-    background-position: 100% 100%;
-    }
-  to {
-    background-position: 0% 0%;
-    }
-  }
-  @keyframes shiny-text {
-  0%, 90%, 100% {
-    background-position: calc(-100% - var(--shiny-width)) 0;
-    }
-  30%, 60% {
-    background-position: calc(100% + var(--shiny-width)) 0;
-    }
-  }
-
-  @layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply text-foreground;
-  }
+    box-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.12),
+        0 1px 2px rgba(0, 0, 0, 0.06);
 }
 
-  @theme inline {
-  @keyframes marquee {
-  from {
-    transform: translateX(0);
-    }
-  to {
-    transform: translateX(calc(-100% - var(--gap)));
-    }
-  }
-  @keyframes marquee-vertical {
-  from {
-    transform: translateY(0);
-    }
-  to {
-    transform: translateY(calc(-100% - var(--gap)));
-    }
-  }
-  @keyframes pulse {
-  0%, 100% {
-    boxShadow: 0 0 0 0 var(--pulse-color);
-    }
-  50% {
-    boxShadow: 0 0 0 8px var(--pulse-color);
-    }
-  }
+.secondary-button {
+    background: white;
+    color: #1a1a1a;
+    border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
-
-/* ORB inside HERO */
-/*
-  Control vertical position with 'top' property.
-  Control zoom level with 'transform: scale()'.
-*/
-.background-orb {
-  position: absolute;
-  top: -13%; /* Example: Move up by 10% of its height */
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0;
-  transition: filter 0.3s ease, transform 0.3s ease;
-  transform: scale(1.35); /* Example: Zoom in by 30% */
-  transform-origin: center center;
-}
-
-.light .background-orb {
-  filter: invert(1) sepia(0.2) saturate(0.2) hue-rotate(150deg) opacity(0.5);
-}
-
-.dark .background-orb {
-  filter: sepia(0.1) saturate(0.2) hue-rotate(300deg) brightness(1.0) opacity(0.8) contrast(1.1);
+.secondary-button:hover {
+    background: #fafafa;
+    border-color: rgba(0, 0, 0, 0.12);
 }

@@ -67,7 +67,7 @@ export function CaseStudies() {
 
   return (
     <section id="case-studies" className="py-10">
-      <div className="section-container py-16 shadow-lg bg-background">
+      <div className="section-container py-16 bg-background">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.h2
             ref={ref}
@@ -124,7 +124,7 @@ function CaseStudyCard({
   return (
     <motion.div variants={item}>
       <MagicCard
-        className="h-full transition-all duration-500 hover:shadow-xl rounded-xl overflow-hidden group bg-card"
+        className="h-full transition-all duration-500 hover:shadow-xl overflow-hidden group bg-card"
       >
         <Card className="h-full w-full border-none shadow-none flex flex-col">
           <CardHeader className="pb-2 flex-shrink-0">

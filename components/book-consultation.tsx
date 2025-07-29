@@ -55,7 +55,7 @@ export function BookConsultation() {
 
   return (
     <section id="contact" className="py-10">
-      <div className="section-container py-16 shadow-lg bg-background">
+      <div className="section-container py-16 bg-background">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 gap-12">
             <motion.div
@@ -85,7 +85,7 @@ export function BookConsultation() {
             </motion.div>
 
             <MagicCard
-              className="h-full transition-all duration-500 hover:shadow-xl border border-border hover:border-primary/50 rounded-xl overflow-hidden group bg-card p-8"
+              className="h-full transition-all duration-500 hover:shadow-xl overflow-hidden group bg-card p-8"
             >
               <motion.div
                 initial={{ opacity: 0, y: 50 }}

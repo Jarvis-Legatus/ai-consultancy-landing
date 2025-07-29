@@ -74,7 +74,7 @@ export function Services() {
 
   return (
     <section id="services" className="py-10">
-      <div className="section-container py-16 mt-24 shadow-lg bg-background">
+      <div className="section-container py-16 mt-24 bg-background">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.h2
             ref={ref}
@@ -128,7 +128,7 @@ function ServiceCard({ service, index, item, t }: ServiceCardProps) {
   return (
     <motion.div variants={item}>
       <MagicCard
-        className="h-full transition-all duration-500 hover:shadow-xl border border-border hover:border-primary/50 rounded-xl overflow-hidden group bg-card"
+        className="h-full transition-all duration-500 hover:shadow-xl overflow-hidden group bg-card"
       >
         <Card className="h-full w-full border-none shadow-none">
           <CardHeader className="pb-2">

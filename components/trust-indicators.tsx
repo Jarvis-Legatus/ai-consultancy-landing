@@ -200,7 +200,7 @@ export function TrustIndicators() {
 
   return (
     <section id="about" className="py-10"> {/* Added id="about" assuming this section covers it */}
-      <div className="section-container py-16 shadow-lg bg-background">
+      <div className="section-container py-16 bg-background">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.h2
             ref={ref} // Attach ref to the first animated element in view
@@ -256,7 +256,7 @@ export function TrustIndicators() {
           {testimonials.map((testimonial, index) => (
             <motion.div key={index} variants={item}>
               <MagicCard
-                 className="h-full transition-all duration-500 hover:shadow-xl rounded-xl overflow-hidden group bg-card"
+                 className="h-full transition-all duration-500 hover:shadow-xl overflow-hidden group bg-card"
                >
                 <Card className="h-full w-full border-none shadow-none flex flex-col">
                   <CardHeader className="pb-4 flex-shrink-0"> {/* Adjusted padding */}
