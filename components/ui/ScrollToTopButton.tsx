@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from 'react';
+import { ArrowUp } from 'lucide-react';
 
 const ScrollToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -34,10 +35,10 @@ const ScrollToTopButton = () => {
     <div className={`fixed bottom-4 right-4 ${isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'} transition-opacity duration-300`}>
       <button
         onClick={scrollToTop}
-        className="bg-blue-500 text-white font-bold p-3 w-10 h-10 rounded-full shadow-lg flex items-center justify-center opacity-80 hover:opacity-100 transition-all duration-300 hover:translate-y-[-10px]"
+        className="bg-primary text-primary-foreground font-bold p-3 w-12 h-12 rounded-full shadow-lg flex items-center justify-center opacity-80 hover:opacity-100 transition-all duration-300 hover:translate-y-[-10px]"
         aria-label="Scroll to top"
       >
-        &uarr;
+        <ArrowUp size={24} />
       </button>
     </div>
   );
