@@ -16,7 +16,7 @@
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 190 53% 53%;
+    --primary: 190 3% 53%;
     --primary-foreground: 210 40% 98%;
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
@@ -48,17 +48,17 @@
 
   .dark {
     /* App backgrounds */
-    --app-background: 0 0% 7%; /* Dark mode app background */
-    --hero-bottom-transition: 0 0% 7%;
+    --app-background: 0 0% 5%; /* Dark mode app background */
+    --hero-bottom-transition: 0 0% 5%;
     
     /* Core theme colors */
-    --background: 0 0% 7%;
+    --background: 0 0% 5%;
     --foreground: 210 40% 98%;
     --card: 0 0% 8%;
     --card-foreground: 210 40% 98%;
     --popover: 0 0% 0%;
     --popover-foreground: 210 40% 98%;
-    --primary: 201 93% 53%;
+    --primary: 181 93% 53%;
     --primary-foreground: 222.2 47.4% 11.2%;
     --secondary: 0 0% 0%;
     --secondary-foreground: 210 40% 98%;
@@ -188,7 +188,7 @@
   }
 
   .dark .background-orb {
-    filter: sepia(0.1) saturate(0.2) hue-rotate(300deg) brightness(1.0) opacity(0.8) contrast(1.1);
+    filter: sepia(0.1) saturate(0.4) hue-rotate(290deg) brightness(1.0) opacity(0.8) contrast(1.2);
   }
 }
 

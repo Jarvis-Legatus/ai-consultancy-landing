@@ -18,7 +18,7 @@ interface MagicCardProps {
 export function MagicCard({
   children,
   className,
-  gradientSize = 500,
+  gradientSize = 400,
   gradientOpacity = 0.95,
   gradientFrom = "rgb(0, 200, 255)",
   gradientTo = "rgb(0, 255, 255)",
@@ -30,7 +30,7 @@ export function MagicCard({
   const { theme } = useTheme(); // Get the current theme
 
   // Determine spotlight color based on theme internally
-  const spotlightColor = theme === 'light' ? 'rgb(255, 255, 255)' : 'rgb(22, 25, 25)';
+  const spotlightColor = theme === 'light' ? 'rgb(255, 255, 255)' : 'rgb(35, 40, 40)';
 
   const handleMouseMove = useCallback(
     (e: MouseEvent) => {

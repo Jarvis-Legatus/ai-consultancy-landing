@@ -148,7 +148,7 @@ function CaseStudyCard({
             </div> {/* End of new inner div */}
           </CardContent>
           <CardFooter className="flex justify-between items-center border-t border-border pt-4 px-6 pb-6 flex-shrink-0">
-            <div className="font-semibold text-green-600 text-sm">{study.roi}</div>
+            <div className="font-semibold text-orange-400 text-sm">{study.roi}</div>
             <motion.button
               whileHover={{ x: 5 }}
               className="text-primary hover:text-primary/90 flex items-center text-sm font-medium"
