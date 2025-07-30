@@ -20,7 +20,7 @@ export function MagicCard({
   className,
   gradientSize = 300,
   gradientOpacity = 0.95,
-  gradientFrom = "rgb(0, 200, 255)",
+  gradientFrom = "rgb(50, 225, 255)",
   gradientTo = "rgb(0, 255, 255)",
 }: MagicCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);

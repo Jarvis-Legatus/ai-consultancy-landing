@@ -9,17 +9,24 @@ import { cn } from '@/lib/utils';
 import { Card } from "@/components/ui/card"; // Import Card
 
 const MagicCard = dynamic(() => import('@/components/magicui/magic-card').then(mod => mod.MagicCard), { ssr: false });
+import { ProjectDescriptionRenderer } from './ProjectDescriptionRenderer';
 
 type ProjectStat = {
   value: string;
   label: string;
 };
 
+type ProjectContentBlock =
+  | { type: 'paragraph'; content: string }
+  | { type: 'heading'; level: 1 | 2 | 3 | 4 | 5 | 6; content: string }
+  | { type: 'list'; items: string[] };
+
 type Project = {
   image: string;
   alt: string;
+  buttonTitle: string;
   title: string;
-  description: string;
+  description: ProjectContentBlock[];
   stats: ProjectStat[];
 };
 
@@ -51,14 +58,14 @@ export default function ProjectShowcase(): React.JSX.Element {
               className={cn(
                 "flex-1 h-full transition-all duration-500 group-hover:card-shadow-hover overflow-hidden group mb-4",
                 selected === idx
-                  ? "bg-background border border-primary/20"
-                  : "bg-background border border-border"
+                  ? "bg-background"
+                  : "bg-background"
               )}
             >
               <Card className="h-full w-full border-none shadow-none">
                 <button
                   className={cn(
-                    "w-full h-full py-3 px-4 font-medium text-sm rounded-xl transition-opacity duration-200",
+                    "w-full h-full py-3 px-4 font-medium text-sm rounded-[var(--radius)] transition-opacity duration-200",
                     selected === idx
                       ? "text-foreground"
                       : "text-muted-foreground opacity-50"
@@ -66,7 +73,7 @@ export default function ProjectShowcase(): React.JSX.Element {
                   onClick={() => setSelected(idx)}
                   type="button"
                 >
-                  {t(`projects.items.${idx}.title`)}
+                  {projects[idx].buttonTitle}
                 </button>
               </Card>
             </MagicCard>
@@ -79,13 +86,13 @@ export default function ProjectShowcase(): React.JSX.Element {
             <Card className="h-full w-full border-none shadow-none">
               <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-stretch">
                 {/* Image */}
-                <div className="flex-shrink-0 w-full md:w-80 h-64 md:h-auto rounded-xl overflow-hidden bg-muted flex items-center justify-center shadow-sm">
+                <div className="flex-none w-full aspect-[7/8] md:w-[400px] rounded-xl overflow-hidden bg-muted flex items-center justify-center shadow-sm">
                   <Image
                     src={project.image}
                     alt={project.alt}
                     width={300}
                     height={300}
-                    className="object-contain w-full h-full"
+                    className="object-cover w-full h-full"
                   />
                 </div>
 
@@ -97,9 +104,7 @@ export default function ProjectShowcase(): React.JSX.Element {
                   <h3 className="font-semibold text-xl text-foreground">
                     {project.title}
                   </h3>
-                  <p className="text-base leading-relaxed text-muted-foreground">
-                    {project.description}
-                  </p>
+                  <ProjectDescriptionRenderer description={project.description} />
                   <div className="flex flex-wrap gap-4 mt-6">
                     {Array.isArray(project.stats) && project.stats.map(stat => (
                       <div

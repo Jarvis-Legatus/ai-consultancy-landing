@@ -131,30 +131,57 @@
   "projects.subtitle": "Explore our successful AI implementations and their measurable impact.",
   "projects.items": [
     {
-      "image": "/Artemis-Ken.png",
+      "buttonTitle": "MedixCare",
+      "image": "/Artemis-ken.png",
       "alt": "Glass shattering, project one",
-      "title": "MedixCare — AI Triage Assistant for Healthcare",
-      "description": "We built a custom AI triage assistant that evaluates symptoms and routes patients to the appropriate care level.",
+      "title": "MedixCare — AI Triage Assistant for Healthcare",      
+      "description": [
+        { "type": "paragraph", "content": "Next.js is a cutting-edge React framework that empowers developers to build fast, scalable, and user-friendly web applications. By combining server-side rendering, static site generation, and client-side interactivity, it provides unparalleled flexibility for modern frontend development. Teams can leverage its robust routing and data-fetching methods to create dynamic and performant experiences tailored to any use case. This framework is designed for ultimate performance and developer experience, ensuring that applications are not only fast but also a joy to build and maintain. Its built-in optimizations, such as automatic image optimization and code splitting, contribute to a seamless user experience and faster load times, which are critical for modern web applications. The flexibility of Next.js allows for a wide range of architectural patterns, from purely static sites to complex server-rendered applications, making it suitable for almost any project requirement. Furthermore, the active community and extensive documentation provide a rich ecosystem for developers to learn, share, and innovate, constantly pushing the boundaries of what's possible on the web." },
+        { "type": "paragraph", "content": "One of the standout features of Next.js is its seamless development workflow. Automatic code splitting, image optimization, and enhanced error reporting streamline the process, allowing engineers to focus on creating exceptional user interfaces. Integrated TypeScript support and a strong plugin ecosystem ensure that projects remain maintainable and adaptable as requirements evolve. The developer experience is paramount, with features like Fast Refresh providing instant feedback on code changes, significantly speeding up the development cycle. This focus on developer productivity does not come at the expense of performance; instead, it enables developers to build highly optimized applications with less effort. The extensibility of Next.js through its plugin system means that it can be tailored to fit specific project needs, whether it's integrating with various data sources or extending its rendering capabilities. This adaptability makes it a powerful tool for teams looking to build future-proof web applications that can evolve with changing business demands and technological advancements." },
+        { "type": "paragraph", "content": "When approaching complex applications, Next.js promotes best practices through file-based routing and clear conventions. Features like API routes and middleware enable the construction of full-stack solutions within a unified codebase. This eliminates the need for separate backend and frontend repositories, reducing overhead and facilitating faster iteration cycles. The unified development model simplifies deployment and scaling, as both frontend and backend logic can be managed within a single project. This holistic approach to application development fosters better collaboration among team members and reduces the cognitive load associated with managing disparate systems. Moreover, the emphasis on conventions helps maintain code consistency across large projects, making it easier for new team members to onboard and contribute effectively. The ability to build complete applications with a single framework streamlines the entire development process, from initial concept to production deployment, making Next.js an invaluable asset for modern software development teams." },
+        { "type": "paragraph", "content": "These innovations make Next.js an excellent choice for organizations that demand robust scalability and maintainability. By fostering rapid prototyping and efficient deployment, it helps teams bring ideas from concept to production in record time. Whether building simple marketing pages or mission-critical enterprise apps, Next.js provides the foundation for a modern, resilient web presence. Its server-side rendering capabilities improve SEO and initial page load performance, which are crucial for user engagement and search engine rankings. The ability to generate static sites also offers unparalleled security and performance benefits, making it a versatile choice for a wide array of web projects. The continuous evolution of the framework, driven by a dedicated team and a vibrant open-source community, ensures that Next.js remains at the forefront of web development technologies, providing developers with the tools they need to build the next generation of web applications." }
+      ],
       "stats": [
         { "value": "40%", "label": "Reduced average wait" },
         { "value": "30%", "label": "Rise in patient satisfaction" }
       ]
     },
     {
+      "buttonTitle": "FinSight",
       "image": "/Artemis-Olek.png",
       "alt": "Computer code visualization, project two",
       "title": "FinSight — AI-Powered Financial Analytics",
-      "description": "A platform for real-time financial data analytics, empowering clients with intelligent investment insights via NLP.",
+      "description": [
+        { "type": "paragraph", "content": "FinSight is a cutting-edge platform designed for real-time financial data analytics. It empowers clients with intelligent investment insights through advanced Natural Language Processing (NLP) capabilities." },
+        { "type": "card", "className": "bg-card p-4 rounded-lg shadow-md", "content": [
+          { "type": "heading", "level": 3, "content": "Key Features:" },
+          { "type": "paragraph", "content": "Our platform offers a comprehensive suite of tools, including:" },
+          { "type": "list", "items": [
+            "<i>Real-time Market Analysis</i>: Get instant updates on market trends and sentiment.",
+            "<i>Predictive Modeling</i>: Leverage AI to forecast future market movements with high accuracy.",
+            "<i>Automated Report Generation</i>: Generate detailed financial reports in minutes, not hours."
+          ]}
+        ]},
+        { "type": "card", "className": "bg-card p-4 rounded-lg shadow-md mt-4", "content": [
+          { "type": "heading", "level": 4, "content": "Benefits for Your Business:" },
+          { "type": "paragraph", "content": "FinSight helps you make data-driven decisions faster and with greater confidence. By transforming raw financial data into actionable intelligence, you can identify new opportunities, mitigate risks, and optimize your investment strategies. Our intuitive interface ensures that even non-technical users can harness the power of AI for financial success." },
+          { "type": "paragraph", "content": "This solution is ideal for financial analysts, portfolio managers, and investment firms looking to gain a competitive edge in a rapidly evolving market." }
+        ]}
+      ],
       "stats": [
         { "value": "50%", "label": "Faster decision making" },
         { "value": "99.9%", "label": "Data accuracy rate" }
       ]
     },
     {
+      "buttonTitle": "EduLearn",
       "image": "/Artemis-Vlady.png",
       "alt": "Mobile app interface, project three",
       "title": "EduLearn — Personalized AI Learning Platform",
-      "description": "Customizable AI for schools that recommends lessons, automates grading, and adapts content to each student’s pace.",
+      "description": [
+        { "type": "paragraph", "content": "EduLearn is a customizable AI-powered learning platform designed to revolutionize education. It intelligently recommends lessons, automates grading, and adapts content to each student’s unique pace and learning style." },
+        { "type": "paragraph", "content": "This personalized approach ensures that every student receives the support they need to excel, fostering a more engaging and effective learning environment." }
+      ],
       "stats": [
         { "value": "3x", "label": "Faster content adoption" },
         { "value": "95%", "label": "Student satisfaction" }

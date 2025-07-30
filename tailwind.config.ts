@@ -75,6 +75,10 @@ const config = {
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
+  	     maskImage: {
+  	       "gradient-to-r": "linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,1))",
+  	       "gradient-to-l": "linear-gradient(to left, rgba(0,0,0,0), rgba(0,0,0,1))",
+  	     },
   		keyframes: {
   			'accordion-down': {
   				from: {

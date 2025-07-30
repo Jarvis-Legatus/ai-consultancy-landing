@@ -6,13 +6,13 @@
   /* CSS Custom Properties for Design System */
   :root {
     /* App backgrounds */
-    --app-background: 220 50% 97%; /* Light mode app background */
-    --hero-bottom-transition: 220 50% 97%;
+    --app-background: 40 20% 96%; /* Light mode app background */
+    --hero-bottom-transition: 40 20% 96%;
     
     /* Core theme colors */
-    --background: 220 50% 96%;
+    --background: 40 20% 96%;
     --foreground: 222.2 84% 4.9%;
-    --card: 100 50% 100%;
+    --card: 200 20% 95%;
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
@@ -52,11 +52,11 @@
 
   .dark {
     /* App backgrounds */
-    --app-background: 0 0% 5%; /* Dark mode app background */
-    --hero-bottom-transition: 0 0% 5%;
+    --app-background: 0 0% 4%; /* Dark mode app background */
+    --hero-bottom-transition: 0 0% 4%;
     
     /* Core theme colors */
-    --background: 0 0% 5%;
+    --background: 0 0% 4%;
     --foreground: 210 40% 98%;
     --card: 0 0% 8%;
     --card-foreground: 210 40% 98%;
@@ -75,7 +75,7 @@
     --border: 0 0% 10%;
     --input: 0 0% 0%;
     --ring: 221 83% 53%;
-    --card-box-shadow-dark: rgba(255, 255, 255, 0.068) 0px 0px 1px 1px inset;
+    --card-box-shadow-dark: rgba(255, 255, 255, 0.146) 0px 0px 1px 1px inset;
     --card-box-shadow-hover-dark: rgba(255, 255, 255, 0.15) 0px 8px 25px, rgba(255, 255, 255, 0.08) 0px 4px 8px;
  
     
@@ -182,6 +182,12 @@
     border-radius: var(--radius);
   }
 
+  @media (max-width: 767px) {
+    .section-container {
+      margin: 0 auto; /* Remove vertical margin for mobile */
+    }
+  }
+
   @media (min-width: 768px) {
     .section-container {
       padding: 0 2rem;
@@ -284,4 +290,30 @@
 .secondary-button:hover {
     background: #fafafa;
     border-color: rgba(0, 0, 0, 0.12);
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes slide-reverse {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-slide {
+  animation: slide 30s linear infinite;
+}
+
+.animate-slide-reverse {
+  animation: slide-reverse 30s linear infinite;
 }
