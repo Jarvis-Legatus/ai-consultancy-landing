@@ -37,19 +37,18 @@ export function FAQ() {
               <Card
                 key={index}
                 className="h-full transition-all duration-500 overflow-hidden group bg-background mb-4"
-                style={{ boxShadow: 'var(--card-box-shadow-light)' }}
               >
                 <AccordionItem
                   value={`item-${index + 1}`}
                   className={cn(
-                    "border-none px-5", // Removed border and shadow, increased px-5 for padding
+                    "border-none px-8", // Removed border and shadow, increased px-8 for padding
                     index === 0 && "border-b-0"
                   )}
                 >
-                  <AccordionTrigger className="py-5 text-lg sm:text-xl font-medium text-foreground hover:no-underline">
+                  <AccordionTrigger className="py-6 text-base sm:text-xl font-medium text-foreground hover:no-underline">
                     {item.question as string}
                   </AccordionTrigger>
-                  <AccordionContent className="pb-4 text-base text-muted-foreground">
+                  <AccordionContent className="pb-6 text-base text-muted-foreground">
                     {item.answer as string}
                   </AccordionContent>
                 </AccordionItem>
