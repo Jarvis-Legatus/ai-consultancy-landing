@@ -107,7 +107,6 @@ export function MagicCard({
         className="absolute inset-px bg-background"
         style={{
           borderRadius: 'inherit',
-          boxShadow: theme === 'light' ? "rgb(255, 255, 255) 0px 3px 1px 0px inset" : "rgb(20, 20, 20) 0px 3px 1px 0px inset",
         }}
       />
       <motion.div

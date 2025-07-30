@@ -2,6 +2,7 @@
 
 import { Hero } from "@/components/hero"
 import { FAQ } from "@/components/faq"
+import { FAQ2 } from "@/components/faq2"
 import ProjectShowcase from "@/components/projects"
 import { Services } from "@/components/services"
 import { CaseStudies } from "@/components/case-studies"
@@ -19,6 +20,7 @@ export default function Home() {
         <main>
           <Hero />
           <FAQ />
+          <FAQ2 />
           <ProjectShowcase />
           <Services />
           <CaseStudies />

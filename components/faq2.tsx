@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import {
   Accordion,
   AccordionContent,
@@ -7,7 +8,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
-import { Card } from "@/components/ui/card";
+const MagicCard = dynamic(() => import("@/components/magicui/magic-card").then((mod) => mod.MagicCard), { ssr: false });
 import { useLanguage } from "./language-selector";
 
 
@@ -16,13 +17,16 @@ interface FAQItem {
   answer: string;
 }
 
-export function FAQ() {
+export function FAQ2() {
   const { t } = useLanguage();
   const faqItems = t<FAQItem[]>("faq.items", { returnObjects: true });
   return (
-    <section id="faq" className="py-10">
+    <section id="faq2" className="py-10">
       <div className="section-container py-16 bg-background">
         <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="text-center text-sm text-red-500 mb-2">
+            (This is a duplicate section)
+          </div>
           <h2 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl mb-6">
             {t("faq.title")}
           </h2>
@@ -34,10 +38,9 @@ export function FAQ() {
         <div className="mx-auto max-w-3xl">
           <Accordion type="single" collapsible className="w-full">
             {Array.isArray(faqItems) && faqItems.map((item, index) => (
-              <Card
+              <MagicCard
                 key={index}
-                className="h-full transition-all duration-500 overflow-hidden group bg-background mb-4"
-                style={{ boxShadow: 'var(--card-box-shadow-light)' }}
+                className="h-full transition-all duration-500 overflow-hidden group bg-background mb-4 shadow-none"
               >
                 <AccordionItem
                   value={`item-${index + 1}`}
@@ -53,7 +56,7 @@ export function FAQ() {
                     {item.answer as string}
                   </AccordionContent>
                 </AccordionItem>
-              </Card>
+              </MagicCard>
             ))}
           </Accordion>
         </div>
