@@ -5,6 +5,7 @@ import type React from "react"
 import { useRef, useEffect } from "react"
 import { motion, useInView } from "framer-motion"
 import { Check } from "lucide-react"
+import { Card } from "@/components/ui/card" // Added Card import
 import { useLanguage } from "./language-selector"
 import Cal, { getCalApi } from "@calcom/embed-react"
 import dynamic from 'next/dynamic';
@@ -61,7 +62,7 @@ export function BookConsultation() {
             <motion.div
               ref={ref}
               initial={{ opacity: 0, y: -50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               className="text-center"
             >
@@ -85,22 +86,24 @@ export function BookConsultation() {
             </motion.div>
 
             <MagicCard
-              className="h-full transition-all duration-500 hover:shadow-xl overflow-hidden group bg-card p-8"
+              className="h-full transition-all duration-500 group-hover:card-shadow-hover overflow-hidden group bg-background mb-4"
             >
-              <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                style={{ zIndex: 0 }}
-              >
-                <h3 className="text-2xl font-bold text-card-foreground mb-6 text-center">{t("consultation.form.title")}</h3>
-                <Cal
-                  namespace="30min"
-                  calLink="fasteroperations/20min"
-                  style={{width:"100%",height:"100%",overflow:"scroll"}}
-                  config={{"layout":"month_view"}}
-                />
-              </motion.div>
+              <Card className="h-full w-full border-none shadow-none p-8"> {/* Added Card wrapper */}
+                <motion.div
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+                  transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                  style={{ zIndex: 0 }}
+                >
+                  <h3 className="text-2xl font-bold text-card-foreground mb-6 text-center">{t("consultation.form.title")}</h3>
+                  <Cal
+                    namespace="30min"
+                    calLink="fasteroperations/20min"
+                    style={{width:"100%",height:"100%",overflow:"scroll"}}
+                    config={{"layout":"month_view"}}
+                  />
+                </motion.div>
+              </Card> {/* Closed Card wrapper */}
             </MagicCard>
           </div>
         </div>

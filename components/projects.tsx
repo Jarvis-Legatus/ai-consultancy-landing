@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useLanguage } from './language-selector';
 import dynamic from 'next/dynamic';
 import { cn } from '@/lib/utils';
+import { Card } from "@/components/ui/card"; // Import Card
 
 const MagicCard = dynamic(() => import('@/components/magicui/magic-card').then(mod => mod.MagicCard), { ssr: false });
 
@@ -48,71 +49,75 @@ export default function ProjectShowcase(): React.JSX.Element {
             <MagicCard
               key={idx}
               className={cn(
-                "flex-1",
+                "flex-1 h-full transition-all duration-500 group-hover:card-shadow-hover overflow-hidden group mb-4",
                 selected === idx
-                  ? "bg-card border border-primary/20"
-                  : "bg-card border border-border"
+                  ? "bg-background border border-primary/20"
+                  : "bg-background border border-border"
               )}
             >
-              <button
-                className={cn(
-                  "w-full h-full py-3 px-4 font-medium text-sm rounded-xl transition-opacity duration-200",
-                  selected === idx
-                    ? "text-foreground"
-                    : "text-muted-foreground opacity-50"
-                )}
-                onClick={() => setSelected(idx)}
-                type="button"
-              >
-                {t(`projects.items.${idx}.title`)}
-              </button>
+              <Card className="h-full w-full border-none shadow-none">
+                <button
+                  className={cn(
+                    "w-full h-full py-3 px-4 font-medium text-sm rounded-xl transition-opacity duration-200",
+                    selected === idx
+                      ? "text-foreground"
+                      : "text-muted-foreground opacity-50"
+                  )}
+                  onClick={() => setSelected(idx)}
+                  type="button"
+                >
+                  {t(`projects.items.${idx}.title`)}
+                </button>
+              </Card>
             </MagicCard>
           ))}
         </nav>
 
         {/* Content */}
         {project && (
-          <MagicCard className="h-full transition-all duration-500 hover:shadow-xl overflow-hidden group bg-card p-6 md:p-8">
-            <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-stretch">
-              {/* Image */}
-              <div className="flex-shrink-0 w-full md:w-80 h-64 md:h-auto rounded-xl overflow-hidden bg-muted flex items-center justify-center shadow-sm">
-                <Image
-                  src={project.image}
-                  alt={project.alt}
-                  width={300}
-                  height={300}
-                  className="object-contain w-full h-full"
-                />
-              </div>
+          <MagicCard className="h-full transition-all duration-500 group-hover:card-shadow-hover overflow-hidden group bg-background p-6 md:p-8">
+            <Card className="h-full w-full border-none shadow-none">
+              <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-stretch">
+                {/* Image */}
+                <div className="flex-shrink-0 w-full md:w-80 h-64 md:h-auto rounded-xl overflow-hidden bg-muted flex items-center justify-center shadow-sm">
+                  <Image
+                    src={project.image}
+                    alt={project.alt}
+                    width={300}
+                    height={300}
+                    className="object-contain w-full h-full"
+                  />
+                </div>
 
-              {/* Info */}
-              <div className="flex-1 flex flex-col justify-center gap-4 pt-3">
-                <p className="text-sm font-medium text-muted-foreground">
-                  {String(selected + 1).padStart(2, '0')}
-                </p>
-                <h3 className="font-semibold text-xl text-foreground">
-                  {project.title}
-                </h3>
-                <p className="text-base leading-relaxed text-muted-foreground">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-4 mt-6">
-                  {Array.isArray(project.stats) && project.stats.map(stat => (
-                    <div
-                      key={stat.label}
-                      className="flex-1 min-w-[120px] bg-card rounded-lg border border-border p-6 text-center"
-                    >
-                      <strong className="block text-2xl font-bold text-primary">
-                        {stat.value}
-                      </strong>
-                      <p className="text-sm text-muted-foreground mt-2">
-                        {stat.label}
-                      </p>
-                    </div>
-                  ))}
+                {/* Info */}
+                <div className="flex-1 flex flex-col justify-center gap-4 pt-3">
+                  <p className="text-sm font-medium text-muted-foreground">
+                    {String(selected + 1).padStart(2, '0')}
+                  </p>
+                  <h3 className="font-semibold text-xl text-foreground">
+                    {project.title}
+                  </h3>
+                  <p className="text-base leading-relaxed text-muted-foreground">
+                    {project.description}
+                  </p>
+                  <div className="flex flex-wrap gap-4 mt-6">
+                    {Array.isArray(project.stats) && project.stats.map(stat => (
+                      <div
+                        key={stat.label}
+                        className="flex-1 min-w-[120px] bg-card rounded-lg border border-border p-6 text-center"
+                      >
+                        <strong className="block text-2xl font-bold text-primary">
+                          {stat.value}
+                        </strong>
+                        <p className="text-sm text-muted-foreground mt-2">
+                          {stat.label}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
+            </Card>
           </MagicCard>
         )}
       </div>

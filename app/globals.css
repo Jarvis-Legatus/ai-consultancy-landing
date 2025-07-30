@@ -10,9 +10,9 @@
     --hero-bottom-transition: 220 50% 97%;
     
     /* Core theme colors */
-    --background: 220 50% 97%;
+    --background: 220 50% 96%;
     --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
+    --card: 100 50% 100%;
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
@@ -33,6 +33,7 @@
     /* Card styles */
     --card-box-shadow-light: rgba(0, 0, 0, 0.08) 0px 0.706592px 0.706592px -0.666667px, rgba(0, 0, 0, 0.08) 0px 1.80656px 1.80656px -1.33333px, rgba(0, 0, 0, 0.07) 0px 3.62176px 3.62176px -2px, rgba(0, 0, 0, 0.07) 0px 6.8656px 6.8656px -2.66667px, rgba(0, 0, 0, 0.05) 0px 13.6468px 13.6468px -3.33333px, rgba(0, 0, 0, 0.02) 0px 30px 30px -4px, rgb(255, 255, 255) 0px 3px 1px 0px inset;
     --card-opacity: 1;
+    --card-box-shadow-hover-light: rgba(0, 0, 0, 0.15) 0px 8px 25px, rgba(0, 0, 0, 0.08) 0px 4px 8px;
 
     /* Chart colors */
     --chart-1: 221 83% 53%;
@@ -55,7 +56,7 @@
     --hero-bottom-transition: 0 0% 5%;
     
     /* Core theme colors */
-    --background: 0 0% 15%;
+    --background: 0 0% 5%;
     --foreground: 210 40% 98%;
     --card: 0 0% 8%;
     --card-foreground: 210 40% 98%;
@@ -74,7 +75,8 @@
     --border: 0 0% 10%;
     --input: 0 0% 0%;
     --ring: 221 83% 53%;
-    --card-box-shadow-dark: rgba(0, 0, 0, 0.08) 0px 0.706592px 0.706592px -0.666667px, rgba(0, 0, 0, 0.08) 0px 1.80656px 1.80656px -1.33333px, rgba(0, 0, 0, 0.07) 0px 3.62176px 3.62176px -2px, rgba(0, 0, 0, 0.07) 0px 6.8656px 6.8656px -2.66667px, rgba(0, 0, 0, 0.05) 0px 13.6468px 13.6468px -3.33333px, rgba(0, 0, 0, 0.02) 0px 30px 30px -4px, rgb(255, 0, 0) 0px 3px 1px 0px inset;
+    --card-box-shadow-dark: rgba(255, 255, 255, 0.068) 0px 0px 1px 1px inset;
+    --card-box-shadow-hover-dark: rgba(255, 255, 255, 0.15) 0px 8px 25px, rgba(255, 255, 255, 0.08) 0px 4px 8px;
  
     
     /* Sidebar colors */
@@ -161,6 +163,15 @@
   .dark .card-shadow {
     box-shadow: var(--card-box-shadow-dark);
   }
+  
+    .group:hover .card-shadow-hover {
+      box-shadow: var(--card-box-shadow-hover-light);
+    }
+  
+    .dark .group:hover .card-shadow-hover {
+      box-shadow: var(--card-box-shadow-hover-dark);
+    }
+
 }
 
 @layer components {

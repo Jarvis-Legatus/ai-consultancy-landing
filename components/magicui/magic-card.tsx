@@ -18,7 +18,7 @@ interface MagicCardProps {
 export function MagicCard({
   children,
   className,
-  gradientSize = 400,
+  gradientSize = 300,
   gradientOpacity = 0.95,
   gradientFrom = "rgb(0, 200, 255)",
   gradientTo = "rgb(0, 255, 255)",
@@ -88,7 +88,7 @@ export function MagicCard({
   return (
     <div
       ref={cardRef}
-      className={cn("group relative rounded-[var(--radius)]", className)}
+      className={cn("group relative rounded-[var(--radius)] card-shadow", className)}
     >
       <motion.div
         className="pointer-events-none absolute inset-0 bg-transparent duration-300 group-hover:opacity-100"
@@ -98,13 +98,13 @@ export function MagicCard({
           radial-gradient(${gradientSize}px circle at ${mouseX}px ${mouseY}px,
           ${gradientFrom},
           ${gradientTo},
-          hsl(var(--border)) 100%
+          transparent 100%
           )
           `,
         }}
       />
       <div
-        className="absolute inset-px bg-background"
+        className="absolute inset-[2px] bg-background" /* THIS IS WHERE THE WIDTH or THICKNESS of the Magic-Card radial gradient border effect is controlled */
         style={{
           borderRadius: 'inherit',
         }}

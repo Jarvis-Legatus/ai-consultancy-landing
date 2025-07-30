@@ -256,7 +256,7 @@ export function TrustIndicators() {
           {testimonials.map((testimonial, index) => (
             <motion.div key={index} variants={item}>
               <MagicCard
-                 className="h-full transition-all duration-500 hover:shadow-xl overflow-hidden group bg-card"
+                 className="h-full transition-all duration-500 group-hover:card-shadow-hover overflow-hidden group bg-background mb-4"
                >
                 <Card className="h-full w-full border-none shadow-none flex flex-col">
                   <CardHeader className="pb-4 flex-shrink-0"> {/* Adjusted padding */}
