@@ -1,20 +1,18 @@
 import React from 'react';
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/components/language-selector";
+import { User, DollarSign, Clock, Settings, BarChart2, Rocket, Bot, Layers } from "lucide-react";
 
 interface TagSlideProps {
-  tags: {
-    icon: React.ElementType;
-    text: string;
-  }[];
   direction?: "left" | "right";
   speed?: "fast" | "normal" | "slow";
 }
 
 const TagSlide: React.FC<TagSlideProps> = ({
-  tags,
   direction = "left",
   speed = "slow",
 }) => {
+  const { t } = useLanguage();
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [start, setStart] = React.useState(false);
 
@@ -24,10 +22,29 @@ const TagSlide: React.FC<TagSlideProps> = ({
     }
   }, []);
 
+  const tags = [
+    { icon: BarChart2, text: t("animatedList.tags.dataDrivenDecisions") as string },
+    { icon: Rocket, text: t("animatedList.tags.fasterInnovation") as string },
+    { icon: Bot, text: t("animatedList.tags.virtualAssistance") as string },
+    { icon: Layers, text: t("animatedList.tags.scalableSolutions") as string },
+    { icon: User, text: t("animatedList.tags.personalizedExperiences") as string },
+    { icon: DollarSign, text: t("animatedList.tags.costEffective") as string },
+    { icon: Clock, text: t("animatedList.tags.realTimeInsights") as string },
+    { icon: Settings, text: t("animatedList.tags.automation") as string },
+    { icon: BarChart2, text: t("animatedList.tags.dataDrivenDecisions") as string },
+    { icon: Rocket, text: t("animatedList.tags.fasterInnovation") as string },
+    { icon: Bot, text: t("animatedList.tags.virtualAssistance") as string },
+    { icon: Layers, text: t("animatedList.tags.scalableSolutions") as string },
+    { icon: User, text: t("animatedList.tags.personalizedExperiences") as string },
+    { icon: DollarSign, text: t("animatedList.tags.costEffective") as string },
+    { icon: Clock, text: t("animatedList.tags.realTimeInsights") as string },
+    { icon: Settings, text: t("animatedList.tags.automation") as string },
+  ];
+
   const animationSpeed = {
-    fast: "20s",
-    normal: "30s",
-    slow: "60s",
+    fast: "60s",
+    normal: "120s",
+    slow: "180s",
   };
 
   const animationDirection = direction === "left" ? "slide" : "slide-reverse";
@@ -36,8 +53,8 @@ const TagSlide: React.FC<TagSlideProps> = ({
     <div
       ref={containerRef}
       className={cn(
-        "relative flex w-full overflow-hidden",
-        "h-12", // Fixed height for the tags
+        "relative flex w-full overflow-hidden max-w-5xl mx-auto px-4",
+        "h-24", // Reverted to original height
         "mask-image-gradient-to-r from-transparent via-black to-transparent" // Fading effect
       )}
       style={{
@@ -59,7 +76,7 @@ const TagSlide: React.FC<TagSlideProps> = ({
         {tags.map((tag, index) => (
           <li key={index} className="flex-shrink-0">
             <div
-              className="flex items-center px-4 py-2 rounded-full card-shadow bg-card text-card-foreground"
+              className="flex items-center px-4 py-2 rounded-full card-shadow bg-[hsl(var(--background))] text-card-foreground"
               style={{ borderRadius: "228px" }} // Specific border-radius from the provided code
             >
               <tag.icon className="w-5 h-5 mr-2 text-muted-foreground" />
@@ -71,7 +88,7 @@ const TagSlide: React.FC<TagSlideProps> = ({
         {tags.map((tag, index) => (
           <li key={`duplicate-${index}`} className="flex-shrink-0">
             <div
-              className="flex items-center px-4 py-2 rounded-full card-shadow bg-card text-card-foreground"
+              className="flex items-center px-4 py-2 rounded-full card-shadow bg-[hsl(var(--background))] text-card-foreground"
               style={{ borderRadius: "228px" }}
             >
               <tag.icon className="w-5 h-5 mr-2 text-muted-foreground" />

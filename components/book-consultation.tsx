@@ -4,7 +4,7 @@ import type React from "react"
 
 import { useRef, useEffect } from "react"
 import { motion, useInView } from "framer-motion"
-import { Check } from "lucide-react"
+import { Check, Mail } from "lucide-react"
 import { Card } from "@/components/ui/card" // Added Card import
 import { useLanguage } from "./language-selector"
 import Cal, { getCalApi } from "@calcom/embed-react"
@@ -95,7 +95,21 @@ export function BookConsultation() {
                   transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                   style={{ zIndex: 0 }}
                 >
-                  <h3 className="text-2xl font-bold text-card-foreground mb-6 text-center">{t("consultation.form.title")}</h3>
+                  <h3 className="text-2xl font-bold text-card-foreground mb-2 text-center">{t("consultation.form.title")}</h3>
+                  <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+                    transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                    className="flex items-center justify-center text-center text-orange-400 mt-4 mb-6"
+                  >
+                    <Mail size={20} className="mr-2" />
+                    <span>
+                      {t("consultation.or_email")}{" "}
+                      <a href="mailto:info@fasteroperations.com" className="underline font-bold">
+                        info@fasteroperations.com
+                      </a>
+                    </span>
+                  </motion.div>
                   <Cal
                     namespace="30min"
                     calLink="fasteroperations/20min"

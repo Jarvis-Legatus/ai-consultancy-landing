@@ -57,6 +57,7 @@
   "consultation.benefit3": "Transparent pricing with ROI projections",
   "consultation.benefit4": "Ongoing support and optimization",
   "consultation.form.title": "Book Your Free Consultation",
+  "consultation.or_email": "or shoot us an email at:",
   "consultation.success.title": "Thank You!",
   "consultation.success.message": "Your consultation request has been received. We'll contact you shortly to confirm your appointment.",
   "consultation.success.button": "Book Another Consultation",
@@ -187,5 +188,13 @@
         { "value": "95%", "label": "Student satisfaction" }
       ]
     }
-  ]
+  ],
+  "animatedList.tags.dataDrivenDecisions": "Data-Driven Decisions",
+  "animatedList.tags.fasterInnovation": "Faster Innovation",
+  "animatedList.tags.virtualAssistance": "Virtual Assistance",
+  "animatedList.tags.scalableSolutions": "Scalable Solutions",
+  "animatedList.tags.personalizedExperiences": "Personalized Experiences",
+  "animatedList.tags.costEffective": "Cost Effective",
+  "animatedList.tags.realTimeInsights": "Real-Time Insights",
+  "animatedList.tags.automation": "Automation"
 }

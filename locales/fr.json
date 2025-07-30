@@ -57,6 +57,7 @@
   "consultation.benefit3": "Tarification transparente avec projections de ROI",
   "consultation.benefit4": "Support et optimisation continus",
   "consultation.form.title": "Réservez Votre Consultation Gratuite",
+  "consultation.or_email": "ou envoyez-nous un e-mail à:",
   "consultation.success.title": "Merci!",
   "consultation.success.message": "Votre demande de consultation a été reçue. Nous vous contacterons prochainement pour confirmer votre rendez-vous.",
   "consultation.success.button": "Réserver une Autre Consultation",
@@ -101,5 +102,13 @@
   "footer.copyright": "© 2025 FasterOperations. Tous droits réservés.",
   "footer.privacy": "Politique de Confidentialité",
   "footer.terms": "Conditions d'Utilisation",
-  "footer.cookies": "Politique de Cookies"
+  "footer.cookies": "Politique de Cookies",
+  "animatedList.tags.dataDrivenDecisions": "Décisions Basées sur les Données",
+  "animatedList.tags.fasterInnovation": "Innovation Plus Rapide",
+  "animatedList.tags.virtualAssistance": "Assistance Virtuelle",
+  "animatedList.tags.scalableSolutions": "Solutions Évolutives",
+  "animatedList.tags.personalizedExperiences": "Expériences Personnalisées",
+  "animatedList.tags.costEffective": "Rentable",
+  "animatedList.tags.realTimeInsights": "Informations en Temps Réel",
+  "animatedList.tags.automation": "Automatisation"
 }
