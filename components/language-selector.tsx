@@ -24,10 +24,10 @@ const languages: Language[] = [
 type LanguageContextType = {
   currentLanguage: string
   setLanguage: (code: string) => void
-  t: (key: string) => string | string[]
+  t: <T = string | string[]>(key: string, options?: { returnObjects?: boolean }) => T
 }
 
-const defaultTranslate = (key: string): string | string[] => key
+const defaultTranslate = <T = string | string[]>(key: string, options?: { returnObjects?: boolean }): T => key as T;
 
 const LanguageContext = createContext<LanguageContextType>({
   currentLanguage: "en",
@@ -57,9 +57,12 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     document.documentElement.lang = code
   }
 
-  const t = (key: string): string | string[] => {
-    const translation = translations[currentLanguage as keyof typeof translations]?.[key as keyof typeof translations.en];
-    return translation !== undefined ? translation : key;
+  const t = <T = string | string[]>(key: string, options?: { returnObjects?: boolean }): T => {
+    const translation = (translations[currentLanguage as keyof typeof translations] as any)?.[key];
+    if (options?.returnObjects && translation !== undefined) {
+      return translation as T;
+    }
+    return (translation !== undefined ? translation : key) as T;
   }
 
   useEffect(() => {

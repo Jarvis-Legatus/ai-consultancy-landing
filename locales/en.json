@@ -101,5 +101,64 @@
   "footer.copyright": "© 2025 FasterOperations. All rights reserved.",
   "footer.privacy": "Privacy Policy",
   "footer.terms": "Terms of Service",
-  "footer.cookies": "Cookie Policy"
+  "footer.cookies": "Cookie Policy",
+
+  "faq.title": "FAQs",
+  "faq.subtitle": "You have Questions. We have Answers.",
+  "faq.items": [
+    {
+      "question": "What services do you offer?",
+      "answer": "We specialize in AI solutions, including machine learning models, automation, chatbots, predictive analytics, and consulting tailored to your business needs."
+    },
+    {
+      "question": "How long does it take to develop an AI solution?",
+      "answer": "The timeline for developing an AI solution varies depending on the complexity and scope of the project. We work closely with clients to define project milestones and deliver efficient, high-quality solutions within agreed-upon timelines."
+    },
+    {
+      "question": "Do I need technical expertise to work with you?",
+      "answer": "No, you don't need to be an AI expert to work with us. We guide you through every step of the process, from understanding your needs to implementing and maintaining the solution. Our goal is to make AI accessible and beneficial for all businesses."
+    },
+    {
+      "question": "Is my data safe when working with your agency?",
+      "answer": "Data security and privacy are our top priorities. We adhere to strict data protection protocols and compliance standards (e.g., GDPR, HIPAA) to ensure your information is handled with the utmost care and confidentiality."
+    },
+    {
+      "question": "Can AI really help my business grow?",
+      "answer": "Absolutely! AI can revolutionize your business by automating tasks, providing data-driven insights, enhancing customer experiences, and optimizing operations, leading to increased efficiency, reduced costs, and new growth opportunities."
+    }
+  ],
+  "projects.title": "Our Projects",
+  "projects.subtitle": "Explore our successful AI implementations and their measurable impact.",
+  "projects.items": [
+    {
+      "image": "/Artemis-Ken.png",
+      "alt": "Glass shattering, project one",
+      "title": "MedixCare — AI Triage Assistant for Healthcare",
+      "description": "We built a custom AI triage assistant that evaluates symptoms and routes patients to the appropriate care level.",
+      "stats": [
+        { "value": "40%", "label": "Reduced average wait" },
+        { "value": "30%", "label": "Rise in patient satisfaction" }
+      ]
+    },
+    {
+      "image": "/Artemis-Olek.png",
+      "alt": "Computer code visualization, project two",
+      "title": "FinSight — AI-Powered Financial Analytics",
+      "description": "A platform for real-time financial data analytics, empowering clients with intelligent investment insights via NLP.",
+      "stats": [
+        { "value": "50%", "label": "Faster decision making" },
+        { "value": "99.9%", "label": "Data accuracy rate" }
+      ]
+    },
+    {
+      "image": "/Artemis-Vlady.png",
+      "alt": "Mobile app interface, project three",
+      "title": "EduLearn — Personalized AI Learning Platform",
+      "description": "Customizable AI for schools that recommends lessons, automates grading, and adapts content to each student’s pace.",
+      "stats": [
+        { "value": "3x", "label": "Faster content adoption" },
+        { "value": "95%", "label": "Student satisfaction" }
+      ]
+    }
+  ]
 }

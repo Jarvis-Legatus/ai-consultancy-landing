@@ -1,8 +1,13 @@
 'use client';
 
 import * as React from 'react';
-import { useState, ReactNode } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
+import { useLanguage } from './language-selector';
+import dynamic from 'next/dynamic';
+import { cn } from '@/lib/utils';
+
+const MagicCard = dynamic(() => import('@/components/magicui/magic-card').then(mod => mod.MagicCard), { ssr: false });
 
 type ProjectStat = {
   value: string;
@@ -12,183 +17,104 @@ type ProjectStat = {
 type Project = {
   image: string;
   alt: string;
-  title: ReactNode;
+  title: string;
   description: string;
   stats: ProjectStat[];
 };
 
-const style = {
-  container: {
-    backgroundColor: 'var(--token-4f00a517-d75a-4557-9433-caf4536a911d, rgb(245, 245, 245))',
-    width: '100%',
-    borderRadius: '20px',
-    boxShadow: `rgba(0, 0, 0, 0.08) 0px 0.706592px 0.706592px -0.666667px,
-      rgba(0, 0, 0, 0.08) 0px 1.80656px 1.80656px -1.33333px,
-      rgba(0, 0, 0, 0.07) 0px 3.62176px 3.62176px -2px,
-      rgba(0, 0, 0, 0.07) 0px 6.8656px 6.8656px -2.66667px,
-      rgba(0, 0, 0, 0.05) 0px 13.6468px 13.6468px -3.33333px,
-      rgba(0, 0, 0, 0.02) 0px 30px 30px -4px,
-      rgb(255, 255, 255) 0px 3px 1px 0px inset`,
-    opacity: 1,
-    padding: '28px',
-    maxWidth: 980,
-    margin: '40px auto'
-  } as React.CSSProperties,
-  nav: {
-    display: 'flex',
-    gap: '24px',
-    marginBottom: '24px'
-  } as React.CSSProperties,
-  navButton: (active: boolean): React.CSSProperties => ({
-    flex: 1,
-    background: active ? 'rgb(255,255,255)' : 'rgba(255,255,255,0.65)',
-    border: 'none',
-    outline: 'none',
-    padding: '14px 0',
-    borderRadius: '10px',
-    fontWeight: 500,
-    fontSize: 14,
-    color: '#131313',
-    boxShadow: active ? '0 2px 8px rgba(0,0,0,0.04)' : 'none',
-    cursor: 'pointer',
-    transition: 'background 0.2s'
-  }),
-  contentRow: {
-    display: 'flex',
-    gap: '36px',
-    alignItems: 'stretch'
-  } as React.CSSProperties,
-  imageBox: {
-    flex: '0 0 340px',
-    borderRadius: '16px',
-    overflow: 'hidden',
-    background: '#eee',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    boxShadow: 'rgba(0,0,0,0.06) 0 1px 8px'
-  } as React.CSSProperties,
-  infoBox: {
-    flex: 1,
-    display: 'flex',
-    flexDirection: 'column' as const,
-    justifyContent: 'center',
-    gap: '18px',
-    paddingTop: '12px'
-  },
-  statRow: {
-    display: 'flex',
-    gap: '18px',
-    marginTop: '24px'
-  } as React.CSSProperties,
-  statBox: {
-    flex: 1,
-    background: '#fff',
-    borderRadius: '12px',
-    boxShadow: '0 4px 16px rgba(0,0,0,.06)',
-    padding: '32px 16px',
-    textAlign: 'center' as const,
-    fontSize: '20px'
-  },
-  statLabel: {
-    fontSize: 16,
-    color: '#6C6C6C',
-    marginTop: 8
-  },
-  projectTitle: {
-    fontWeight: 600,
-    fontSize: 20,
-    color: '#191919',
-    margin: '10px 0 6px'
-  }
-};
-
-const projects: Project[] = [
-  {
-    image: '/project1.jpg',
-    alt: 'Glass shattering, project one',
-    title: <>MedixCare — AI Triage Assistant for Healthcare</>,
-    description: 'We built a custom AI triage assistant that evaluates symptoms and routes patients to the appropriate care level.',
-    stats: [
-      { value: '40%', label: 'Reduced average wait' },
-      { value: '30%', label: 'Rise in patient satisfaction' }
-    ]
-  },
-  {
-    image: '/project2.jpg',
-    alt: 'Computer code visualization, project two',
-    title: <>FinSight — AI-Powered Financial Analytics</>,
-    description:
-      'A platform for real-time financial data analytics, empowering clients with intelligent investment insights via NLP.',
-    stats: [
-      { value: '50%', label: 'Faster decision making' },
-      { value: '99.9%', label: 'Data accuracy rate' }
-    ]
-  },
-  {
-    image: '/project3.jpg',
-    alt: 'Mobile app interface, project three',
-    title: <>EduLearn — Personalized AI Learning Platform</>,
-    description:
-      'Customizable AI for schools that recommends lessons, automates grading, and adapts content to each student’s pace.',
-    stats: [
-      { value: '3x', label: 'Faster content adoption' },
-      { value: '95%', label: 'Student satisfaction' }
-    ]
-  }
-];
-
 export default function ProjectShowcase(): React.JSX.Element {
+  const { t } = useLanguage();
   const [selected, setSelected] = useState(0);
+  const projects: Project[] = Array.isArray(t("projects.items", { returnObjects: true }))
+    ? t<Project[]>("projects.items", { returnObjects: true })
+    : [];
   const project = projects[selected];
 
   return (
-    <section style={style.container}>
-      {/* Navigation */}
-      <nav style={style.nav}>
-        {['PROJECT 1', 'PROJECT 2', 'PROJECT 3'].map((label, idx) => (
-          <button
-            key={idx}
-            style={style.navButton(selected === idx)}
-            onClick={() => setSelected(idx)}
-            type="button"
-          >
-            {label}
-          </button>
-        ))}
-      </nav>
-
-      {/* Content */}
-      <div style={style.contentRow}>
-        {/* Image */}
-        <div style={style.imageBox}>
-          <Image
-            src={project.image}
-            alt={project.alt}
-            width={300}
-            height={300}
-            style={{ objectFit: 'contain' }}
-          />
+    <section id="projects" className="py-10">
+      <div className="section-container py-16 bg-background">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <h2 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl mb-6">
+            {t("projects.title")}
+          </h2>
+          <p className="text-xl text-muted-foreground">
+            {t("projects.subtitle")}
+          </p>
         </div>
 
-        {/* Info */}
-        <div style={style.infoBox}>
-          <p style={{ fontSize: 14, fontWeight: 500, color: '#6C6C6C' }}>
-            {String(selected + 1).padStart(2, '0')}
-          </p>
-          <h3 style={style.projectTitle}>{project.title}</h3>
-          <p style={{ fontSize: 16, lineHeight: 1.5, color: '#4A4A4A' }}>
-            {project.description}
-          </p>
-          <div style={style.statRow}>
-            {project.stats.map(stat => (
-              <div key={stat.label} style={style.statBox}>
-                <strong>{stat.value}</strong>
-                <p style={style.statLabel}>{stat.label}</p>
+        {/* Navigation */}
+        <nav className="flex gap-4 mb-6">
+          {Array.isArray(projects) && projects.map((_, idx) => (
+            <MagicCard
+              key={idx}
+              className={cn(
+                "flex-1",
+                selected === idx
+                  ? "bg-card border border-primary/20"
+                  : "bg-card border border-border"
+              )}
+            >
+              <button
+                className={cn(
+                  "w-full h-full py-3 px-4 font-medium text-sm rounded-xl transition-opacity duration-200",
+                  selected === idx
+                    ? "text-foreground"
+                    : "text-muted-foreground opacity-50"
+                )}
+                onClick={() => setSelected(idx)}
+                type="button"
+              >
+                {t(`projects.items.${idx}.title`)}
+              </button>
+            </MagicCard>
+          ))}
+        </nav>
+
+        {/* Content */}
+        {project && (
+          <MagicCard className="h-full transition-all duration-500 hover:shadow-xl overflow-hidden group bg-card p-6 md:p-8">
+            <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-stretch">
+              {/* Image */}
+              <div className="flex-shrink-0 w-full md:w-80 h-64 md:h-auto rounded-xl overflow-hidden bg-muted flex items-center justify-center shadow-sm">
+                <Image
+                  src={project.image}
+                  alt={project.alt}
+                  width={300}
+                  height={300}
+                  className="object-contain w-full h-full"
+                />
               </div>
-            ))}
-          </div>
-        </div>
+
+              {/* Info */}
+              <div className="flex-1 flex flex-col justify-center gap-4 pt-3">
+                <p className="text-sm font-medium text-muted-foreground">
+                  {String(selected + 1).padStart(2, '0')}
+                </p>
+                <h3 className="font-semibold text-xl text-foreground">
+                  {project.title}
+                </h3>
+                <p className="text-base leading-relaxed text-muted-foreground">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap gap-4 mt-6">
+                  {Array.isArray(project.stats) && project.stats.map(stat => (
+                    <div
+                      key={stat.label}
+                      className="flex-1 min-w-[120px] bg-card rounded-lg border border-border p-6 text-center"
+                    >
+                      <strong className="block text-2xl font-bold text-primary">
+                        {stat.value}
+                      </strong>
+                      <p className="text-sm text-muted-foreground mt-2">
+                        {stat.label}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </MagicCard>
+        )}
       </div>
     </section>
   );

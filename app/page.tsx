@@ -1,6 +1,8 @@
 "use client"
 
 import { Hero } from "@/components/hero"
+import { FAQ } from "@/components/faq"
+import ProjectShowcase from "@/components/projects"
 import { Services } from "@/components/services"
 import { CaseStudies } from "@/components/case-studies"
 import { BookConsultation } from "@/components/book-consultation"
@@ -16,6 +18,8 @@ export default function Home() {
         <Header />
         <main>
           <Hero />
+          <FAQ />
+          <ProjectShowcase />
           <Services />
           <CaseStudies />
           <BookConsultation />

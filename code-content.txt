@@ -75,14 +75,14 @@
 │   │   └── 📄 tooltip.tsx
 │   ├── 📄 book-consultation.tsx
 │   ├── 📄 case-studies.tsx
-│   ├── 📄 cookies-policy.tsx
+│   ├── 📄 faq.tsx
 │   ├── 📄 footer.tsx
 │   ├── 📄 header.tsx
 │   ├── 📄 hero.tsx
 │   ├── 📄 language-selector.tsx
+│   ├── 📄 projects.tsx
 │   ├── 📄 services.tsx
 │   ├── 📄 SlideArrowButton.tsx
-│   ├── 📄 terms-conditions.tsx
 │   ├── 📄 theme-provider.tsx
 │   ├── 📄 theme-toggle.tsx
 │   └── 📄 trust-indicators.tsx
@@ -98,12 +98,11 @@
 │   └── 📋 it.json
 ├── 📁 public/
 │   └── 📁 favicon_io/
+├── 📄 code-content.txt
 ├── 📋 components.json
-├── 📄 LLM-fasteroperations.txt
 ├── 📄 next-env.d.ts
 ├── 📋 package.json
 ├── 📋 pnpm-lock.yaml
-├── 📝 structure.md
 ├── 📄 tailwind.config.ts
 └── 📋 tsconfig.json
 
@@ -115,23 +114,20 @@
 @tailwind utilities;
 
 @layer base {
-.app-background {
-  background-color: rgb(240, 243, 250);
-}
-
-.dark .app-background {
-  background-color: rgb(9, 9, 9);
-}
-
+  /* CSS Custom Properties for Design System */
   :root {
-    --hero-bottom-transition: rgb(240, 243, 250);
-    --background: 220 90% 98%;
+    /* App backgrounds */
+    --app-background: 223 50% 98%; /* Light mode app background */
+    --hero-bottom-transition: 223 50% 98%;
+    
+    /* Core theme colors */
+    --background: 223 50% 98%;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 221 83% 53%;
+    --primary: 190 3% 53%;
     --primary-foreground: 210 40% 98%;
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
@@ -144,11 +140,13 @@
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 221 83% 53%;
-    --radius: 1rem;
+    --radius: 20px;
 
     /* Chart colors */
     --chart-1: 221 83% 53%;
     --chart-2: 217 91% 60%;
+    
+    /* Sidebar colors */
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
@@ -160,14 +158,18 @@
   }
 
   .dark {
-    --hero-bottom-transition: rgb(9, 9, 9);
+    /* App backgrounds */
+    --app-background: 0 0% 5%; /* Dark mode app background */
+    --hero-bottom-transition: 0 0% 5%;
+    
+    /* Core theme colors */
     --background: 0 0% 5%;
     --foreground: 210 40% 98%;
     --card: 0 0% 8%;
     --card-foreground: 210 40% 98%;
     --popover: 0 0% 0%;
     --popover-foreground: 210 40% 98%;
-    --primary: 221 83% 53%;
+    --primary: 181 93% 53%;
     --primary-foreground: 222.2 47.4% 11.2%;
     --secondary: 0 0% 0%;
     --secondary-foreground: 210 40% 98%;
@@ -180,6 +182,8 @@
     --border: 0 0% 10%;
     --input: 0 0% 0%;
     --ring: 221 83% 53%;
+    
+    /* Sidebar colors */
     --sidebar-background: 0 0% 0%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -189,181 +193,186 @@
     --sidebar-border: 0 0% 0%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
-  .theme {
-    --animate-marquee: marquee var(--duration) infinite linear;
-    --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
-    --animate-shine: shine var(--duration) infinite linear;
-    --animate-shiny-text: shiny-text 8s infinite;
-    --animate-pulse: pulse var(--duration) ease-out infinite;
-  }
-}
 
-@layer base {
+ .dark .orbal-button {
+   background: white;
+   color: #1a1a1a;
+   box-shadow:
+       0 4px 15px rgba(255, 255, 255, 0.1),
+       0 2px 4px rgba(255, 255, 255, 0.05);
+ }
+
+ .dark .orbal-button::before {
+   background: linear-gradient(
+       90deg,
+       transparent,
+       rgba(0, 0, 0, 0.15),
+       transparent
+   );
+ }
+
+ .dark .orbal-button:hover {
+   background: #f0f0f0;
+   box-shadow:
+       0 8px 25px rgba(255, 255, 255, 0.15),
+       0 4px 8px rgba(255, 255, 255, 0.08);
+ }
+
+ .dark .secondary-button {
+   background: #1a1a1a;
+   color: white;
+   border: 1px solid rgba(255, 255, 255, 0.08);
+ }
+
+ .dark .secondary-button:hover {
+   background: #2a2a2a;
+   border-color: rgba(255, 255, 255, 0.12);
+ }
+
+  /* Global styles */
   html {
     overflow-y: scroll; /* Always show scrollbar to prevent layout shift */
   }
+
   body {
-    color: var(--foreground);
+    @apply text-foreground;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
   }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+
+  /* Typography */
+  h1, h2, h3, h4, h5, h6 {
     font-family: "Urbanist", "Urbanist Placeholder", sans-serif;
   }
-  p,
-  span,
-  div,
-  a,
-  button,
-  input,
-  textarea,
-  select,
-  li {
+
+  p, span, div, a, button, input, textarea, select, li {
     font-family: "Satoshi", sans-serif;
   }
 
-  .font-righteous {
-    font-family: "Righteous", sans-serif;
+  /* Border utility */
+  * {
+    @apply border-border;
+  }
+
+  /* App background utilities */
+  .app-background {
+    background-color: hsl(var(--app-background));
   }
 }
 
 @layer components {
   .section-container {
     max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 3rem;
-    margin-bottom: 3rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    margin: 3rem auto;
+    padding: 0 1rem;
+    border-radius: 1.5rem;
   }
 
   @media (min-width: 768px) {
     .section-container {
-      padding-left: 2rem;
-      padding-right: 2rem;
+      padding: 0 2rem;
     }
   }
 
-  .section-container {
-    border-radius: 1.5rem;
+  /* Fix for dropdown menu causing layout shift */
+  .dropdown-open {
+    margin-right: calc(100% - 100vw);
   }
 
+  /* ORB inside HERO */
+  .background-orb {
+    position: absolute;
+    top: -13%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    transition: filter 0.3s ease, transform 0.3s ease;
+    transform: scale(1.35);
+    transform-origin: center center;
+  }
+
+  .light .background-orb {
+    filter: invert(1) sepia(0.2) saturate(0.2) hue-rotate(150deg) opacity(0.5);
+  }
+
+  .dark .background-orb {
+    filter: sepia(0.1) saturate(0.4) hue-rotate(290deg) brightness(1.0) opacity(0.8) contrast(1.2);
+  }
 }
 
 
+/******* Call to Action Button *****/
 
-/* Fix for dropdown menu causing layout shift */
-.dropdown-open {
-  margin-right: calc(100% - 100vw);
+.orbal-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.55rem 2.0rem;
+    background: #1a1a1a;
+    color: white;
+    border: none;
+    border-radius: 9999px;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.1),
+        0 2px 4px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
 }
 
+.orbal-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.15),
+        transparent
+    );
+    transition: left 0.6s ease;
+}
 
-/* @theme inline { */
-  @keyframes marquee {
-  from {
-    transform: translateX(0);
-    }
-  to {
-    transform: translateX(calc(-100% - var(--gap)));
-    }
-  }
-  @keyframes marquee-vertical {
-  from {
+.orbal-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.15),
+        0 4px 8px rgba(0, 0, 0, 0.08);
+    background: #2a2a2a;
+}
+
+.orbal-button:hover::before {
+    left: 100%;
+}
+
+.orbal-button:active {
     transform: translateY(0);
-    }
-  to {
-    transform: translateY(calc(-100% - var(--gap)));
-    }
-  }
-  @keyframes shine {
-  0% {
-    background-position: 0% 0%;
-    }
-  50% {
-    background-position: 100% 100%;
-    }
-  to {
-    background-position: 0% 0%;
-    }
-  }
-  @keyframes shiny-text {
-  0%, 90%, 100% {
-    background-position: calc(-100% - var(--shiny-width)) 0;
-    }
-  30%, 60% {
-    background-position: calc(100% + var(--shiny-width)) 0;
-    }
-  }
-
-  @layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply text-foreground;
-  }
+    box-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.12),
+        0 1px 2px rgba(0, 0, 0, 0.06);
 }
 
-  @theme inline {
-  @keyframes marquee {
-  from {
-    transform: translateX(0);
-    }
-  to {
-    transform: translateX(calc(-100% - var(--gap)));
-    }
-  }
-  @keyframes marquee-vertical {
-  from {
-    transform: translateY(0);
-    }
-  to {
-    transform: translateY(calc(-100% - var(--gap)));
-    }
-  }
-  @keyframes pulse {
-  0%, 100% {
-    boxShadow: 0 0 0 0 var(--pulse-color);
-    }
-  50% {
-    boxShadow: 0 0 0 8px var(--pulse-color);
-    }
-  }
+.secondary-button {
+    background: white;
+    color: #1a1a1a;
+    border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
-
-/* ORB inside HERO */
-/*
-  Control vertical position with 'top' property.
-  Control zoom level with 'transform: scale()'.
-*/
-.background-orb {
-  position: absolute;
-  top: -13%; /* Example: Move up by 10% of its height */
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0;
-  transition: filter 0.3s ease, transform 0.3s ease;
-  transform: scale(1.35); /* Example: Zoom in by 30% */
-  transform-origin: center center;
+.secondary-button:hover {
+    background: #fafafa;
+    border-color: rgba(0, 0, 0, 0.12);
 }
 
-.light .background-orb {
-  filter: invert(1) sepia(0.2) saturate(0.2) hue-rotate(150deg) opacity(0.5);
-}
-
-.dark .background-orb {
-  filter: sepia(0.1) saturate(0.2) hue-rotate(300deg) brightness(1.0) opacity(0.8) contrast(1.1);
-}
 
 //////////////////////////////////////////// app\layout.tsx //////////////////////////////////////////// 
 import type React from "react"
@@ -428,6 +437,8 @@ export default function RootLayout({
 "use client"
 
 import { Hero } from "@/components/hero"
+import { FAQ } from "@/components/faq"
+import ProjectShowcase from "@/components/projects"
 import { Services } from "@/components/services"
 import { CaseStudies } from "@/components/case-studies"
 import { BookConsultation } from "@/components/book-consultation"
@@ -443,6 +454,8 @@ export default function Home() {
         <Header />
         <main>
           <Hero />
+          <FAQ />
+          <ProjectShowcase />
           <Services />
           <CaseStudies />
           <BookConsultation />
@@ -516,260 +529,409 @@ function SuspendedPostHogPageView() {
 
 //////////////////////////////////////////// app\cookies-policy\page.tsx //////////////////////////////////////////// 
 import React from 'react';
+import { Metadata } from 'next';
 
-const cookiePolicyContent = `COOKIE POLICY  
-Last updated: May 06, 2025
-
-This Cookie Policy explains how FasterOperations uses cookies and similar technologies to recognize you when you visit our website at https://fasteroperations.com (“Website”). It explains what these technologies are and why we use them, as well as your rights to control our use of them.
-
-In some cases we may use cookies to collect personal information, or that becomes personal information if we combine it with other information.
-
-## What are cookies?
-
-Cookies are small data files that are placed on your computer or mobile device when you visit a website. Cookies are widely used by website owners in order to make their websites work, or to work more efficiently, as well as to provide reporting information.
-
-Cookies set by the website owner are called “first-party cookies.” Cookies set by parties other than the website owner are called “third-party cookies.” Third-party cookies enable third-party features or functionality to be provided on or through the website (e.g., advertising, interactive content, and analytics). The parties that set these third-party cookies can recognize your computer both when it visits the website in question and also when it visits certain other websites.
-
-## Why do we use cookies?
-
-We use first- and third-party cookies for several reasons. Some cookies are required for technical reasons in order for our Website to operate, and we refer to these as “essential” or “strictly necessary” cookies. Other cookies enable us to track and target the interests of our users to enhance the experience on our Online Properties. Third parties serve cookies through our Website for advertising, analytics, and other purposes. This is described in more detail below.
-
-## How can I control cookies?
-
-You have the right to decide whether to accept or reject cookies. You can exercise your cookie rights by setting your preferences in the Cookie Consent Manager. The Cookie Consent Manager allows you to select which categories of cookies you accept or reject. Essential cookies cannot be rejected as they are strictly necessary to provide you with services.
-
-The Cookie Consent Manager can be found in the notification banner and on our Website. If you choose to reject cookies, you may still use our Website though your access to some functionality and areas of our Website may be restricted. You may also set or amend your web browser controls to accept or refuse cookies.
-
-The specific types of first- and third-party cookies served through our Website and the purposes they perform are described in the table below (please note that the specific cookies served may vary depending on the specific Online Properties you visit):
-
-## How can I control cookies on my browser?
-
-As the means by which you can refuse cookies through your web browser controls vary from browser to browser, you should visit your browser’s help menu for more information. The following is information about how to manage cookies on the most popular browsers:
-
-- Chrome
-- Internet Explorer
-- Firefox
-- Safari
-- Edge
-- Opera
-
-In addition, most advertising networks offer you a way to opt out of targeted advertising. If you would like to find out more information, please visit:
-
-- Digital Advertising Alliance
-- Digital Advertising Alliance of Canada
-- European Interactive Digital Advertising Alliance
-
-## What about other tracking technologies, like web beacons?
-
-Cookies are not the only way to recognize or track visitors to a website. We may use other, similar technologies from time to time, like web beacons (sometimes called “tracking pixels” or “clear gifs”). These are tiny graphics files that contain a unique identifier that enables us to recognize when someone has visited our Website or opened an e-mail including them. This allows us, for example, to monitor the traffic patterns of users from one page within a website to another, to deliver or communicate with cookies, to understand whether you have come to the website from an online advertisement displayed on a third-party website, to improve site performance, and to measure the success of e-mail marketing campaigns. In many instances, these technologies are reliant on cookies to function properly, and so declining cookies will impair their functioning.
-
-## Do you use Flash cookies or Local Shared Objects?
-
-Websites may also use so-called “Flash Cookies” (also known as Local Shared Objects or “LSOs”) to, among other things, collect and store information about your use of our services, fraud prevention, and for other site operations.
-
-If you do not want Flash Cookies stored on your computer, you can adjust the settings of your Flash player to block Flash Cookies storage using the tools contained in the Website Storage Settings Panel. You can also control Flash Cookies by going to the Global Storage Settings Panel and following the instructions (which may include instructions that explain, for example, how to delete existing Flash Cookies (referred to “information” on the Macromedia site), how to prevent Flash LSOs from being placed on your computer without your being asked, and (for Flash Player 8 and later) how to block Flash Cookies that are not being delivered by the operator of the page you are on at the time).
-
-Please note that setting the Flash Player to restrict or limit acceptance of Flash Cookies may reduce or impede the functionality of some Flash applications, including, potentially, Flash applications used in connection with our services or online content.
-
-## Do you serve targeted advertising?
-
-Third parties may serve cookies on your computer or mobile device to serve advertising through our Website. These companies may use information about your visits to this and other websites in order to provide relevant advertisements about goods and services that you may be interested in. They may also employ technology that is used to measure the effectiveness of advertisements. This can be accomplished by them using cookies or web beacons to collect information about your visits to this and other sites in order to provide relevant advertisements about goods and services of potential interest to you. The information collected through this process does not enable us or them to identify your name, contact details, or other details that directly identify you unless you choose to provide these.
-
-## How often will you update this Cookie Policy?
-
-We may update this Cookie Policy from time to time in order to reflect, for example, changes to the cookies we use or for other operational, legal, or regulatory reasons. Therefore please revisit this Cookie Policy regularly to stay informed about our use of cookies and related technologies.
-
-The date at the top of this Cookie Policy indicates when it was last updated.
-
-## Where can I get further information?
-
-If you have any questions about our use of cookies or other technologies, please contact us at: info@fasteroperations.com
-`;
+export const metadata: Metadata = {
+  title: "Cookie Policy - FasterOperations",
+  description: "Our Cookie Policy for FasterOperations website.",
+};
 
 export default function CookiePolicyPage() {
   return (
-    <div className="container mx-auto px-4 py-8">
-      <pre className="whitespace-pre-wrap">{cookiePolicyContent}</pre>
+    <div className="container mx-auto px-4 py-8 max-w-3xl">
+      <h1 className="text-3xl font-bold mb-6 text-center">COOKIE POLICY</h1>
+      <p className="text-sm text-muted-foreground text-center mb-8">Last updated: May 06, 2025</p>
+
+      <p className="mb-4">
+        This Cookie Policy explains how FasterOperations uses cookies and similar technologies to recognize you when you visit our website at <a href="https://fasteroperations.com" className="text-primary hover:underline">https://fasteroperations.com</a> (“Website”). It explains what these technologies are and why we use them, as well as your rights to control our use of them.
+      </p>
+      <p className="mb-8">
+        In some cases we may use cookies to collect personal information, or that becomes personal information if we combine it with other information.
+      </p>
+
+      <h2 className="text-2xl font-semibold mb-4">What are cookies?</h2>
+      <p className="mb-4">
+        Cookies are small data files that are placed on your computer or mobile device when you visit a website. Cookies are widely used by website owners in order to make their websites work, or to work more efficiently, as well as to provide reporting information.
+      </p>
+      <p className="mb-8">
+        Cookies set by the website owner are called “first-party cookies.” Cookies set by parties other than the website owner are called “third-party cookies.” Third-party cookies enable third-party features or functionality to be provided on or through the website (e.g., advertising, interactive content, and analytics). The parties that set these third-party cookies can recognize your computer both when it visits the website in question and also when it visits certain other websites.
+      </p>
+
+      <h2 className="text-2xl font-semibold mb-4">Why do we use cookies?</h2>
+      <p className="mb-8">
+        We use first- and third-party cookies for several reasons. Some cookies are required for technical reasons in order for our Website to operate, and we refer to these as “essential” or “strictly necessary” cookies. Other cookies enable us to track and target the interests of our users to enhance the experience on our Online Properties. Third parties serve cookies through our Website for advertising, analytics, and other purposes. This is described in more detail below.
+      </p>
+
+      <h2 className="text-2xl font-semibold mb-4">How can I control cookies?</h2>
+      <p className="mb-4">
+        You have the right to decide whether to accept or reject cookies. You can exercise your cookie rights by setting your preferences in the Cookie Consent Manager. The Cookie Consent Manager allows you to select which categories of cookies you accept or reject. Essential cookies cannot be rejected as they are strictly necessary to provide you with services.
+      </p>
+      <p className="mb-4">
+        The Cookie Consent Manager can be found in the notification banner and on our Website. If you choose to reject cookies, you may still use our Website though your access to some functionality and areas of our Website may be restricted. You may also set or amend your web browser controls to accept or refuse cookies.
+      </p>
+      <p className="mb-8">
+        The specific types of first- and third-party cookies served through our Website and the purposes they perform are described in the table below (please note that the specific cookies served may vary depending on the specific Online Properties you visit):
+      </p>
+
+      <h2 className="text-2xl font-semibold mb-4">How can I control cookies on my browser?</h2>
+      <p className="mb-4">
+        As the means by which you can refuse cookies through your web browser controls vary from browser to browser, you should visit your browser’s help menu for more information. The following is information about how to manage cookies on the most popular browsers:
+      </p>
+      <ul className="list-disc pl-5 mb-4 space-y-1">
+        <li>Chrome</li>
+        <li>Internet Explorer</li>
+        <li>Firefox</li>
+        <li>Safari</li>
+        <li>Edge</li>
+        <li>Opera</li>
+      </ul>
+      <p className="mb-8">
+        In addition, most advertising networks offer you a way to opt out of targeted advertising. If you would like to find out more information, please visit:
+      </p>
+      <ul className="list-disc pl-5 mb-8 space-y-1">
+        <li>Digital Advertising Alliance</li>
+        <li>Digital Advertising Alliance of Canada</li>
+        <li>European Interactive Digital Advertising Alliance</li>
+      </ul>
+
+      <h2 className="text-2xl font-semibold mb-4">What about other tracking technologies, like web beacons?</h2>
+      <p className="mb-8">
+        Cookies are not the only way to recognize or track visitors to a website. We may use other, similar technologies from time to time, like web beacons (sometimes called “tracking pixels” or “clear gifs”). These are tiny graphics files that contain a unique identifier that enables us to recognize when someone has visited our Website or opened an e-mail including them. This allows us, for example, to monitor the traffic patterns of users from one page within a website to another, to deliver or communicate with cookies, to understand whether you have come to the website from an online advertisement displayed on a third-party website, to improve site performance, and to measure the success of e-mail marketing campaigns. In many instances, these technologies are reliant on cookies to function properly, and so declining cookies will impair their functioning.
+      </p>
+
+      <h2 className="text-2xl font-semibold mb-4">Do you use Flash cookies or Local Shared Objects?</h2>
+      <p className="mb-4">
+        Websites may also use so-called “Flash Cookies” (also known as Local Shared Objects or “LSOs”) to, among other things, collect and store information about your use of our services, fraud prevention, and for other site operations.
+      </p>
+      <p className="mb-4">
+        If you do not want Flash Cookies stored on your computer, you can adjust the settings of your Flash player to block Flash Cookies storage using the tools contained in the Website Storage Settings Panel. You can also control Flash Cookies by going to the Global Storage Settings Panel and following the instructions (which may include instructions that explain, for example, how to delete existing Flash Cookies (referred to “information” on the Macromedia site), how to prevent Flash LSOs from being placed on your computer without your being asked, and (for Flash Player 8 and later) how to block Flash Cookies that are not being delivered by the operator of the page you are on at the time).
+      </p>
+      <p className="mb-8">
+        Please note that setting the Flash Player to restrict or limit acceptance of Flash Cookies may reduce or impede the functionality of some Flash applications, including, potentially, Flash applications used in connection with our services or online content.
+      </p>
+
+      <h2 className="text-2xl font-semibold mb-4">Do you serve targeted advertising?</h2>
+      <p className="mb-8">
+        Third parties may serve cookies on your computer or mobile device to serve advertising through our Website. These companies may use information about your visits to this and other websites in order to provide relevant advertisements about goods and services that you may be interested in. They may also employ technology that is used to measure the effectiveness of advertisements. This can be accomplished by them using cookies or web beacons to collect information about your visits to this and other sites in order to provide relevant advertisements about goods and services of potential interest to you. The information collected through this process does not enable us or them to identify your name, contact details, or other details that directly identify you unless you choose to provide these.
+      </p>
+
+      <h2 className="text-2xl font-semibold mb-4">How often will you update this Cookie Policy?</h2>
+      <p className="mb-4">
+        We may update this Cookie Policy from time to time in order to reflect, for example, changes to the cookies we use or for other operational, legal, or regulatory reasons. Therefore please revisit this Cookie Policy regularly to stay informed about our use of cookies and related technologies.
+      </p>
+      <p className="mb-8">
+        The date at the top of this Cookie Policy indicates when it was last updated.
+      </p>
+
+      <h2 className="text-2xl font-semibold mb-4">Where can I get further information?</h2>
+      <p className="mb-8">
+        If you have any questions about our use of cookies or other technologies, please contact us at: <a href="mailto:info@fasteroperations.com" className="text-primary hover:underline">info@fasteroperations.com</a>
+      </p>
     </div>
   );
 }
 
 //////////////////////////////////////////// app\terms-conditions\page.tsx //////////////////////////////////////////// 
 import React from 'react';
+import { Metadata } from 'next';
 
-const termsConditionsContent = `
-Last updated May 06, 2025
-
-
-AGREEMENT TO OUR LEGAL TERMS
-We are FasterOperations ("Company," "we," "us," "our").
-We operate the website https://fasteroperations.com (the "Site"), as well as any other related products and services that refer or link to these legal terms (the "Legal Terms") (collectively, the "Services").
-You can contact us by email at info@fasteroperations.com or by mail to
-These Legal Terms constitute a legally binding agreement made between you, whether personally or on behalf of an entity ("you"), and FasterOperations, concerning your access to and use of the Services. You agree that by accessing the Services, you have read, understood, and agreed to be bound by all of these Legal Terms. IF YOU DO NOT AGREE WITH ALL OF THESE LEGAL TERMS, THEN YOU ARE EXPRESSLY PROHIBITED FROM USING THE SERVICES AND YOU MUST DISCONTINUE USE IMMEDIATELY.
-Supplemental terms and conditions or documents that may be posted on the Services from time to time are hereby expressly incorporated herein by reference. We reserve the right, in our sole discretion, to make changes or modifications to these Legal Terms at any time and for any reason. We will alert you about any changes by updating the "Last updated" date of these Legal Terms, and you waive any right to receive specific notice of each such change. It is your responsibility to periodically review these Legal Terms to stay informed of updates. You will be subject to, and will be deemed to have been made aware of and to have accepted, the changes in any revised Legal Terms by your continued use of the Services after the date such revised Legal Terms are posted.
-All users who are minors in the jurisdiction in which they reside (generally under the age of 18) must have the permission of, and be directly supervised by, their parent or guardian to use the Services. If you are a minor, you must have your parent or guardian read and agree to these Legal Terms prior to you using the Services.
-We recommend that you print a copy of these Legal Terms for your records.
-TABLE OF CONTENTS
-1. OUR SERVICES
-2. INTELLECTUAL PROPERTY RIGHTS
-3. USER REPRESENTATIONS
-4. PROHIBITED ACTIVITIES
-5. USER GENERATED CONTRIBUTIONS
-6. CONTRIBUTION LICENSE
-7. SERVICES MANAGEMENT
-8. PRIVACY POLICY
-9. TERM AND TERMINATION
-10. MODIFICATIONS AND INTERRUPTIONS
-11. GOVERNING LAW
-12. DISPUTE RESOLUTION
-13. CORRECTIONS
-14. DISCLAIMER
-15. LIMITATIONS OF LIABILITY
-16. INDEMNIFICATION
-17. USER DATA
-18. ELECTRONIC COMMUNICATIONS, TRANSACTIONS, AND SIGNATURES
-19. CALIFORNIA USERS AND RESIDENTS
-20. MISCELLANEOUS
-21. CONTACT US
-1. OUR SERVICES
-The information provided when using the Services is not intended for distribution to or use by any person or entity in any jurisdiction or country where such distribution or use would be contrary to law or regulation or which would subject us to any registration requirement within such jurisdiction or country. Accordingly, those persons who choose to access the Services from other locations do so on their own initiative and are solely responsible for compliance with local laws, if and to the extent local laws are applicable.
-The Services are not tailored to comply with industry-specific regulations (Health Insurance Portability and Accountability Act (HIPAA), Federal Information Security Management Act (FISMA), etc.), so if your interactions would be subjected to such laws, you may not use the Services. You may not use the Services in a way that would violate the Gramm-Leach-Bliley Act (GLBA).
-2. INTELLECTUAL PROPERTY RIGHTS
-Our intellectual property
-We are the owner or the licensee of all intellectual property rights in our Services, including all source code, databases, functionality, software, website designs, audio, video, text, photographs, and graphics in the Services (collectively, the "Content"), as well as the trademarks, service marks, and logos contained therein (the "Marks").
-Our Content and Marks are protected by copyright and trademark laws (and various other intellectual property rights and unfair competition laws) and treaties in the United States and around the world.
-The Content and Marks are provided in or through the Services "AS IS" for your personal, non-commercial use or internal business purpose only.
-Your use of our Services
-Subject to your compliance with these Legal Terms, including the "PROHIBITED ACTIVITIES" section below, we grant you a non-exclusive, non- transferable, revocable license to:
-⚫ access the Services; and
-⚫ download or print a copy of any portion of the Content to which you have properly gained access,
-solely for your personal, non-commercial use or internal business purpose.
-Except as set out in this section or elsewhere in our Legal Terms, no part of the Services and no Content or Marks may be copied, reproduced, aggregated, republished, uploaded, posted, publicly displayed, encoded, translated, transmitted, distributed, sold, licensed, or otherwise exploited for any commercial purpose whatsoever, without our express prior written permission.
-If you wish to make any use of the Services, Content, or Marks other than as set out in this section or elsewhere in our Legal Terms, please address your request to: info@fasteroperations.com. If we ever grant you the permission to post, reproduce, or publicly display any part of our Services or Content, you must identify us as the owners or licensors of the Services, Content, or Marks and ensure that any copyright or proprietary notice appears or is visible on posting, reproducing, or displaying our Content.
-We reserve all rights not expressly granted to you in and to the Services, Content, and Marks.
-Any breach of these Intellectual Property Rights will constitute a material breach of our Legal Terms and your right to use our Services will terminate immediately.
-Your submissions
-Please review this section and the "PROHIBITED ACTIVITIES" section carefully prior to using our Services to understand the (a) rights you give us and (b) obligations you have when you post or upload any content through the Services.
-Submissions: By directly sending us any question, comment, suggestion, idea, feedback, or other information about the Services ("Submissions"), you agree to assign to us all intellectual property rights in such Submission. You agree that we shall own this Submission and be entitled to its unrestricted use and dissemination for any lawful purpose, commercial or otherwise, without acknowledgment or compensation to you.
-You are responsible for what you post or upload: By sending us Submissions through any part of the Services you:
-• confirm that you have read and agree with our "PROHIBITED ACTIVITIES" and will not post, send, publish, upload, or transmit through the Services any Submission that is illegal, harassing, hateful, harmful, defamatory, obscene, bullying, abusive, discriminatory, threatening to any person or group, sexually explicit, false, inaccurate, deceitful, or misleading;
-⚫ to the extent permissible by applicable law, waive any and all moral rights to any such Submission;
-• warrant that any such Submission are original to you or that you have the necessary rights and licenses to submit such Submissions and that you have full authority to grant us the above-mentioned rights in relation to your Submissions; and
-• warrant and represent that your Submissions do not constitute confidential information.
-You are solely responsible for your Submissions and you expressly agree to reimburse us for any and all losses that we may suffer because of your breach of (a) this section, (b) any third party's intellectual property rights, or (c) applicable law.
-3. USER REPRESENTATIONS
-By using the Services, you represent and warrant that: (1) you have the legal capacity and you agree to comply with these Legal Terms; (2) you are not a minor in the jurisdiction in which you reside, or if a minor, you have received parental permission to use the Services; (3) you will not access the Services through automated or non-human means, whether through a bot, script or otherwise; (4) you will not use the Services for any illegal or unauthorized purpose; and (5) your use of the Services will not violate any applicable law or regulation.
-If you provide any information that is untrue, inaccurate, not current, or incomplete, we have the right to suspend or terminate your account and refuse any and all current or future use of the Services (or any portion thereof).
-4. PROHIBITED ACTIVITIES
-You may not access or use the Services for any purpose other than that for which we make the Services available. The Services may not be used in connection with any commercial endeavors except those that are specifically endorsed or approved by us.
-As a user of the Services, you agree not to:
-·
-Systematically retrieve data or other content from the Services to create or compile, directly or indirectly, a collection, compilation, database, or directory without written permission from us.
-• Trick, defraud, or mislead us and other users, especially in any attempt to learn sensitive account information such as user passwords. Circumvent, disable, or otherwise interfere with security-related features of the Services, including features that prevent or restrict the use
-·
-·
-or copying of any Content or enforce limitations on the use of the Services and/or the Content contained therein.
-• Use any information obtained from the Services in order to harass, abuse, or harm another person.
-Disparage, tarnish, or otherwise harm, in our opinion, us and/or the Services.
-•
-Make improper use of our support services or submit false reports of abuse or misconduct.
-Use the Services in a manner inconsistent with any applicable laws or regulations.
-Engage in unauthorized framing of or linking to the Services.
-Upload or transmit (or attempt to upload or to transmit) viruses, Trojan horses, or other material, including excessive use of capital letters and spamming (continuous posting of repetitive text), that interferes with any party's uninterrupted use and enjoyment of the Services or modifies, impairs, disrupts, alters, or interferes with the use, features, functions, operation, or maintenance of the Services.
-·
-Engage in any automated use of the system, such as using scripts to send comments or messages, or using any data mining, robots, or similar data gathering and extraction tools.
-•
-Delete the copyright or other proprietary rights notice from any Content.
-•
-Attempt to impersonate another user or person or use the username of another user.
-•
-Upload or transmit (or attempt to upload or to transmit) any material that acts as a passive or active information collection or transmission mechanism, including without limitation, clear graphics interchange formats ("gifs"), 1×1 pixels, web bugs, cookies, or other similar devices (sometimes referred to as "spyware" or "passive collection mechanisms" or "pcms").
-• Interfere with, disrupt, or create an undue burden on the Services or the networks or services connected to the Services.
-·
-Harass, annoy, intimidate, or threaten any of our employees or agents engaged in providing any portion of the Services to you.
-·
-•
-Attempt to bypass any measures of the Services designed to prevent or restrict access to the Services, or any portion of the Services. Copy or adapt the Services' software, including but not limited to Flash, PHP, HTML, JavaScript, or other code.
-• Except as permitted by applicable law, decipher, decompile, disassemble, or reverse engineer any of the software comprising or in any way making up a part of the Services.
-• Except as may be the result of standard search engine or Internet browser usage, use, launch, develop, or distribute any automated system, including without limitation, any spider, robot, cheat utility, scraper, or offline reader that accesses the Services, or use or launch any unauthorized script or other software.
-• Use a buying agent or purchasing agent to make purchases on the Services.
-• Make any unauthorized use of the Services, including collecting usernames and/or email addresses of users by electronic or other means for the purpose of sending unsolicited email, or creating user accounts by automated means or under false pretenses.
-• Use the Services as part of any effort to compete with us or otherwise use the Services and/or the Content for any revenue-generating endeavor or commercial enterprise.
-5. USER GENERATED CONTRIBUTIONS
-The Services does not offer users to submit or post content. We may provide you with the opportunity to create, submit, post, display, transmit, perform, publish, distribute, or broadcast content and materials to us or on the Services, including but not limited to text, writings, video, audio, photographs, graphics, comments, suggestions, or personal information or other material (collectively, "Contributions"). Contributions may be viewable by other users of the Services and through third-party websites. When you create or make available any Contributions, you thereby represent and warrant that:
-• The creation, distribution, transmission, public display, or performance, and the accessing, downloading, or copying of your Contributions do not and will not infringe the proprietary rights, including but not limited to the copyright, patent, trademark, trade secret, or moral rights
-of any third party.
-• You are the creator and owner of or have the necessary licenses, rights, consents, releases, and permissions to use and to authorize us, the Services, and other users of the Services to use your Contributions in any manner contemplated by the Services and these Legal Terms.
-• You have the written consent, release, and/or permission of each and every identifiable individual person in your Contributions to use the name or likeness of each and every such identifiable individual person to enable inclusion and use of your Contributions in any manner contemplated by the Services and these Legal Terms.
-• Your Contributions are not false, inaccurate, or misleading.
-• Your Contributions are not unsolicited or unauthorized advertising, promotional materials, pyramid schemes, chain letters, spam, mass mailings, or other forms of solicitation.
-• Your Contributions are not obscene, lewd, lascivious, filthy, violent, harassing, libelous, slanderous, or otherwise objectionable (as
-determined by us).
-• Your Contributions do not ridicule, mock, disparage, intimidate, or abuse anyone.
-• Your Contributions are not used to harass or threaten (in the legal sense of those terms) any other person and to promote violence against
-a specific person or class of people.
-• Your Contributions do not violate any applicable law, regulation, or rule.
-• Your Contributions do not violate the privacy or publicity rights of any third party.
-• Your Contributions do not violate any applicable law concerning child pornography, or otherwise intended to protect the health or well- being of minors.
-• Your Contributions do not include any offensive comments that are connected to race, national origin, gender, sexual preference, or physical handicap.
-• Your Contributions do not otherwise violate, or link to material that violates, any provision of these Legal Terms, or any applicable law or regulation.
-Any use of the Services in violation of the foregoing violates these Legal Terms and may result in, among other things, termination or suspension of your rights to use the Services.
-6. CONTRIBUTION LICENSE
-You and Services agree that we may access, store, process, and use any information and personal data that you provide and your choices (including settings).
-By submitting suggestions or other feedback regarding the Services, you agree that we can use and share such feedback for any purpose without compensation to you.
-We do not assert any ownership over your Contributions. You retain full ownership of all of your Contributions and any intellectual property rights or other proprietary rights associated with your Contributions. We are not liable for any statements or representations in your Contributions provided by you in any area on the Services. You are solely responsible for your Contributions to the Services and you expressly agree to exonerate us from any and all responsibility and to refrain from any legal action against us regarding your Contributions.
-7. SERVICES MANAGEMENT
-We reserve the right, but not the obligation, to: (1) monitor the Services for violations of these Legal Terms; (2) take appropriate legal action against anyone who, in our sole discretion, violates the law or these Legal Terms, including without limitation, reporting such user to law enforcement authorities; (3) in our sole discretion and without limitation, refuse, restrict access to, limit the availability of, or disable (to the extent technologically feasible) any of your Contributions or any portion thereof; (4) in our sole discretion and without limitation, notice, or liability, to remove from the Services or otherwise disable all files and content that are excessive in size or are in any way burdensome to our systems; and (5) otherwise manage the Services in a manner designed to protect our rights and property and to facilitate the proper functioning of the
-Services.
-8. PRIVACY POLICY
-We care about data privacy and security. By using the Services, you agree to be bound by our Privacy Policy posted on the Services, which is incorporated into these Legal Terms. Please be advised the Services are hosted in Switzerland. If you access the Services from any other region of the world with laws or other requirements governing personal data collection, use, or disclosure that differ from applicable laws in Switzerland, then through your continued use of the Services, you are transferring your data to Switzerland, and you expressly consent to have your data
-transferred to and processed in Switzerland.
-9. TERM AND TERMINATION
-These Legal Terms shall remain in full force and effect while you use the Services. WITHOUT LIMITING ANY OTHER PROVISION OF THESE LEGAL TERMS, WE RESERVE THE RIGHT TO, IN OUR SOLE DISCRETION AND WITHOUT NOTICE OR LIABILITY, DENY ACCESS TO AND USE OF THE SERVICES (INCLUDING BLOCKING CERTAIN IP ADDRESSES), TO ANY PERSON FOR ANY REASON OR FOR NO REASON, INCLUDING WITHOUT LIMITATION FOR BREACH OF ANY REPRESENTATION, WARRANTY, OR COVENANT CONTAINED IN THESE LEGAL TERMS OR OF ANY APPLICABLE LAW OR REGULATION. WE MAY TERMINATE YOUR USE OR PARTICIPATION IN THE SERVICES OR DELETE ANY CONTENT OR INFORMATION THAT YOU POSTED AT ANY TIME, WITHOUT WARNING, IN OUR SOLE DISCRETION.
-If we terminate or suspend your account for any reason, you are prohibited from registering and creating a new account under your name, a fake or borrowed name, or the name of any third party, even if you may be acting on behalf of the third party. In addition to terminating or suspending your account, we reserve the right to take appropriate legal action, including without limitation pursuing civil, criminal, and injunctive redress.
-10. MODIFICATIONS AND INTERRUPTIONS
-We reserve the right to change, modify, or remove the contents of the Services at any time or for any reason at our sole discretion without notice. However, we have no obligation to update any information on our Services. We will not be liable to you or any third party for any modification, price change, suspension, or discontinuance of the Services.
-We cannot guarantee the Services will be available at all times. We may experience hardware, software, or other problems or need to perform maintenance related to the Services, resulting in interruptions, delays, or errors. We reserve the right to change, revise, update, suspend, discontinue, or otherwise modify the Services at any time or for any reason without notice to you. You agree that we have no liability whatsoever for any loss, damage, or inconvenience caused by your inability to access or use the Services during any downtime or discontinuance of the Services. Nothing in these Legal Terms will be construed to obligate us to maintain and support the Services or to supply any corrections, updates, or releases in connection therewith.
-11. GOVERNING LAW
-These Legal Terms are governed by and interpreted following the laws of Switzerland, and the use of the United Nations Convention of Contracts for the International Sales of Goods is expressly excluded. If your habitual residence is in the EU, and you are a consumer, you additionally possess the protection provided to you by obligatory provisions of the law in your country to residence. FasterOperations and yourself both agree to submit to the non-exclusive jurisdiction of the courts of Zug, which means that you may make a claim to defend your consumer protection rights in regards to these Legal Terms in Switzerland, or in the EU country in which you reside.
-12. DISPUTE RESOLUTION
-Informal Negotiations
-To expedite resolution and control the cost of any dispute, controversy, or claim related to these Legal Terms (each "a Dispute" and collectively, the "Disputes") brought by either you or us (individually, a "Party" and collectively, the "Parties"), the Parties agree to first attempt to negotiate any Dispute (except those Disputes expressly provided below) informally for at least one hundred twenty (120) days before initiating arbitration. Such informal negotiations commence upon written notice from one Party to the other Party.
-Binding Arbitration
-Any dispute arising from the relationships between the Parties to these Legal Terms shall be determined by one arbitrator who will be chosen in accordance with the Arbitration and Internal Rules of the European Court of Arbitration being part of the European Centre of Arbitration having its seat in Strasbourg, and which are in force at the time the application for arbitration is filed, and of which adoption of this clause constitutes acceptance. The seat of arbitration shall be Zug, Switzerland. The language of the proceedings shall be English. Applicable rules of substantive
-law shall be the law of Switzerland.
-Restrictions
-The Parties agree that any arbitration shall be limited to the Dispute between the Parties individually. To the full extent permitted by law, (a) no arbitration shall be joined with any other proceeding; (b) there is no right or authority for any Dispute to be arbitrated on a class-action basis or to utilize class action procedures; and (c) there is no right or authority for any Dispute to be brought in a purported representative capacity on behalf of the general public or any other persons.
-Exceptions to Informal Negotiations and Arbitration
-The Parties agree that the following Disputes are not subject to the above provisions concerning informal negotiations binding arbitration: (a) any Disputes seeking to enforce or protect, or concerning the validity of, any of the intellectual property rights of a Party; (b) any Dispute related to, or arising from, allegations of theft, piracy, invasion of privacy, or unauthorized use; and (c) any claim for injunctive relief. If this provision is found to be illegal or unenforceable, then neither Party will elect to arbitrate any Dispute falling within that portion of this provision found to be illegal or unenforceable and such Dispute shall be decided by a court of competent jurisdiction within the courts listed for jurisdiction above, and the Parties agree to submit to the personal jurisdiction of that court.
-13. CORRECTIONS
-There may be information on the Services that contains typographical errors, inaccuracies, or omissions, including descriptions, pricing, availability, and various other information. We reserve the right to correct any errors, inaccuracies, or omissions and to change or update the information on the Services at any time, without prior notice.
-14. DISCLAIMER
-THE SERVICES ARE PROVIDED ON AN AS-IS AND AS-AVAILABLE BASIS. YOU AGREE THAT YOUR USE OF THE SERVICES WILL BE AT YOUR SOLE RISK. TO THE FULLEST EXTENT PERMITTED BY LAW, WE DISCLAIM ALL WARRANTIES, EXPRESS OR IMPLIED, IN CONNECTION WITH THE SERVICES AND YOUR USE THEREOF, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. WE MAKE NO WARRANTIES OR REPRESENTATIONS ABOUT THE ACCURACY OR COMPLETENESS OF THE SERVICES' CONTENT OR THE CONTENT OF ANY WEBSITES OR MOBILE APPLICATIONS LINKED TO THE SERVICES AND WE WILL ASSUME NO LIABILITY OR RESPONSIBILITY FOR ANY (1) ERRORS, MISTAKES, OR INACCURACIES OF CONTENT AND MATERIALS, (2) PERSONAL INJURY OR PROPERTY DAMAGE, OF ANY NATURE WHATSOEVER, RESULTING FROM YOUR ACCESS TO AND USE OF THE SERVICES, (3) ANY UNAUTHORIZED ACCESS TO OR USE OF OUR SECURE SERVERS AND/OR ANY AND ALL PERSONAL INFORMATION AND/OR FINANCIAL INFORMATION STORED THEREIN, (4) ANY INTERRUPTION OR CESSATION OF TRANSMISSION TO OR FROM THE SERVICES, (5) ANY BUGS, VIRUSES, TROJAN HORSES, OR THE LIKE WHICH MAY BE TRANSMITTED TO OR THROUGH THE SERVICES BY ANY THIRD PARTY, AND/OR (6) ANY ERRORS OR OMISSIONS IN ANY CONTENT AND MATERIALS OR FOR ANY LOSS OR DAMAGE OF ANY KIND INCURRED AS A RESULT OF THE USE OF ANY CONTENT POSTED, TRANSMITTED, OR OTHERWISE MADE AVAILABLE VIA THE SERVICES. WE DO NOT WARRANT, ENDORSE, GUARANTEE, OR ASSUME RESPONSIBILITY FOR ANY PRODUCT OR SERVICE ADVERTISED OR OFFERED BY A THIRD PARTY THROUGH THE SERVICES, ANY HYPERLINKED WEBSITE, OR ANY WEBSITE OR MOBILE APPLICATION FEATURED IN ANY BANNER OR OTHER ADVERTISING, AND WE WILL NOT BE A PARTY TO OR IN ANY WAY BE RESPONSIBLE FOR MONITORING ANY TRANSACTION BETWEEN YOU AND ANY THIRD-PARTY PROVIDERS OF PRODUCTS OR SERVICES. AS WITH THE PURCHASE OF A PRODUCT OR SERVICE THROUGH ANY MEDIUM OR IN ANY ENVIRONMENT, YOU SHOULD USE YOUR BEST JUDGMENT AND
-EXERCISE CAUTION WHERE APPROPRIATE.
-15. LIMITATIONS OF LIABILITY
-IN NO EVENT WILL WE OR OUR DIRECTORS, EMPLOYEES, OR AGENTS BE LIABLE TO YOU OR ANY THIRD PARTY FOR ANY DIRECT, INDIRECT, CONSEQUENTIAL, EXEMPLARY, INCIDENTAL, SPECIAL, OR PUNITIVE DAMAGES, INCLUDING LOST PROFIT, LOST REVENUE, LOSS OF DATA, OR OTHER DAMAGES ARISING FROM YOUR USE OF THE SERVICES, EVEN IF WE HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. NOTWITHSTANDING ANYTHING TO THE CONTRARY CONTAINED HEREIN, OUR LIABILITY TO YOU FOR ANY CAUSE WHATSOEVER AND REGARDLESS OF THE FORM OF THE ACTION, WILL AT ALL TIMES BE LIMITED TO THE LESSER OF THE AMOUNT PAID, IF ANY, BY YOU TO US DURING THE ZERO (0) MONTH PERIOD PRIOR TO ANY CAUSE OF ACTION ARISING OR $1.00 USD. CERTAIN US STATE LAWS AND INTERNATIONAL LAWS DO NOT ALLOW LIMITATIONS ON IMPLIED WARRANTIES OR THE EXCLUSION OR LIMITATION OF CERTAIN DAMAGES. IF THESE LAWS APPLY TO YOU, SOME OR ALL OF THE ABOVE DISCLAIMERS OR LIMITATIONS MAY NOT APPLY TO YOU, AND YOU MAY HAVE ADDITIONAL RIGHTS.
-16. INDEMNIFICATION
-You agree to defend, indemnify, and hold us harmless, including our subsidiaries, affiliates, and all of our respective officers, agents, partners, and employees, from and against any loss, damage, liability, claim, or demand, including reasonable attorneys' fees and expenses, made by any third party due to or arising out of: (1) use of the Services; (2) breach of these Legal Terms; (3) any breach of your representations and warranties set forth in these Legal Terms; (4) your violation of the rights of a third party, including but not limited to intellectual property rights; or (5) any overt harmful act toward any other user of the Services with whom you connected via the Services. Notwithstanding the foregoing, we reserve the right, at your expense, to assume the exclusive defense and control of any matter for which you are required to indemnify us, and you agree to cooperate, at your expense, with our defense of such claims. We will use reasonable efforts to notify you of any such claim, action,
-or proceeding which is subject to this indemnification upon becoming aware of it.
-17. USER DATA
-We will maintain certain data that you transmit to the Services for the purpose of managing the performance of the Services, as well as data relating to your use of the Services. Although we perform regular routine backups of data, you are solely responsible for all data that you transmit or that relates to any activity you have undertaken using the Services. You agree that we shall have no liability to you for any loss or corruption of any such data, and you hereby waive any right of action against us arising from any such loss or corruption of such data.
-18. ELECTRONIC COMMUNICATIONS, TRANSACTIONS, AND SIGNATURES Visiting the Services, sending us emails, and completing online forms constitute electronic communications. You consent to receive electronic communications, and you agree that all agreements, notices, disclosures, and other communications we provide to you electronically, via email and on the Services, satisfy any legal requirement that such communication be in writing. YOU HEREBY AGREE TO THE USE OF ELECTRONIC SIGNATURES, CONTRACTS, ORDERS, AND OTHER RECORDS, AND TO ELECTRONIC DELIVERY OF NOTICES, POLICIES, AND RECORDS OF TRANSACTIONS INITIATED OR COMPLETED BY US OR VIA THE SERVICES. You hereby waive any rights or requirements under any statutes, regulations, rules, ordinances, or other laws in any jurisdiction which require an original signature or delivery or retention of non-electronic records, or to payments or the granting of credits by any means other than electronic means.
-19. CALIFORNIA USERS AND RESIDENTS
-If any complaint with us is not satisfactorily resolved, you can contact the Complaint Assistance Unit of the Division of Consumer Services of the California Department of Consumer Affairs in writing at 1625 North Market Blvd., Suite N 112, Sacramento, California 95834 or by telephone at (800) 952-5210 or (916) 445-1254.
-20. MISCELLANEOUS
-These Legal Terms and any policies or operating rules posted by us on the Services or in respect to the Services constitute the entire agreement and understanding between you and us. Our failure to exercise or enforce any right or provision of these Legal Terms shall not operate as a waiver of such right or provision. These Legal Terms operate to the fullest extent permissible by law. We may assign any or all of our rights and obligations to others at any time. We shall not be responsible or liable for any loss, damage, delay, or failure to act caused by any cause beyond our reasonable control. If any provision or part of a provision of these Legal Terms is determined to be unlawful, void, or unenforceable, that provision or part of the provision is deemed severable from these Legal Terms and does not affect the validity and enforceability of any remaining provisions. There is no joint venture, partnership, employment or agency relationship created between you and us as a result of these Legal Terms or use of the Services. You agree that these Legal Terms will not be construed against us by virtue of having drafted them. You hereby waive any and all defenses you may have based on the electronic form of these Legal Terms and the lack of signing by the parties hereto
-to execute these Legal Terms.
-21. CONTACT US
-In order to resolve a complaint regarding the Services or to receive further information regarding use of the Services, please contact us at:
-FasterOperations
-info@fasteroperations.com
-`;
+export const metadata: Metadata = {
+  title: "Terms and Conditions - FasterOperations",
+  description: "Terms and Conditions for FasterOperations services.",
+};
 
 export default function TermsConditionsPage() {
   return (
-    <div className="container mx-auto px-4 py-8">
-      <pre className="whitespace-pre-wrap">{termsConditionsContent}</pre>
+    <div className="container mx-auto px-4 py-8 max-w-3xl">
+      <h1 className="text-3xl font-bold mb-6 text-center">TERMS AND CONDITIONS</h1>
+      <p className="text-sm text-muted-foreground text-center mb-8">Last updated: May 06, 2025</p>
+
+      <h2 className="text-2xl font-semibold mb-4">AGREEMENT TO OUR LEGAL TERMS</h2>
+      <p className="mb-4">
+        We are FasterOperations ("Company," "we," "us," "our").
+        We operate the website <a href="https://fasteroperations.com" className="text-primary hover:underline">https://fasteroperations.com</a> (the "Site"), as well as any other related products and services that refer or link to these legal terms (the "Legal Terms") (collectively, the "Services").
+      </p>
+      <p className="mb-4">
+        You can contact us by email at <a href="mailto:info@fasteroperations.com" className="text-primary hover:underline">info@fasteroperations.com</a>.
+      </p>
+      <p className="mb-4">
+        These Legal Terms constitute a legally binding agreement made between you, whether personally or on behalf of an entity ("you"), and FasterOperations, concerning your access to and use of the Services. You agree that by accessing the Services, you have read, understood, and agreed to be bound by all of these Legal Terms. IF YOU DO NOT AGREE WITH ALL OF THESE LEGAL TERMS, THEN YOU ARE EXPRESSLY PROHIBITED FROM USING THE SERVICES AND YOU MUST DISCONTINUE USE IMMEDIATELY.
+      </p>
+      <p className="mb-4">
+        Supplemental terms and conditions or documents that may be posted on the Services from time to time are hereby expressly incorporated herein by reference. We reserve the right, in our sole discretion, to make changes or modifications to these Legal Terms at any time and for any reason. We will alert you about any changes by updating the "Last updated" date of these Legal Terms, and you waive any right to receive specific notice of each such change. It is your responsibility to periodically review these Legal Terms to stay informed of updates. You will be subject to, and will be deemed to have been made aware of and to have accepted, the changes in any revised Legal Terms by your continued use of the Services after the date such revised Legal Terms are posted.
+      </p>
+      <p className="mb-4">
+        All users who are minors in the jurisdiction in which they reside (generally under the age of 18) must have the permission of, and be directly supervised by, their parent or guardian to use the Services. If you are a minor, you must have your parent or guardian read and agree to these Legal Terms prior to you using the Services.
+      </p>
+      <p className="mb-8">
+        We recommend that you print a copy of these Legal Terms for your records.
+      </p>
+
+      <h2 className="text-2xl font-semibold mb-4">TABLE OF CONTENTS</h2>
+      <ul className="list-disc pl-5 mb-8 space-y-1">
+        <li>1. OUR SERVICES</li>
+        <li>2. INTELLECTUAL PROPERTY RIGHTS</li>
+        <li>3. USER REPRESENTATIONS</li>
+        <li>4. PROHIBITED ACTIVITIES</li>
+        <li>5. USER GENERATED CONTRIBUTIONS</li>
+        <li>6. CONTRIBUTION LICENSE</li>
+        <li>7. SERVICES MANAGEMENT</li>
+        <li>8. PRIVACY POLICY</li>
+        <li>9. TERM AND TERMINATION</li>
+        <li>10. MODIFICATIONS AND INTERRUPTIONS</li>
+        <li>11. GOVERNING LAW</li>
+        <li>12. DISPUTE RESOLUTION</li>
+        <li>13. CORRECTIONS</li>
+        <li>14. DISCLAIMER</li>
+        <li>15. LIMITATIONS OF LIABILITY</li>
+        <li>16. INDEMNIFICATION</li>
+        <li>17. USER DATA</li>
+        <li>18. ELECTRONIC COMMUNICATIONS, TRANSACTIONS, AND SIGNATURES</li>
+        <li>19. CALIFORNIA USERS AND RESIDENTS</li>
+        <li>20. MISCELLANEOUS</li>
+        <li>21. CONTACT US</li>
+      </ul>
+
+      <h2 className="text-2xl font-semibold mb-4">1. OUR SERVICES</h2>
+      <p className="mb-4">
+        The information provided when using the Services is not intended for distribution to or use by any person or entity in any jurisdiction or country where such distribution or use would be contrary to law or regulation or which would subject us to any registration requirement within such jurisdiction or country. Accordingly, those persons who choose to access the Services from other locations do so on their own initiative and are solely responsible for compliance with local laws, if and to the extent local laws are applicable.
+      </p>
+      <p className="mb-8">
+        The Services are not tailored to comply with industry-specific regulations (Health Insurance Portability and Accountability Act (HIPAA), Federal Information Security Management Act (FISMA), etc.), so if your interactions would be subjected to such laws, you may not use the Services. You may not use the Services in a way that would violate the Gramm-Leach-Bliley Act (GLBA).
+      </p>
+
+      <h2 className="text-2xl font-semibold mb-4">2. INTELLECTUAL PROPERTY RIGHTS</h2>
+      <h3 className="text-xl font-medium mb-2">Our intellectual property</h3>
+      <p className="mb-4">
+        We are the owner or the licensee of all intellectual property rights in our Services, including all source code, databases, functionality, software, website designs, audio, video, text, photographs, and graphics in the Services (collectively, the "Content"), as well as the trademarks, service marks, and logos contained therein (the "Marks").
+      </p>
+      <p className="mb-4">
+        Our Content and Marks are protected by copyright and trademark laws (and various other intellectual property rights and unfair competition laws) and treaties in the United States and around the world.
+      </p>
+      <p className="mb-8">
+        The Content and Marks are provided in or through the Services "AS IS" for your personal, non-commercial use or internal business purpose only.
+      </p>
+
+      <h3 className="text-xl font-medium mb-2">Your use of our Services</h3>
+      <p className="mb-4">
+        Subject to your compliance with these Legal Terms, including the "PROHIBITED ACTIVITIES" section below, we grant you a non-exclusive, non-transferable, revocable license to:
+      </p>
+      <ul className="list-disc pl-5 mb-4 space-y-1">
+        <li>access the Services; and</li>
+        <li>download or print a copy of any portion of the Content to which you have properly gained access,</li>
+      </ul>
+      <p className="mb-4">
+        solely for your personal, non-commercial use or internal business purpose.
+      </p>
+      <p className="mb-4">
+        Except as set out in this section or elsewhere in our Legal Terms, no part of the Services and no Content or Marks may be copied, reproduced, aggregated, republished, uploaded, posted, publicly displayed, encoded, translated, transmitted, distributed, sold, licensed, or otherwise exploited for any commercial purpose whatsoever, without our express prior written permission.
+      </p>
+      <p className="mb-4">
+        If you wish to make any use of the Services, Content, or Marks other than as set out in this section or elsewhere in our Legal Terms, please address your request to: <a href="mailto:info@fasteroperations.com" className="text-primary hover:underline">info@fasteroperations.com</a>. If we ever grant you the permission to post, reproduce, or publicly display any part of our Services or Content, you must identify us as the owners or licensors of the Services, Content, or Marks and ensure that any copyright or proprietary notice appears or is visible on posting, reproducing, or displaying our Content.
+      </p>
+      <p className="mb-4">
+        We reserve all rights not expressly granted to you in and to the Services, Content, and Marks.
+      </p>
+      <p className="mb-8">
+        Any breach of these Intellectual Property Rights will constitute a material breach of our Legal Terms and your right to use our Services will terminate immediately.
+      </p>
+
+      <h3 className="text-xl font-medium mb-2">Your submissions</h3>
+      <p className="mb-4">
+        Please review this section and the "PROHIBITED ACTIVITIES" section carefully prior to using our Services to understand the (a) rights you give us and (b) obligations you have when you post or upload any content through the Services.
+      </p>
+      <p className="mb-4">
+        Submissions: By directly sending us any question, comment, suggestion, idea, feedback, or other information about the Services ("Submissions"), you agree to assign to us all intellectual property rights in such Submission. You agree that we shall own this Submission and be entitled to its unrestricted use and dissemination for any lawful purpose, commercial or otherwise, without acknowledgment or compensation to you.
+      </p>
+      <p className="mb-4">
+        You are responsible for what you post or upload: By sending us Submissions through any part of the Services you:
+      </p>
+      <ul className="list-disc pl-5 mb-4 space-y-1">
+        <li>confirm that you have read and agree with our "PROHIBITED ACTIVITIES" and will not post, send, publish, upload, or transmit through the Services any Submission that is illegal, harassing, hateful, harmful, defamatory, obscene, bullying, abusive, discriminatory, threatening to any person or group, sexually explicit, false, inaccurate, deceitful, or misleading;</li>
+        <li>to the extent permissible by applicable law, waive any and all moral rights to any such Submission;</li>
+        <li>warrant that any such Submission are original to you or that you have the necessary rights and licenses to submit such Submissions and that you have full authority to grant us the above-mentioned rights in relation to your Submissions; and</li>
+        <li>warrant and represent that your Submissions do not constitute confidential information.</li>
+      </ul>
+      <p className="mb-8">
+        You are solely responsible for your Submissions and you expressly agree to reimburse us for any and all losses that we may suffer because of your breach of (a) this section, (b) any third party's intellectual property rights, or (c) applicable law.
+      </p>
+
+      <h2 className="text-2xl font-semibold mb-4">3. USER REPRESENTATIONS</h2>
+      <p className="mb-4">
+        By using the Services, you represent and warrant that: (1) you have the legal capacity and you agree to comply with these Legal Terms; (2) you are not a minor in the jurisdiction in which you reside, or if a minor, you have received parental permission to use the Services; (3) you will not access the Services through automated or non-human means, whether through a bot, script or otherwise; (4) you will not use the Services for any illegal or unauthorized purpose; and (5) your use of the Services will not violate any applicable law or regulation.
+      </p>
+      <p className="mb-8">
+        If you provide any information that is untrue, inaccurate, not current, or incomplete, we have the right to suspend or terminate your account and refuse any and all current or future use of the Services (or any portion thereof).
+      </p>
+
+      <h2 className="text-2xl font-semibold mb-4">4. PROHIBITED ACTIVITIES</h2>
+      <p className="mb-4">
+        You may not access or use the Services for any purpose other than that for which we make the Services available. The Services may not be used in connection with any commercial endeavors except those that are specifically endorsed or approved by us.
+      </p>
+      <p className="mb-8">
+        As a user of the Services, you agree not to:
+      </p>
+      <ul className="list-disc pl-5 mb-8 space-y-1">
+        <li>Systematically retrieve data or other content from the Services to create or compile, directly or indirectly, a collection, compilation, database, or directory without written permission from us.</li>
+        <li>Trick, defraud, or mislead us and other users, especially in any attempt to learn sensitive account information such as user passwords.</li>
+        <li>Circumvent, disable, or otherwise interfere with security-related features of the Services, including features that prevent or restrict the use or copying of any Content or enforce limitations on the use of the Services and/or the Content contained therein.</li>
+        <li>Use any information obtained from the Services in order to harass, abuse, or harm another person.</li>
+        <li>Disparage, tarnish, or otherwise harm, in our opinion, us and/or the Services.</li>
+        <li>Make improper use of our support services or submit false reports of abuse or misconduct.</li>
+        <li>Use the Services in a manner inconsistent with any applicable laws or regulations.</li>
+        <li>Engage in unauthorized framing of or linking to the Services.</li>
+        <li>Upload or transmit (or attempt to upload or to transmit) viruses, Trojan horses, or other material, including excessive use of capital letters and spamming (continuous posting of repetitive text), that interferes with any party's uninterrupted use and enjoyment of the Services or modifies, impairs, disrupts, alters, or interferes with the use, features, functions, operation, or maintenance of the Services.</li>
+        <li>Engage in any automated use of the system, such as using scripts to send comments or messages, or using any data mining, robots, or similar data gathering and extraction tools.</li>
+        <li>Delete the copyright or other proprietary rights notice from any Content.</li>
+        <li>Attempt to impersonate another user or person or use the username of another user.</li>
+        <li>Upload or transmit (or attempt to upload or to transmit) any material that acts as a passive or active information collection or transmission mechanism, including without limitation, clear graphics interchange formats ("gifs"), 1×1 pixels, web bugs, cookies, or other similar devices (sometimes referred to as "spyware" or "passive collection mechanisms" or "pcms").</li>
+        <li>Interfere with, disrupt, or create an undue burden on the Services or the networks or services connected to the Services.</li>
+        <li>Harass, annoy, intimidate, or threaten any of our employees or agents engaged in providing any portion of the Services to you.</li>
+        <li>Attempt to bypass any measures of the Services designed to prevent or restrict access to the Services, or any portion of the Services.</li>
+        <li>Copy or adapt the Services' software, including but not limited to Flash, PHP, HTML, JavaScript, or other code.</li>
+        <li>Except as permitted by applicable law, decipher, decompile, disassemble, or reverse engineer any of the software comprising or in any way making up a part of the Services.</li>
+        <li>Except as may be the result of standard search engine or Internet browser usage, use, launch, develop, or distribute any automated system, including without limitation, any spider, robot, cheat utility, scraper, or offline reader that accesses the Services, or use or launch any unauthorized script or other software.</li>
+        <li>Use a buying agent or purchasing agent to make purchases on the Services.</li>
+        <li>Make any unauthorized use of the Services, including collecting usernames and/or email addresses of users by electronic or other means for the purpose of sending unsolicited email, or creating user accounts by automated means or under false pretenses.</li>
+        <li>Use the Services as part of any effort to compete with us or otherwise use the Services and/or the Content for any revenue-generating endeavor or commercial enterprise.</li>
+      </ul>
+
+      <h2 className="text-2xl font-semibold mb-4">5. USER GENERATED CONTRIBUTIONS</h2>
+      <p className="mb-4">
+        The Services does not offer users to submit or post content. We may provide you with the opportunity to create, submit, post, display, transmit, perform, publish, distribute, or broadcast content and materials to us or on the Services, including but not limited to text, writings, video, audio, photographs, graphics, comments, suggestions, or personal information or other material (collectively, "Contributions"). Contributions may be viewable by other users of the Services and through third-party websites. When you create or make available any Contributions, you thereby represent and warrant that:
+      </p>
+      <ul className="list-disc pl-5 mb-8 space-y-1">
+        <li>The creation, distribution, transmission, public display, or performance, and the accessing, downloading, or copying of your Contributions do not and will not infringe the proprietary rights, including but not limited to the copyright, patent, trademark, trade secret, or moral rights of any third party.</li>
+        <li>You are the creator and owner of or have the necessary licenses, rights, consents, releases, and permissions to use and to authorize us, the Services, and other users of the Services to use your Contributions in any manner contemplated by the Services and these Legal Terms.</li>
+        <li>You have the written consent, release, and/or permission of each and every identifiable individual person in your Contributions to use the name or likeness of each and every such identifiable individual person to enable inclusion and use of your Contributions in any manner contemplated by the Services and these Legal Terms.</li>
+        <li>Your Contributions are not false, inaccurate, or misleading.</li>
+        <li>Your Contributions are not unsolicited or unauthorized advertising, promotional materials, pyramid schemes, chain letters, spam, mass mailings, or other forms of solicitation.</li>
+        <li>Your Contributions are not obscene, lewd, lascivious, filthy, violent, harassing, libelous, slanderous, or otherwise objectionable (as determined by us).</li>
+        <li>Your Contributions do not ridicule, mock, disparage, intimidate, or abuse anyone.</li>
+        <li>Your Contributions are not used to harass or threaten (in the legal sense of those terms) any other person and to promote violence against a specific person or class of people.</li>
+        <li>Your Contributions do not violate any applicable law, regulation, or rule.</li>
+        <li>Your Contributions do not violate the privacy or publicity rights of any third party.</li>
+        <li>Your Contributions do not violate any applicable law concerning child pornography, or otherwise intended to protect the health or well-being of minors.</li>
+        <li>Your Contributions do not include any offensive comments that are connected to race, national origin, gender, sexual preference, or physical handicap.</li>
+        <li>Your Contributions do not otherwise violate, or link to material that violates, any provision of these Legal Terms, or any applicable law or regulation.</li>
+      </ul>
+      <p className="mb-8">
+        Any use of the Services in violation of the foregoing violates these Legal Terms and may result in, among other things, termination or suspension of your rights to use the Services.
+      </p>
+
+      <h2 className="text-2xl font-semibold mb-4">6. CONTRIBUTION LICENSE</h2>
+      <p className="mb-4">
+        You and Services agree that we may access, store, process, and use any information and personal data that you provide and your choices (including settings).
+      </p>
+      <p className="mb-4">
+        By submitting suggestions or other feedback regarding the Services, you agree that we can use and share such feedback for any purpose without compensation to you.
+      </p>
+      <p className="mb-8">
+        We do not assert any ownership over your Contributions. You retain full ownership of all of your Contributions and any intellectual property rights or other proprietary rights associated with your Contributions. We are not liable for any statements or representations in your Contributions provided by you in any area on the Services. You are solely responsible for your Contributions to the Services and you expressly agree to exonerate us from any and all responsibility and to refrain from any legal action against us regarding your Contributions.
+      </p>
+
+      <h2 className="text-2xl font-semibold mb-4">7. SERVICES MANAGEMENT</h2>
+      <p className="mb-8">
+        We reserve the right, but not the obligation, to: (1) monitor the Services for violations of these Legal Terms; (2) take appropriate legal action against anyone who, in our sole discretion, violates the law or these Legal Terms, including without limitation, reporting such user to law enforcement authorities; (3) in our sole discretion and without limitation, refuse, restrict access to, limit the availability of, or disable (to the extent technologically feasible) any of your Contributions or any portion thereof; (4) in our sole discretion and without limitation, notice, or liability, to remove from the Services or otherwise disable all files and content that are excessive in size or are in any way burdensome to our systems; and (5) otherwise manage the Services in a manner designed to protect our rights and property and to facilitate the proper functioning of the Services.
+      </p>
+
+      <h2 className="text-2xl font-semibold mb-4">8. PRIVACY POLICY</h2>
+      <p className="mb-8">
+        We care about data privacy and security. By using the Services, you agree to be bound by our Privacy Policy posted on the Services, which is incorporated into these Legal Terms. Please be advised the Services are hosted in Switzerland. If you access the Services from any other region of the world with laws or other requirements governing personal data collection, use, or disclosure that differ from applicable laws in Switzerland, then through your continued use of the Services, you are transferring your data to Switzerland, and you expressly consent to have your data transferred to and processed in Switzerland.
+      </p>
+
+      <h2 className="text-2xl font-semibold mb-4">9. TERM AND TERMINATION</h2>
+      <p className="mb-4">
+        These Legal Terms shall remain in full force and effect while you use the Services. WITHOUT LIMITING ANY OTHER PROVISION OF THESE LEGAL TERMS, WE RESERVE THE RIGHT TO, IN OUR SOLE DISCRETION AND WITHOUT NOTICE OR LIABILITY, DENY ACCESS TO AND USE OF THE SERVICES (INCLUDING BLOCKING CERTAIN IP ADDRESSES), TO ANY PERSON FOR ANY REASON OR FOR NO REASON, INCLUDING WITHOUT LIMITATION FOR BREACH OF ANY REPRESENTATION, WARRANTY, OR COVENANT CONTAINED IN THESE LEGAL TERMS OR OF ANY APPLICABLE LAW OR REGULATION. WE MAY TERMINATE YOUR USE OR PARTICIPATION IN THE SERVICES OR DELETE ANY CONTENT OR INFORMATION THAT YOU POSTED AT ANY TIME, WITHOUT WARNING, IN OUR SOLE DISCRETION.
+      </p>
+      <p className="mb-8">
+        If we terminate or suspend your account for any reason, you are prohibited from registering and creating a new account under your name, a fake or borrowed name, or the name of any third party, even if you may be acting on behalf of the third party. In addition to terminating or suspending your account, we reserve the right to take appropriate legal action, including without limitation pursuing civil, criminal, and injunctive redress.
+      </p>
+
+      <h2 className="text-2xl font-semibold mb-4">10. MODIFICATIONS AND INTERRUPTIONS</h2>
+      <p className="mb-4">
+        We reserve the right to change, modify, or remove the contents of the Services at any time or for any reason at our sole discretion without notice. However, we have no obligation to update any information on our Services. We will not be liable to you or any third party for any modification, price change, suspension, or discontinuance of the Services.
+      </p>
+      <p className="mb-8">
+        We cannot guarantee the Services will be available at all times. We may experience hardware, software, or other problems or need to perform maintenance related to the Services, resulting in interruptions, delays, or errors. We reserve the right to change, revise, update, suspend, discontinue, or otherwise modify the Services at any time or for any reason without notice to you. You agree that we have no liability whatsoever for any loss, damage, or inconvenience caused by your inability to access or use the Services during any downtime or discontinuance of the Services. Nothing in these Legal Terms will be construed to obligate us to maintain and support the Services or to supply any corrections, updates, or releases in connection therewith.
+      </p>
+
+      <h2 className="text-2xl font-semibold mb-4">11. GOVERNING LAW</h2>
+      <p className="mb-8">
+        These Legal Terms are governed by and interpreted following the laws of Switzerland, and the use of the United Nations Convention of Contracts for the International Sales of Goods is expressly excluded. If your habitual residence is in the EU, and you are a consumer, you additionally possess the protection provided to you by obligatory provisions of the law in your country to residence. FasterOperations and yourself both agree to submit to the non-exclusive jurisdiction of the courts of Zug, which means that you may make a claim to defend your consumer protection rights in regards to these Legal Terms in Switzerland, or in the EU country in which you reside.
+      </p>
+
+      <h2 className="text-2xl font-semibold mb-4">12. DISPUTE RESOLUTION</h2>
+      <h3 className="text-xl font-medium mb-2">Informal Negotiations</h3>
+      <p className="mb-8">
+        To expedite resolution and control the cost of any dispute, controversy, or claim related to these Legal Terms (each "a Dispute" and collectively, the "Disputes") brought by either you or us (individually, a "Party" and collectively, the "Parties"), the Parties agree to first attempt to negotiate any Dispute (except those Disputes expressly provided below) informally for at least one hundred twenty (120) days before initiating arbitration. Such informal negotiations commence upon written notice from one Party to the other Party.
+      </p>
+
+      <h3 className="text-xl font-medium mb-2">Binding Arbitration</h3>
+      <p className="mb-8">
+        Any dispute arising from the relationships between the Parties to these Legal Terms shall be determined by one arbitrator who will be chosen in accordance with the Arbitration and Internal Rules of the European Court of Arbitration being part of the European Centre of Arbitration having its seat in Strasbourg, and which are in force at the time the application for arbitration is filed, and of which adoption of this clause constitutes acceptance. The seat of arbitration shall be Zug, Switzerland. The language of the proceedings shall be English. Applicable rules of substantive law shall be the law of Switzerland.
+      </p>
+
+      <h3 className="text-xl font-medium mb-2">Restrictions</h3>
+      <p className="mb-8">
+        The Parties agree that any arbitration shall be limited to the Dispute between the Parties individually. To the full extent permitted by law, (a) no arbitration shall be joined with any other proceeding; (b) there is no right or authority for any Dispute to be arbitrated on a class-action basis or to utilize class action procedures; and (c) there is no right or authority for any Dispute to be brought in a purported representative capacity on behalf of the general public or any other persons.
+      </p>
+
+      <h3 className="text-xl font-medium mb-2">Exceptions to Informal Negotiations and Arbitration</h3>
+      <p className="mb-8">
+        The Parties agree that the following Disputes are not subject to the above provisions concerning informal negotiations binding arbitration: (a) any Disputes seeking to enforce or protect, or concerning the validity of, any of the intellectual property rights of a Party; (b) any Dispute related to, or arising from, allegations of theft, piracy, invasion of privacy, or unauthorized use; and (c) any claim for injunctive relief. If this provision is found to be illegal or unenforceable, then neither Party will elect to arbitrate any Dispute falling within that portion of this provision found to be illegal or unenforceable and such Dispute shall be decided by a court of competent jurisdiction within the courts listed for jurisdiction above, and the Parties agree to submit to the personal jurisdiction of that court.
+      </p>
+
+      <h2 className="text-2xl font-semibold mb-4">13. CORRECTIONS</h2>
+      <p className="mb-8">
+        There may be information on the Services that contains typographical errors, inaccuracies, or omissions, including descriptions, pricing, availability, and various other information. We reserve the right to correct any errors, inaccuracies, or omissions and to change or update the information on the Services at any time, without prior notice.
+      </p>
+
+      <h2 className="text-2xl font-semibold mb-4">14. DISCLAIMER</h2>
+      <p className="mb-8">
+        THE SERVICES ARE PROVIDED ON AN AS-IS AND AS-AVAILABLE BASIS. YOU AGREE THAT YOUR USE OF THE SERVICES WILL BE AT YOUR SOLE RISK. TO THE FULLEST EXTENT PERMITTED BY LAW, WE DISCLAIM ALL WARRANTIES, EXPRESS OR IMPLIED, IN CONNECTION WITH THE SERVICES AND YOUR USE THEREOF, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. WE MAKE NO WARRANTIES OR REPRESENTATIONS ABOUT THE ACCURACY OR COMPLETENESS OF THE SERVICES' CONTENT OR THE CONTENT OF ANY WEBSITES OR MOBILE APPLICATIONS LINKED TO THE SERVICES AND WE WILL ASSUME NO LIABILITY OR RESPONSIBILITY FOR ANY (1) ERRORS, MISTAKES, OR INACCURACIES OF CONTENT AND MATERIALS, (2) PERSONAL INJURY OR PROPERTY DAMAGE, OF ANY NATURE WHATSOEVER, RESULTING FROM YOUR ACCESS TO AND USE OF THE SERVICES, (3) ANY UNAUTHORIZED ACCESS TO OR USE OF OUR SECURE SERVERS AND/OR ANY AND ALL PERSONAL INFORMATION AND/OR FINANCIAL INFORMATION STORED THEREIN, (4) ANY INTERRUPTION OR CESSATION OF TRANSMISSION TO OR FROM THE SERVICES, (5) ANY BUGS, VIRUSES, TROJAN HORSES, OR THE LIKE WHICH MAY BE TRANSMITTED TO OR THROUGH THE SERVICES BY ANY THIRD PARTY, AND/OR (6) ANY ERRORS OR OMISSIONS IN ANY CONTENT AND MATERIALS OR FOR ANY LOSS OR DAMAGE OF ANY KIND INCURRED AS A RESULT OF THE USE OF ANY CONTENT POSTED, TRANSMITTED, OR OTHERWISE MADE AVAILABLE VIA THE SERVICES. WE DO NOT WARRANT, ENDORSE, GUARANTEE, OR ASSUME RESPONSIBILITY FOR ANY PRODUCT OR SERVICE ADVERTISED OR OFFERED BY A THIRD PARTY THROUGH THE SERVICES, ANY HYPERLINKED WEBSITE, OR ANY WEBSITE OR MOBILE APPLICATION FEATURED IN ANY BANNER OR OTHER ADVERTISING, AND WE WILL NOT BE A PARTY TO OR IN ANY WAY BE RESPONSIBLE FOR MONITORING ANY TRANSACTION BETWEEN YOU AND ANY THIRD-PARTY PROVIDERS OF PRODUCTS OR SERVICES. AS WITH THE PURCHASE OF A PRODUCT OR SERVICE THROUGH ANY MEDIUM OR IN ANY ENVIRONMENT, YOU SHOULD USE YOUR BEST JUDGMENT AND EXERCISE CAUTION WHERE APPROPRIATE.
+      </p>
+
+      <h2 className="text-2xl font-semibold mb-4">15. LIMITATIONS OF LIABILITY</h2>
+      <p className="mb-8">
+        IN NO EVENT WILL WE OR OUR DIRECTORS, EMPLOYEES, OR AGENTS BE LIABLE TO YOU OR ANY THIRD PARTY FOR ANY DIRECT, INDIRECT, CONSEQUENTIAL, EXEMPLARY, INCIDENTAL, SPECIAL, OR PUNITIVE DAMAGES, INCLUDING LOST PROFIT, LOST REVENUE, LOSS OF DATA, OR OTHER DAMAGES ARISING FROM YOUR USE OF THE SERVICES, EVEN IF WE HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. NOTWITHSTANDING ANYTHING TO THE CONTRARY CONTAINED HEREIN, OUR LIABILITY TO YOU FOR ANY CAUSE WHATSOEVER AND REGARDLESS OF THE FORM OF THE ACTION, WILL AT ALL TIMES BE LIMITED TO THE LESSER OF THE AMOUNT PAID, IF ANY, BY YOU TO US DURING THE ZERO (0) MONTH PERIOD PRIOR TO ANY CAUSE OF ACTION ARISING OR $1.00 USD. CERTAIN US STATE LAWS AND INTERNATIONAL LAWS DO NOT ALLOW LIMITATIONS ON IMPLIED WARRANTIES OR THE EXCLUSION OR LIMITATION OF CERTAIN DAMAGES. IF THESE LAWS APPLY TO YOU, SOME OR ALL OF THE ABOVE DISCLAIMERS OR LIMITATIONS MAY NOT APPLY TO YOU, AND YOU MAY HAVE ADDITIONAL RIGHTS.
+      </p>
+
+      <h2 className="text-2xl font-semibold mb-4">16. INDEMNIFICATION</h2>
+      <p className="mb-8">
+        You agree to defend, indemnify, and hold us harmless, including our subsidiaries, affiliates, and all of our respective officers, agents, partners, and employees, from and against any loss, damage, liability, claim, or demand, including reasonable attorneys' fees and expenses, made by any third party due to or arising out of: (1) use of the Services; (2) breach of these Legal Terms; (3) any breach of your representations and warranties set forth in these Legal Terms; (4) your violation of the rights of a third party, including but not limited to intellectual property rights; or (5) any overt harmful act toward any other user of the Services with whom you connected via the Services. Notwithstanding the foregoing, we reserve the right, at your expense, to assume the exclusive defense and control of any matter for which you are required to indemnify us, and you agree to cooperate, at your expense, with our defense of such claims. We will use reasonable efforts to notify you of any such claim, action, or proceeding which is subject to this indemnification upon becoming aware of it.
+      </p>
+
+      <h2 className="text-2xl font-semibold mb-4">17. USER DATA</h2>
+      <p className="mb-8">
+        We will maintain certain data that you transmit to the Services for the purpose of managing the performance of the Services, as well as data relating to your use of the Services. Although we perform regular routine backups of data, you are solely responsible for all data that you transmit or that relates to any activity you have undertaken using the Services. You agree that we shall have no liability to you for any loss or corruption of any such data, and you hereby waive any right of action against us arising from any such loss or corruption of such data.
+      </p>
+
+      <h2 className="text-2xl font-semibold mb-4">18. ELECTRONIC COMMUNICATIONS, TRANSACTIONS, AND SIGNATURES</h2>
+      <p className="mb-4">
+        Visiting the Services, sending us emails, and completing online forms constitute electronic communications. You consent to receive electronic communications, and you agree that all agreements, notices, disclosures, and other communications we provide to you electronically, via email and on the Services, satisfy any legal requirement that such communication be in writing. YOU HEREBY AGREE TO THE USE OF ELECTRONIC SIGNATURES, CONTRACTS, ORDERS, AND OTHER RECORDS, AND TO ELECTRONIC DELIVERY OF NOTICES, POLICIES, AND RECORDS OF TRANSACTIONS INITIATED OR COMPLETED BY US OR VIA THE SERVICES. You hereby waive any rights or requirements under any statutes, regulations, rules, ordinances, or other laws in any jurisdiction which require an original signature or delivery or retention of non-electronic records, or to payments or the granting of credits by any means other than electronic means.
+      </p>
+
+      <h2 className="text-2xl font-semibold mb-4">19. CALIFORNIA USERS AND RESIDENTS</h2>
+      <p className="mb-8">
+        If any complaint with us is not satisfactorily resolved, you can contact the Complaint Assistance Unit of the Division of Consumer Services of the California Department of Consumer Affairs in writing at 1625 North Market Blvd., Suite N 112, Sacramento, California 95834 or by telephone at (800) 952-5210 or (916) 445-1254.
+      </p>
+
+      <h2 className="text-2xl font-semibold mb-4">20. MISCELLANEOUS</h2>
+      <p className="mb-4">
+        These Legal Terms and any policies or operating rules posted by us on the Services or in respect to the Services constitute the entire agreement and understanding between you and us. Our failure to exercise or enforce any right or provision of these Legal Terms shall not operate as a waiver of such right or provision. These Legal Terms operate to the fullest extent permissible by law. We may assign any or all of our rights and obligations to others at any time. We shall not be responsible or liable for any loss, damage, delay, or failure to act caused by any cause beyond our reasonable control. If any provision or part of a provision of these Legal Terms is determined to be unlawful, void, or unenforceable, that provision or part of the provision is deemed severable from these Legal Terms and does not affect the validity and enforceability of any remaining provisions. There is no joint venture, partnership, employment or agency relationship created between you and us as a result of these Legal Terms or use of the Services. You agree that these Legal Terms will not be construed against us by virtue of having drafted them. You hereby waive any and all defenses you may have based on the electronic form of these Legal Terms and the lack of signing by the parties hereto to execute these Legal Terms.
+      </p>
+
+      <h2 className="text-2xl font-semibold mb-4">21. CONTACT US</h2>
+      <p className="mb-4">
+        In order to resolve a complaint regarding the Services or to receive further information regarding use of the Services, please contact us at:
+      </p>
+      <p className="mb-4">
+        FasterOperations
+      </p>
+      <p className="mb-8">
+        <a href="mailto:info@fasteroperations.com" className="text-primary hover:underline">info@fasteroperations.com</a>
+      </p>
     </div>
   );
 }
@@ -832,7 +994,7 @@ export function BookConsultation() {
 
   return (
     <section id="contact" className="py-10">
-      <div className="section-container py-16 shadow-lg bg-background">
+      <div className="section-container py-16 bg-background">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 gap-12">
             <motion.div
@@ -862,7 +1024,7 @@ export function BookConsultation() {
             </motion.div>
 
             <MagicCard
-              className="h-full transition-all duration-500 hover:shadow-xl border border-border hover:border-primary/50 rounded-xl overflow-hidden group bg-card p-8"
+              className="h-full transition-all duration-500 hover:shadow-xl overflow-hidden group bg-card p-8"
             >
               <motion.div
                 initial={{ opacity: 0, y: 50 }}
@@ -957,7 +1119,7 @@ export function CaseStudies() {
 
   return (
     <section id="case-studies" className="py-10">
-      <div className="section-container py-16 shadow-lg bg-background">
+      <div className="section-container py-16 bg-background">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.h2
             ref={ref}
@@ -1014,7 +1176,7 @@ function CaseStudyCard({
   return (
     <motion.div variants={item}>
       <MagicCard
-        className="h-full transition-all duration-500 hover:shadow-xl rounded-xl overflow-hidden group bg-card"
+        className="h-full transition-all duration-500 hover:shadow-xl overflow-hidden group bg-card"
       >
         <Card className="h-full w-full border-none shadow-none flex flex-col">
           <CardHeader className="pb-2 flex-shrink-0">
@@ -1038,7 +1200,7 @@ function CaseStudyCard({
             </div> {/* End of new inner div */}
           </CardContent>
           <CardFooter className="flex justify-between items-center border-t border-border pt-4 px-6 pb-6 flex-shrink-0">
-            <div className="font-semibold text-green-600 text-sm">{study.roi}</div>
+            <div className="font-semibold text-orange-400 text-sm">{study.roi}</div>
             <motion.button
               whileHover={{ x: 5 }}
               className="text-primary hover:text-primary/90 flex items-center text-sm font-medium"
@@ -1053,76 +1215,70 @@ function CaseStudyCard({
 }
 
 
-//////////////////////////////////////////// components\cookies-policy.tsx //////////////////////////////////////////// 
-COOKIE POLICY  
-Last updated: May 06, 2025
+//////////////////////////////////////////// components\faq.tsx //////////////////////////////////////////// 
+"use client";
 
-This Cookie Policy explains how FasterOperations uses cookies and similar technologies to recognize you when you visit our website at https://fasteroperations.com (“Website”). It explains what these technologies are and why we use them, as well as your rights to control our use of them.
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { cn } from "@/lib/utils";
+import dynamic from 'next/dynamic';
+import { useLanguage } from "./language-selector";
 
-In some cases we may use cookies to collect personal information, or that becomes personal information if we combine it with other information.
+const MagicCard = dynamic(() => import('@/components/magicui/magic-card').then(mod => mod.MagicCard), { ssr: false });
 
-## What are cookies?
+interface FAQItem {
+  question: string;
+  answer: string;
+}
 
-Cookies are small data files that are placed on your computer or mobile device when you visit a website. Cookies are widely used by website owners in order to make their websites work, or to work more efficiently, as well as to provide reporting information.
+export function FAQ() {
+  const { t } = useLanguage();
+  const faqItems = t<FAQItem[]>("faq.items", { returnObjects: true });
+  return (
+    <section id="faq" className="py-10">
+      <div className="section-container py-16 bg-background">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <h2 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl mb-6">
+            {t("faq.title")}
+          </h2>
+          <p className="text-xl text-muted-foreground">
+            {t("faq.subtitle")}
+          </p>
+        </div>
 
-Cookies set by the website owner are called “first-party cookies.” Cookies set by parties other than the website owner are called “third-party cookies.” Third-party cookies enable third-party features or functionality to be provided on or through the website (e.g., advertising, interactive content, and analytics). The parties that set these third-party cookies can recognize your computer both when it visits the website in question and also when it visits certain other websites.
-
-## Why do we use cookies?
-
-We use first- and third-party cookies for several reasons. Some cookies are required for technical reasons in order for our Website to operate, and we refer to these as “essential” or “strictly necessary” cookies. Other cookies enable us to track and target the interests of our users to enhance the experience on our Online Properties. Third parties serve cookies through our Website for advertising, analytics, and other purposes. This is described in more detail below.
-
-## How can I control cookies?
-
-You have the right to decide whether to accept or reject cookies. You can exercise your cookie rights by setting your preferences in the Cookie Consent Manager. The Cookie Consent Manager allows you to select which categories of cookies you accept or reject. Essential cookies cannot be rejected as they are strictly necessary to provide you with services.
-
-The Cookie Consent Manager can be found in the notification banner and on our Website. If you choose to reject cookies, you may still use our Website though your access to some functionality and areas of our Website may be restricted. You may also set or amend your web browser controls to accept or refuse cookies.
-
-The specific types of first- and third-party cookies served through our Website and the purposes they perform are described in the table below (please note that the specific cookies served may vary depending on the specific Online Properties you visit):
-
-## How can I control cookies on my browser?
-
-As the means by which you can refuse cookies through your web browser controls vary from browser to browser, you should visit your browser’s help menu for more information. The following is information about how to manage cookies on the most popular browsers:
-
-- Chrome
-- Internet Explorer
-- Firefox
-- Safari
-- Edge
-- Opera
-
-In addition, most advertising networks offer you a way to opt out of targeted advertising. If you would like to find out more information, please visit:
-
-- Digital Advertising Alliance
-- Digital Advertising Alliance of Canada
-- European Interactive Digital Advertising Alliance
-
-## What about other tracking technologies, like web beacons?
-
-Cookies are not the only way to recognize or track visitors to a website. We may use other, similar technologies from time to time, like web beacons (sometimes called “tracking pixels” or “clear gifs”). These are tiny graphics files that contain a unique identifier that enables us to recognize when someone has visited our Website or opened an e-mail including them. This allows us, for example, to monitor the traffic patterns of users from one page within a website to another, to deliver or communicate with cookies, to understand whether you have come to the website from an online advertisement displayed on a third-party website, to improve site performance, and to measure the success of e-mail marketing campaigns. In many instances, these technologies are reliant on cookies to function properly, and so declining cookies will impair their functioning.
-
-## Do you use Flash cookies or Local Shared Objects?
-
-Websites may also use so-called “Flash Cookies” (also known as Local Shared Objects or “LSOs”) to, among other things, collect and store information about your use of our services, fraud prevention, and for other site operations.
-
-If you do not want Flash Cookies stored on your computer, you can adjust the settings of your Flash player to block Flash Cookies storage using the tools contained in the Website Storage Settings Panel. You can also control Flash Cookies by going to the Global Storage Settings Panel and following the instructions (which may include instructions that explain, for example, how to delete existing Flash Cookies (referred to “information” on the Macromedia site), how to prevent Flash LSOs from being placed on your computer without your being asked, and (for Flash Player 8 and later) how to block Flash Cookies that are not being delivered by the operator of the page you are on at the time).
-
-Please note that setting the Flash Player to restrict or limit acceptance of Flash Cookies may reduce or impede the functionality of some Flash applications, including, potentially, Flash applications used in connection with our services or online content.
-
-## Do you serve targeted advertising?
-
-Third parties may serve cookies on your computer or mobile device to serve advertising through our Website. These companies may use information about your visits to this and other websites in order to provide relevant advertisements about goods and services that you may be interested in. They may also employ technology that is used to measure the effectiveness of advertisements. This can be accomplished by them using cookies or web beacons to collect information about your visits to this and other sites in order to provide relevant advertisements about goods and services of potential interest to you. The information collected through this process does not enable us or them to identify your name, contact details, or other details that directly identify you unless you choose to provide these.
-
-## How often will you update this Cookie Policy?
-
-We may update this Cookie Policy from time to time in order to reflect, for example, changes to the cookies we use or for other operational, legal, or regulatory reasons. Therefore please revisit this Cookie Policy regularly to stay informed about our use of cookies and related technologies.
-
-The date at the top of this Cookie Policy indicates when it was last updated.
-
-## Where can I get further information?
-
-If you have any questions about our use of cookies or other technologies, please contact us at: info@fasteroperations.com
-
-
+        <div className="mx-auto max-w-3xl">
+          <Accordion type="single" collapsible className="w-full">
+            {Array.isArray(faqItems) && faqItems.map((item, index) => (
+              <MagicCard
+                key={index}
+                className="h-full transition-all duration-500 hover:shadow-xl overflow-hidden group bg-card mb-4"
+              >
+                <AccordionItem
+                  value={`item-${index + 1}`}
+                  className={cn(
+                    "border-none px-5", // Removed border and shadow, increased px-5 for padding
+                    index === 0 && "border-b-0"
+                  )}
+                >
+                  <AccordionTrigger className="py-5 text-lg sm:text-xl font-medium text-foreground hover:no-underline">
+                    {item.question as string}
+                  </AccordionTrigger>
+                  <AccordionContent className="pb-4 text-base text-muted-foreground">
+                    {item.answer as string}
+                  </AccordionContent>
+                </AccordionItem>
+              </MagicCard>
+            ))}
+          </Accordion>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 //////////////////////////////////////////// components\footer.tsx //////////////////////////////////////////// 
 "use client"
@@ -1484,7 +1640,7 @@ export function Hero() {
       <div
         className="absolute bottom-0 left-0 w-full h-[400px] z-5"
         style={{
-          background: 'linear-gradient(to top, var(--hero-bottom-transition), transparent)',
+          background: 'linear-gradient(to top, hsl(var(--hero-bottom-transition)), transparent)',
           pointerEvents: 'none',
         }}
       ></div>
@@ -1521,10 +1677,10 @@ const languages: Language[] = [
 type LanguageContextType = {
   currentLanguage: string
   setLanguage: (code: string) => void
-  t: (key: string) => string | string[]
+  t: <T = string | string[]>(key: string, options?: { returnObjects?: boolean }) => T
 }
 
-const defaultTranslate = (key: string): string | string[] => key
+const defaultTranslate = <T = string | string[]>(key: string, options?: { returnObjects?: boolean }): T => key as T;
 
 const LanguageContext = createContext<LanguageContextType>({
   currentLanguage: "en",
@@ -1554,9 +1710,12 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     document.documentElement.lang = code
   }
 
-  const t = (key: string): string | string[] => {
-    const translation = translations[currentLanguage as keyof typeof translations]?.[key as keyof typeof translations.en];
-    return translation !== undefined ? translation : key;
+  const t = <T = string | string[]>(key: string, options?: { returnObjects?: boolean }): T => {
+    const translation = (translations[currentLanguage as keyof typeof translations] as any)?.[key];
+    if (options?.returnObjects && translation !== undefined) {
+      return translation as T;
+    }
+    return (translation !== undefined ? translation : key) as T;
   }
 
   useEffect(() => {
@@ -1625,6 +1784,129 @@ export function LanguageSelector({ onDropdownChange }: { onDropdownChange?: (isO
   )
 }
 
+
+//////////////////////////////////////////// components\projects.tsx //////////////////////////////////////////// 
+'use client';
+
+import * as React from 'react';
+import { useState } from 'react';
+import Image from 'next/image';
+import { useLanguage } from './language-selector';
+import dynamic from 'next/dynamic';
+import { cn } from '@/lib/utils';
+
+const MagicCard = dynamic(() => import('@/components/magicui/magic-card').then(mod => mod.MagicCard), { ssr: false });
+
+type ProjectStat = {
+  value: string;
+  label: string;
+};
+
+type Project = {
+  image: string;
+  alt: string;
+  title: string;
+  description: string;
+  stats: ProjectStat[];
+};
+
+export default function ProjectShowcase(): React.JSX.Element {
+  const { t } = useLanguage();
+  const [selected, setSelected] = useState(0);
+  const projects: Project[] = Array.isArray(t("projects.items", { returnObjects: true }))
+    ? t<Project[]>("projects.items", { returnObjects: true })
+    : [];
+  const project = projects[selected];
+
+  return (
+    <section id="projects" className="py-10">
+      <div className="section-container py-16 bg-background">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <h2 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl mb-6">
+            {t("projects.title")}
+          </h2>
+          <p className="text-xl text-muted-foreground">
+            {t("projects.subtitle")}
+          </p>
+        </div>
+
+        {/* Navigation */}
+        <nav className="flex gap-4 mb-6">
+          {Array.isArray(projects) && projects.map((_, idx) => (
+            <MagicCard
+              key={idx}
+              className={cn(
+                "flex-1",
+                selected === idx
+                  ? "bg-card border border-primary/20"
+                  : "bg-card border border-border"
+              )}
+            >
+              <button
+                className={cn(
+                  "w-full h-full py-3 px-4 font-medium text-sm rounded-xl transition-opacity duration-200",
+                  selected === idx
+                    ? "text-foreground"
+                    : "text-muted-foreground opacity-50"
+                )}
+                onClick={() => setSelected(idx)}
+                type="button"
+              >
+                {t(`projects.items.${idx}.title`)}
+              </button>
+            </MagicCard>
+          ))}
+        </nav>
+
+        {/* Content */}
+        {project && (
+          <MagicCard className="h-full transition-all duration-500 hover:shadow-xl overflow-hidden group bg-card p-6 md:p-8">
+            <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-stretch">
+              {/* Image */}
+              <div className="flex-shrink-0 w-full md:w-80 h-64 md:h-auto rounded-xl overflow-hidden bg-muted flex items-center justify-center shadow-sm">
+                <Image
+                  src={project.image}
+                  alt={project.alt}
+                  width={300}
+                  height={300}
+                  className="object-contain w-full h-full"
+                />
+              </div>
+
+              {/* Info */}
+              <div className="flex-1 flex flex-col justify-center gap-4 pt-3">
+                <p className="text-sm font-medium text-muted-foreground">
+                  {String(selected + 1).padStart(2, '0')}
+                </p>
+                <h3 className="font-semibold text-xl text-foreground">
+                  {project.title}
+                </h3>
+                <p className="text-base leading-relaxed text-muted-foreground">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap gap-4 mt-6">
+                  {Array.isArray(project.stats) && project.stats.map(stat => (
+                    <div
+                      key={stat.label}
+                      className="flex-1 min-w-[120px] bg-card rounded-lg border border-border p-6 text-center"
+                    >
+                      <strong className="block text-2xl font-bold text-primary">
+                        {stat.value}
+                      </strong>
+                      <p className="text-sm text-muted-foreground mt-2">
+                        {stat.label}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </MagicCard>
+        )}
+      </div>
+    </section>
+  );
+}
 
 //////////////////////////////////////////// components\services.tsx //////////////////////////////////////////// 
 "use client"
@@ -1703,7 +1985,7 @@ export function Services() {
 
   return (
     <section id="services" className="py-10">
-      <div className="section-container py-16 mt-24 shadow-lg bg-background">
+      <div className="section-container py-16 mt-24 bg-background">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.h2
             ref={ref}
@@ -1757,7 +2039,7 @@ function ServiceCard({ service, index, item, t }: ServiceCardProps) {
   return (
     <motion.div variants={item}>
       <MagicCard
-        className="h-full transition-all duration-500 hover:shadow-xl border border-border hover:border-primary/50 rounded-xl overflow-hidden group bg-card"
+        className="h-full transition-all duration-500 hover:shadow-xl overflow-hidden group bg-card"
       >
         <Card className="h-full w-full border-none shadow-none">
           <CardHeader className="pb-2">
@@ -1819,176 +2101,6 @@ export default function SlideArrowButton({
     </button>
   );
 }
-
-//////////////////////////////////////////// components\terms-conditions.tsx //////////////////////////////////////////// 
-
-Last updated May 06, 2025
-
-
-AGREEMENT TO OUR LEGAL TERMS
-We are FasterOperations ("Company," "we," "us," "our").
-We operate the website https://fasteroperations.com (the "Site"), as well as any other related products and services that refer or link to these legal terms (the "Legal Terms") (collectively, the "Services").
-You can contact us by email at info@fasteroperations.com or by mail to
-These Legal Terms constitute a legally binding agreement made between you, whether personally or on behalf of an entity ("you"), and FasterOperations, concerning your access to and use of the Services. You agree that by accessing the Services, you have read, understood, and agreed to be bound by all of these Legal Terms. IF YOU DO NOT AGREE WITH ALL OF THESE LEGAL TERMS, THEN YOU ARE EXPRESSLY PROHIBITED FROM USING THE SERVICES AND YOU MUST DISCONTINUE USE IMMEDIATELY.
-Supplemental terms and conditions or documents that may be posted on the Services from time to time are hereby expressly incorporated herein by reference. We reserve the right, in our sole discretion, to make changes or modifications to these Legal Terms at any time and for any reason. We will alert you about any changes by updating the "Last updated" date of these Legal Terms, and you waive any right to receive specific notice of each such change. It is your responsibility to periodically review these Legal Terms to stay informed of updates. You will be subject to, and will be deemed to have been made aware of and to have accepted, the changes in any revised Legal Terms by your continued use of the Services after the date such revised Legal Terms are posted.
-All users who are minors in the jurisdiction in which they reside (generally under the age of 18) must have the permission of, and be directly supervised by, their parent or guardian to use the Services. If you are a minor, you must have your parent or guardian read and agree to these Legal Terms prior to you using the Services.
-We recommend that you print a copy of these Legal Terms for your records.
-TABLE OF CONTENTS
-1. OUR SERVICES
-2. INTELLECTUAL PROPERTY RIGHTS
-3. USER REPRESENTATIONS
-4. PROHIBITED ACTIVITIES
-5. USER GENERATED CONTRIBUTIONS
-6. CONTRIBUTION LICENSE
-7. SERVICES MANAGEMENT
-8. PRIVACY POLICY
-9. TERM AND TERMINATION
-10. MODIFICATIONS AND INTERRUPTIONS
-11. GOVERNING LAW
-12. DISPUTE RESOLUTION
-13. CORRECTIONS
-14. DISCLAIMER
-15. LIMITATIONS OF LIABILITY
-16. INDEMNIFICATION
-17. USER DATA
-18. ELECTRONIC COMMUNICATIONS, TRANSACTIONS, AND SIGNATURES
-19. CALIFORNIA USERS AND RESIDENTS
-20. MISCELLANEOUS
-21. CONTACT US
-1. OUR SERVICES
-The information provided when using the Services is not intended for distribution to or use by any person or entity in any jurisdiction or country where such distribution or use would be contrary to law or regulation or which would subject us to any registration requirement within such jurisdiction or country. Accordingly, those persons who choose to access the Services from other locations do so on their own initiative and are solely responsible for compliance with local laws, if and to the extent local laws are applicable.
-The Services are not tailored to comply with industry-specific regulations (Health Insurance Portability and Accountability Act (HIPAA), Federal Information Security Management Act (FISMA), etc.), so if your interactions would be subjected to such laws, you may not use the Services. You may not use the Services in a way that would violate the Gramm-Leach-Bliley Act (GLBA).
-2. INTELLECTUAL PROPERTY RIGHTS
-Our intellectual property
-We are the owner or the licensee of all intellectual property rights in our Services, including all source code, databases, functionality, software, website designs, audio, video, text, photographs, and graphics in the Services (collectively, the "Content"), as well as the trademarks, service marks, and logos contained therein (the "Marks").
-Our Content and Marks are protected by copyright and trademark laws (and various other intellectual property rights and unfair competition laws) and treaties in the United States and around the world.
-The Content and Marks are provided in or through the Services "AS IS" for your personal, non-commercial use or internal business purpose only.
-Your use of our Services
-Subject to your compliance with these Legal Terms, including the "PROHIBITED ACTIVITIES" section below, we grant you a non-exclusive, non- transferable, revocable license to:
-⚫ access the Services; and
-⚫ download or print a copy of any portion of the Content to which you have properly gained access,
-solely for your personal, non-commercial use or internal business purpose.
-Except as set out in this section or elsewhere in our Legal Terms, no part of the Services and no Content or Marks may be copied, reproduced, aggregated, republished, uploaded, posted, publicly displayed, encoded, translated, transmitted, distributed, sold, licensed, or otherwise exploited for any commercial purpose whatsoever, without our express prior written permission.
-If you wish to make any use of the Services, Content, or Marks other than as set out in this section or elsewhere in our Legal Terms, please address your request to: info@fasteroperations.com. If we ever grant you the permission to post, reproduce, or publicly display any part of our Services or Content, you must identify us as the owners or licensors of the Services, Content, or Marks and ensure that any copyright or proprietary notice appears or is visible on posting, reproducing, or displaying our Content.
-We reserve all rights not expressly granted to you in and to the Services, Content, and Marks.
-Any breach of these Intellectual Property Rights will constitute a material breach of our Legal Terms and your right to use our Services will terminate immediately.
-Your submissions
-Please review this section and the "PROHIBITED ACTIVITIES" section carefully prior to using our Services to understand the (a) rights you give us and (b) obligations you have when you post or upload any content through the Services.
-Submissions: By directly sending us any question, comment, suggestion, idea, feedback, or other information about the Services ("Submissions"), you agree to assign to us all intellectual property rights in such Submission. You agree that we shall own this Submission and be entitled to its unrestricted use and dissemination for any lawful purpose, commercial or otherwise, without acknowledgment or compensation to you.
-You are responsible for what you post or upload: By sending us Submissions through any part of the Services you:
-• confirm that you have read and agree with our "PROHIBITED ACTIVITIES" and will not post, send, publish, upload, or transmit through the Services any Submission that is illegal, harassing, hateful, harmful, defamatory, obscene, bullying, abusive, discriminatory, threatening to any person or group, sexually explicit, false, inaccurate, deceitful, or misleading;
-⚫ to the extent permissible by applicable law, waive any and all moral rights to any such Submission;
-• warrant that any such Submission are original to you or that you have the necessary rights and licenses to submit such Submissions and that you have full authority to grant us the above-mentioned rights in relation to your Submissions; and
-• warrant and represent that your Submissions do not constitute confidential information.
-You are solely responsible for your Submissions and you expressly agree to reimburse us for any and all losses that we may suffer because of your breach of (a) this section, (b) any third party's intellectual property rights, or (c) applicable law.
-3. USER REPRESENTATIONS
-By using the Services, you represent and warrant that: (1) you have the legal capacity and you agree to comply with these Legal Terms; (2) you are not a minor in the jurisdiction in which you reside, or if a minor, you have received parental permission to use the Services; (3) you will not access the Services through automated or non-human means, whether through a bot, script or otherwise; (4) you will not use the Services for any illegal or unauthorized purpose; and (5) your use of the Services will not violate any applicable law or regulation.
-If you provide any information that is untrue, inaccurate, not current, or incomplete, we have the right to suspend or terminate your account and refuse any and all current or future use of the Services (or any portion thereof).
-4. PROHIBITED ACTIVITIES
-You may not access or use the Services for any purpose other than that for which we make the Services available. The Services may not be used in connection with any commercial endeavors except those that are specifically endorsed or approved by us.
-As a user of the Services, you agree not to:
-·
-Systematically retrieve data or other content from the Services to create or compile, directly or indirectly, a collection, compilation, database, or directory without written permission from us.
-• Trick, defraud, or mislead us and other users, especially in any attempt to learn sensitive account information such as user passwords. Circumvent, disable, or otherwise interfere with security-related features of the Services, including features that prevent or restrict the use
-·
-·
-or copying of any Content or enforce limitations on the use of the Services and/or the Content contained therein.
-• Use any information obtained from the Services in order to harass, abuse, or harm another person.
-Disparage, tarnish, or otherwise harm, in our opinion, us and/or the Services.
-•
-Make improper use of our support services or submit false reports of abuse or misconduct.
-Use the Services in a manner inconsistent with any applicable laws or regulations.
-Engage in unauthorized framing of or linking to the Services.
-Upload or transmit (or attempt to upload or to transmit) viruses, Trojan horses, or other material, including excessive use of capital letters and spamming (continuous posting of repetitive text), that interferes with any party's uninterrupted use and enjoyment of the Services or modifies, impairs, disrupts, alters, or interferes with the use, features, functions, operation, or maintenance of the Services.
-·
-Engage in any automated use of the system, such as using scripts to send comments or messages, or using any data mining, robots, or similar data gathering and extraction tools.
-•
-Delete the copyright or other proprietary rights notice from any Content.
-•
-Attempt to impersonate another user or person or use the username of another user.
-•
-Upload or transmit (or attempt to upload or to transmit) any material that acts as a passive or active information collection or transmission mechanism, including without limitation, clear graphics interchange formats ("gifs"), 1×1 pixels, web bugs, cookies, or other similar devices (sometimes referred to as "spyware" or "passive collection mechanisms" or "pcms").
-• Interfere with, disrupt, or create an undue burden on the Services or the networks or services connected to the Services.
-·
-Harass, annoy, intimidate, or threaten any of our employees or agents engaged in providing any portion of the Services to you.
-·
-•
-Attempt to bypass any measures of the Services designed to prevent or restrict access to the Services, or any portion of the Services. Copy or adapt the Services' software, including but not limited to Flash, PHP, HTML, JavaScript, or other code.
-• Except as permitted by applicable law, decipher, decompile, disassemble, or reverse engineer any of the software comprising or in any way making up a part of the Services.
-• Except as may be the result of standard search engine or Internet browser usage, use, launch, develop, or distribute any automated system, including without limitation, any spider, robot, cheat utility, scraper, or offline reader that accesses the Services, or use or launch any unauthorized script or other software.
-• Use a buying agent or purchasing agent to make purchases on the Services.
-• Make any unauthorized use of the Services, including collecting usernames and/or email addresses of users by electronic or other means for the purpose of sending unsolicited email, or creating user accounts by automated means or under false pretenses.
-• Use the Services as part of any effort to compete with us or otherwise use the Services and/or the Content for any revenue-generating endeavor or commercial enterprise.
-5. USER GENERATED CONTRIBUTIONS
-The Services does not offer users to submit or post content. We may provide you with the opportunity to create, submit, post, display, transmit, perform, publish, distribute, or broadcast content and materials to us or on the Services, including but not limited to text, writings, video, audio, photographs, graphics, comments, suggestions, or personal information or other material (collectively, "Contributions"). Contributions may be viewable by other users of the Services and through third-party websites. When you create or make available any Contributions, you thereby represent and warrant that:
-• The creation, distribution, transmission, public display, or performance, and the accessing, downloading, or copying of your Contributions do not and will not infringe the proprietary rights, including but not limited to the copyright, patent, trademark, trade secret, or moral rights
-of any third party.
-• You are the creator and owner of or have the necessary licenses, rights, consents, releases, and permissions to use and to authorize us, the Services, and other users of the Services to use your Contributions in any manner contemplated by the Services and these Legal Terms.
-• You have the written consent, release, and/or permission of each and every identifiable individual person in your Contributions to use the name or likeness of each and every such identifiable individual person to enable inclusion and use of your Contributions in any manner contemplated by the Services and these Legal Terms.
-• Your Contributions are not false, inaccurate, or misleading.
-• Your Contributions are not unsolicited or unauthorized advertising, promotional materials, pyramid schemes, chain letters, spam, mass mailings, or other forms of solicitation.
-• Your Contributions are not obscene, lewd, lascivious, filthy, violent, harassing, libelous, slanderous, or otherwise objectionable (as
-determined by us).
-• Your Contributions do not ridicule, mock, disparage, intimidate, or abuse anyone.
-• Your Contributions are not used to harass or threaten (in the legal sense of those terms) any other person and to promote violence against
-a specific person or class of people.
-• Your Contributions do not violate any applicable law, regulation, or rule.
-• Your Contributions do not violate the privacy or publicity rights of any third party.
-• Your Contributions do not violate any applicable law concerning child pornography, or otherwise intended to protect the health or well- being of minors.
-• Your Contributions do not include any offensive comments that are connected to race, national origin, gender, sexual preference, or physical handicap.
-• Your Contributions do not otherwise violate, or link to material that violates, any provision of these Legal Terms, or any applicable law or regulation.
-Any use of the Services in violation of the foregoing violates these Legal Terms and may result in, among other things, termination or suspension of your rights to use the Services.
-6. CONTRIBUTION LICENSE
-You and Services agree that we may access, store, process, and use any information and personal data that you provide and your choices (including settings).
-By submitting suggestions or other feedback regarding the Services, you agree that we can use and share such feedback for any purpose without compensation to you.
-We do not assert any ownership over your Contributions. You retain full ownership of all of your Contributions and any intellectual property rights or other proprietary rights associated with your Contributions. We are not liable for any statements or representations in your Contributions provided by you in any area on the Services. You are solely responsible for your Contributions to the Services and you expressly agree to exonerate us from any and all responsibility and to refrain from any legal action against us regarding your Contributions.
-7. SERVICES MANAGEMENT
-We reserve the right, but not the obligation, to: (1) monitor the Services for violations of these Legal Terms; (2) take appropriate legal action against anyone who, in our sole discretion, violates the law or these Legal Terms, including without limitation, reporting such user to law enforcement authorities; (3) in our sole discretion and without limitation, refuse, restrict access to, limit the availability of, or disable (to the extent technologically feasible) any of your Contributions or any portion thereof; (4) in our sole discretion and without limitation, notice, or liability, to remove from the Services or otherwise disable all files and content that are excessive in size or are in any way burdensome to our systems; and (5) otherwise manage the Services in a manner designed to protect our rights and property and to facilitate the proper functioning of the
-Services.
-8. PRIVACY POLICY
-We care about data privacy and security. By using the Services, you agree to be bound by our Privacy Policy posted on the Services, which is incorporated into these Legal Terms. Please be advised the Services are hosted in Switzerland. If you access the Services from any other region of the world with laws or other requirements governing personal data collection, use, or disclosure that differ from applicable laws in Switzerland, then through your continued use of the Services, you are transferring your data to Switzerland, and you expressly consent to have your data
-transferred to and processed in Switzerland.
-9. TERM AND TERMINATION
-These Legal Terms shall remain in full force and effect while you use the Services. WITHOUT LIMITING ANY OTHER PROVISION OF THESE LEGAL TERMS, WE RESERVE THE RIGHT TO, IN OUR SOLE DISCRETION AND WITHOUT NOTICE OR LIABILITY, DENY ACCESS TO AND USE OF THE SERVICES (INCLUDING BLOCKING CERTAIN IP ADDRESSES), TO ANY PERSON FOR ANY REASON OR FOR NO REASON, INCLUDING WITHOUT LIMITATION FOR BREACH OF ANY REPRESENTATION, WARRANTY, OR COVENANT CONTAINED IN THESE LEGAL TERMS OR OF ANY APPLICABLE LAW OR REGULATION. WE MAY TERMINATE YOUR USE OR PARTICIPATION IN THE SERVICES OR DELETE ANY CONTENT OR INFORMATION THAT YOU POSTED AT ANY TIME, WITHOUT WARNING, IN OUR SOLE DISCRETION.
-If we terminate or suspend your account for any reason, you are prohibited from registering and creating a new account under your name, a fake or borrowed name, or the name of any third party, even if you may be acting on behalf of the third party. In addition to terminating or suspending your account, we reserve the right to take appropriate legal action, including without limitation pursuing civil, criminal, and injunctive redress.
-10. MODIFICATIONS AND INTERRUPTIONS
-We reserve the right to change, modify, or remove the contents of the Services at any time or for any reason at our sole discretion without notice. However, we have no obligation to update any information on our Services. We will not be liable to you or any third party for any modification, price change, suspension, or discontinuance of the Services.
-We cannot guarantee the Services will be available at all times. We may experience hardware, software, or other problems or need to perform maintenance related to the Services, resulting in interruptions, delays, or errors. We reserve the right to change, revise, update, suspend, discontinue, or otherwise modify the Services at any time or for any reason without notice to you. You agree that we have no liability whatsoever for any loss, damage, or inconvenience caused by your inability to access or use the Services during any downtime or discontinuance of the Services. Nothing in these Legal Terms will be construed to obligate us to maintain and support the Services or to supply any corrections, updates, or releases in connection therewith.
-11. GOVERNING LAW
-These Legal Terms are governed by and interpreted following the laws of Switzerland, and the use of the United Nations Convention of Contracts for the International Sales of Goods is expressly excluded. If your habitual residence is in the EU, and you are a consumer, you additionally possess the protection provided to you by obligatory provisions of the law in your country to residence. FasterOperations and yourself both agree to submit to the non-exclusive jurisdiction of the courts of Zug, which means that you may make a claim to defend your consumer protection rights in regards to these Legal Terms in Switzerland, or in the EU country in which you reside.
-12. DISPUTE RESOLUTION
-Informal Negotiations
-To expedite resolution and control the cost of any dispute, controversy, or claim related to these Legal Terms (each a "Dispute" and collectively, the "Disputes") brought by either you or us (individually, a "Party" and collectively, the "Parties"), the Parties agree to first attempt to negotiate any Dispute (except those Disputes expressly provided below) informally for at least one hundred twenty (120) days before initiating arbitration. Such informal negotiations commence upon written notice from one Party to the other Party.
-Binding Arbitration
-Any dispute arising from the relationships between the Parties to these Legal Terms shall be determined by one arbitrator who will be chosen in accordance with the Arbitration and Internal Rules of the European Court of Arbitration being part of the European Centre of Arbitration having its seat in Strasbourg, and which are in force at the time the application for arbitration is filed, and of which adoption of this clause constitutes acceptance. The seat of arbitration shall be Zug, Switzerland. The language of the proceedings shall be English. Applicable rules of substantive
-law shall be the law of Switzerland.
-Restrictions
-The Parties agree that any arbitration shall be limited to the Dispute between the Parties individually. To the full extent permitted by law, (a) no arbitration shall be joined with any other proceeding; (b) there is no right or authority for any Dispute to be arbitrated on a class-action basis or to utilize class action procedures; and (c) there is no right or authority for any Dispute to be brought in a purported representative capacity on behalf of the general public or any other persons.
-Exceptions to Informal Negotiations and Arbitration
-The Parties agree that the following Disputes are not subject to the above provisions concerning informal negotiations binding arbitration: (a) any Disputes seeking to enforce or protect, or concerning the validity of, any of the intellectual property rights of a Party; (b) any Dispute related to, or arising from, allegations of theft, piracy, invasion of privacy, or unauthorized use; and (c) any claim for injunctive relief. If this provision is found to be illegal or unenforceable, then neither Party will elect to arbitrate any Dispute falling within that portion of this provision found to be illegal or unenforceable and such Dispute shall be decided by a court of competent jurisdiction within the courts listed for jurisdiction above, and the Parties agree to submit to the personal jurisdiction of that court.
-13. CORRECTIONS
-There may be information on the Services that contains typographical errors, inaccuracies, or omissions, including descriptions, pricing, availability, and various other information. We reserve the right to correct any errors, inaccuracies, or omissions and to change or update the information on the Services at any time, without prior notice.
-14. DISCLAIMER
-THE SERVICES ARE PROVIDED ON AN AS-IS AND AS-AVAILABLE BASIS. YOU AGREE THAT YOUR USE OF THE SERVICES WILL BE AT YOUR SOLE RISK. TO THE FULLEST EXTENT PERMITTED BY LAW, WE DISCLAIM ALL WARRANTIES, EXPRESS OR IMPLIED, IN CONNECTION WITH THE SERVICES AND YOUR USE THEREOF, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. WE MAKE NO WARRANTIES OR REPRESENTATIONS ABOUT THE ACCURACY OR COMPLETENESS OF THE SERVICES' CONTENT OR THE CONTENT OF ANY WEBSITES OR MOBILE APPLICATIONS LINKED TO THE SERVICES AND WE WILL ASSUME NO LIABILITY OR RESPONSIBILITY FOR ANY (1) ERRORS, MISTAKES, OR INACCURACIES OF CONTENT AND MATERIALS, (2) PERSONAL INJURY OR PROPERTY DAMAGE, OF ANY NATURE WHATSOEVER, RESULTING FROM YOUR ACCESS TO AND USE OF THE SERVICES, (3) ANY UNAUTHORIZED ACCESS TO OR USE OF OUR SECURE SERVERS AND/OR ANY AND ALL PERSONAL INFORMATION AND/OR FINANCIAL INFORMATION STORED THEREIN, (4) ANY INTERRUPTION OR CESSATION OF TRANSMISSION TO OR FROM THE SERVICES, (5) ANY BUGS, VIRUSES, TROJAN HORSES, OR THE LIKE WHICH MAY BE TRANSMITTED TO OR THROUGH THE SERVICES BY ANY THIRD PARTY, AND/OR (6) ANY ERRORS OR OMISSIONS IN ANY CONTENT AND MATERIALS OR FOR ANY LOSS OR DAMAGE OF ANY KIND INCURRED AS A RESULT OF THE USE OF ANY CONTENT POSTED, TRANSMITTED, OR OTHERWISE MADE AVAILABLE VIA THE SERVICES. WE DO NOT WARRANT, ENDORSE, GUARANTEE, OR ASSUME RESPONSIBILITY FOR ANY PRODUCT OR SERVICE ADVERTISED OR OFFERED BY A THIRD PARTY THROUGH THE SERVICES, ANY HYPERLINKED WEBSITE, OR ANY WEBSITE OR MOBILE APPLICATION FEATURED IN ANY BANNER OR OTHER ADVERTISING, AND WE WILL NOT BE A PARTY TO OR IN ANY WAY BE RESPONSIBLE FOR MONITORING ANY TRANSACTION BETWEEN YOU AND ANY THIRD-PARTY PROVIDERS OF PRODUCTS OR SERVICES. AS WITH THE PURCHASE OF A PRODUCT OR SERVICE THROUGH ANY MEDIUM OR IN ANY ENVIRONMENT, YOU SHOULD USE YOUR BEST JUDGMENT AND
-EXERCISE CAUTION WHERE APPROPRIATE.
-15. LIMITATIONS OF LIABILITY
-IN NO EVENT WILL WE OR OUR DIRECTORS, EMPLOYEES, OR AGENTS BE LIABLE TO YOU OR ANY THIRD PARTY FOR ANY DIRECT, INDIRECT, CONSEQUENTIAL, EXEMPLARY, INCIDENTAL, SPECIAL, OR PUNITIVE DAMAGES, INCLUDING LOST PROFIT, LOST REVENUE, LOSS OF DATA, OR OTHER DAMAGES ARISING FROM YOUR USE OF THE SERVICES, EVEN IF WE HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. NOTWITHSTANDING ANYTHING TO THE CONTRARY CONTAINED HEREIN, OUR LIABILITY TO YOU FOR ANY CAUSE WHATSOEVER AND REGARDLESS OF THE FORM OF THE ACTION, WILL AT ALL TIMES BE LIMITED TO THE LESSER OF THE AMOUNT PAID, IF ANY, BY YOU TO US DURING THE ZERO (0) MONTH PERIOD PRIOR TO ANY CAUSE OF ACTION ARISING OR $1.00 USD. CERTAIN US STATE LAWS AND INTERNATIONAL LAWS DO NOT ALLOW LIMITATIONS ON IMPLIED WARRANTIES OR THE EXCLUSION OR LIMITATION OF CERTAIN DAMAGES. IF THESE LAWS APPLY TO YOU, SOME OR ALL OF THE ABOVE DISCLAIMERS OR LIMITATIONS MAY NOT APPLY TO YOU, AND YOU MAY HAVE ADDITIONAL RIGHTS.
-16. INDEMNIFICATION
-You agree to defend, indemnify, and hold us harmless, including our subsidiaries, affiliates, and all of our respective officers, agents, partners, and employees, from and against any loss, damage, liability, claim, or demand, including reasonable attorneys' fees and expenses, made by any third party due to or arising out of: (1) use of the Services; (2) breach of these Legal Terms; (3) any breach of your representations and warranties set forth in these Legal Terms; (4) your violation of the rights of a third party, including but not limited to intellectual property rights; or (5) any overt harmful act toward any other user of the Services with whom you connected via the Services. Notwithstanding the foregoing, we reserve the right, at your expense, to assume the exclusive defense and control of any matter for which you are required to indemnify us, and you agree to cooperate, at your expense, with our defense of such claims. We will use reasonable efforts to notify you of any such claim, action,
-or proceeding which is subject to this indemnification upon becoming aware of it.
-17. USER DATA
-We will maintain certain data that you transmit to the Services for the purpose of managing the performance of the Services, as well as data relating to your use of the Services. Although we perform regular routine backups of data, you are solely responsible for all data that you transmit or that relates to any activity you have undertaken using the Services. You agree that we shall have no liability to you for any loss or corruption of any such data, and you hereby waive any right of action against us arising from any such loss or corruption of such data.
-18. ELECTRONIC COMMUNICATIONS, TRANSACTIONS, AND SIGNATURES Visiting the Services, sending us emails, and completing online forms constitute electronic communications. You consent to receive electronic communications, and you agree that all agreements, notices, disclosures, and other communications we provide to you electronically, via email and on the Services, satisfy any legal requirement that such communication be in writing. YOU HEREBY AGREE TO THE USE OF ELECTRONIC SIGNATURES, CONTRACTS, ORDERS, AND OTHER RECORDS, AND TO ELECTRONIC DELIVERY OF NOTICES, POLICIES, AND RECORDS OF TRANSACTIONS INITIATED OR COMPLETED BY US OR VIA THE SERVICES. You hereby waive any rights or requirements under any statutes, regulations, rules, ordinances, or other laws in any jurisdiction which require an original signature or delivery or retention of non-electronic records, or to payments or the granting of credits by any means other than electronic means.
-19. CALIFORNIA USERS AND RESIDENTS
-If any complaint with us is not satisfactorily resolved, you can contact the Complaint Assistance Unit of the Division of Consumer Services of the California Department of Consumer Affairs in writing at 1625 North Market Blvd., Suite N 112, Sacramento, California 95834 or by telephone at (800) 952-5210 or (916) 445-1254.
-20. MISCELLANEOUS
-that
-These Legal Terms and any policies or operating rules posted by us on the Services or in respect to the Services constitute the entire agreement and understanding between you and us. Our failure to exercise or enforce any right or provision of these Legal Terms shall not operate as a waiver of such right or provision. These Legal Terms operate to the fullest extent permissible by law. We may assign any or all of our rights and obligations to others at any time. We shall not be responsible or liable for any loss, damage, delay, or failure to act caused by any cause beyond our reasonable control. If any provision or part of a provision of these Legal Terms is determined to be unlawful, void, or unenforceable, provision or part of the provision is deemed severable from these Legal Terms and does not affect the validity and enforceability of any remaining provisions. There is no joint venture, partnership, employment or agency relationship created between you and us as a result of these Legal Terms or use of the Services. You agree that these Legal Terms will not be construed against us by virtue of having drafted them. You hereby waive any and all defenses you may have based on the electronic form of these Legal Terms and the lack of signing by the parties hereto
-to execute these Legal Terms.
-21. CONTACT US
-In order to resolve a complaint regarding the Services or to receive further information regarding use of the Services, please contact us at:
-FasterOperations
-info@fasteroperations.com
 
 //////////////////////////////////////////// components\theme-provider.tsx //////////////////////////////////////////// 
 'use client'
@@ -2231,7 +2343,7 @@ export function TrustIndicators() {
 
   return (
     <section id="about" className="py-10"> {/* Added id="about" assuming this section covers it */}
-      <div className="section-container py-16 shadow-lg bg-background">
+      <div className="section-container py-16 bg-background">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.h2
             ref={ref} // Attach ref to the first animated element in view
@@ -2287,7 +2399,7 @@ export function TrustIndicators() {
           {testimonials.map((testimonial, index) => (
             <motion.div key={index} variants={item}>
               <MagicCard
-                 className="h-full transition-all duration-500 hover:shadow-xl rounded-xl overflow-hidden group bg-card"
+                 className="h-full transition-all duration-500 hover:shadow-xl overflow-hidden group bg-card"
                >
                 <Card className="h-full w-full border-none shadow-none flex flex-col">
                   <CardHeader className="pb-4 flex-shrink-0"> {/* Adjusted padding */}
@@ -2837,31 +2949,25 @@ import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface InteractiveHoverButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: "primary" | "secondary";
+}
 
 export const InteractiveHoverButton = React.forwardRef<
   HTMLButtonElement,
   InteractiveHoverButtonProps
->(({ children, className, ...props }, ref) => {
+>(({ children, className, variant = "primary", ...props }, ref) => {
   return (
     <button
       ref={ref}
       className={cn(
-        "group relative w-fit cursor-pointer overflow-hidden rounded-full border bg-foreground text-background p-2 px-6 text-center font-semibold",
+        "orbal-button",
+        variant === "secondary" && "secondary-button",
         className,
       )}
       {...props}
     >
-      <div className="flex items-center gap-2">
-        <div className="h-2 w-2 rounded-full bg-primary transition-all duration-300 group-hover:scale-[100.8]"></div>
-        <span className="inline-block transition-all duration-300 group-hover:translate-x-12 group-hover:opacity-0">
-          {children}
-        </span>
-      </div>
-      <div className="absolute top-0 z-10 flex h-full w-full translate-x-12 items-center justify-center gap-2 text-white opacity-0 transition-all duration-300 group-hover:-translate-x-5 group-hover:opacity-100">
-        <span>{children}</span>
-        <ArrowRight />
-      </div>
+      {children}
     </button>
   );
 });
@@ -2890,10 +2996,10 @@ interface MagicCardProps {
 export function MagicCard({
   children,
   className,
-  gradientSize = 500,
+  gradientSize = 400,
   gradientOpacity = 0.95,
-  gradientFrom = "#0026ff",
-  gradientTo = "#00b3ff",
+  gradientFrom = "rgb(0, 200, 255)",
+  gradientTo = "rgb(0, 255, 255)",
 }: MagicCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const mouseX = useMotionValue(-gradientSize);
@@ -2902,7 +3008,7 @@ export function MagicCard({
   const { theme } = useTheme(); // Get the current theme
 
   // Determine spotlight color based on theme internally
-  const spotlightColor = theme === 'light' ? 'rgb(255, 255, 255)' : 'rgb(22, 25, 25)';
+  const spotlightColor = theme === 'light' ? 'rgb(255, 255, 255)' : 'rgb(35, 40, 40)';
 
   const handleMouseMove = useCallback(
     (e: MouseEvent) => {
@@ -2960,10 +3066,17 @@ export function MagicCard({
   return (
     <div
       ref={cardRef}
-      className={cn("group relative rounded-[inherit]", className)}
+      className={cn("group relative", className)}
+      style={{
+        backgroundColor: theme === 'light' ? "rgb(245, 245, 245)" : "rgb(22, 25, 25)",
+        width: "100%",
+        borderRadius: "0px",
+        boxShadow: theme === 'light' ? "rgba(0, 0, 0, 0.08) 0px 0.706592px 0.706592px -0.666667px, rgba(0, 0, 0, 0.08) 0px 1.80656px 1.80656px -1.33333px, rgba(0, 0, 0, 0.07) 0px 3.62176px 3.62176px -2px, rgba(0, 0, 0, 0.07) 0px 6.8656px 6.8656px -2.66667px, rgba(0, 0, 0, 0.05) 0px 13.6468px 13.6468px -3.33333px, rgba(0, 0, 0, 0.02) 0px 30px 30px -4px" : "rgba(255, 255, 255, 0.005) 0px 0.706592px 0.706592px -0.666667px, rgba(255, 255, 255, 0.005) 0px 1.80656px 1.80656px -1.33333px, rgba(255, 255, 255, 0.005) 0px 3.62176px 3.62176px -2px, rgba(255, 255, 255, 0.005) 0px 6.8656px 6.8656px -2.66667px, rgba(255, 255, 255, 0.005) 0px 13.6468px 13.6468px -3.33333px, rgba(255, 255, 255, 0.005) 0px 30px 30px -4px",
+        opacity: 1,
+      }}
     >
       <motion.div
-        className="pointer-events-none absolute inset-0 rounded-[inherit] bg-border duration-300 group-hover:opacity-100"
+        className="pointer-events-none absolute inset-0 bg-transparent duration-300 group-hover:opacity-100"
         style={{
           background: useMotionTemplate`
           radial-gradient(${gradientSize}px circle at ${mouseX}px ${mouseY}px,
@@ -2974,9 +3087,14 @@ export function MagicCard({
           `,
         }}
       />
-      <div className="absolute inset-px rounded-[inherit] bg-background" />
+      <div
+        className="absolute inset-px bg-background"
+        style={{
+          boxShadow: theme === 'light' ? "rgb(255, 255, 255) 0px 3px 1px 0px inset" : "rgb(20, 20, 20) 0px 3px 1px 0px inset",
+        }}
+      />
       <motion.div
-        className="pointer-events-none absolute inset-px rounded-[inherit] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        className="pointer-events-none absolute inset-px opacity-0 transition-opacity duration-300 group-hover:opacity-100"
         style={{
           background: useMotionTemplate`
             radial-gradient(${gradientSize}px circle at ${mouseX}px ${mouseY}px, ${spotlightColor}, transparent 100%)
@@ -3269,7 +3387,7 @@ export const ScrollProgress = React.forwardRef<
     <motion.div
       ref={ref}
       className={cn(
-        "z-50 h-px origin-left bg-gradient-to-r from-[#0022ff] via-[#0074e8] to-[#00e1ff]",
+        "z-50 h-px origin-left bg-gradient-to-r from-[rgb(98,181,211)] via-[#23e5ff] to-[#24ace7]",
         className,
       )}
       style={{
@@ -6626,6 +6744,7 @@ export default function ScrollToTop() {
 "use client";
 
 import { useEffect, useState } from 'react';
+import { ArrowUp } from 'lucide-react';
 
 const ScrollToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -6659,10 +6778,10 @@ const ScrollToTopButton = () => {
     <div className={`fixed bottom-4 right-4 ${isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'} transition-opacity duration-300`}>
       <button
         onClick={scrollToTop}
-        className="bg-blue-500 text-white font-bold p-3 w-10 h-10 rounded-full shadow-lg flex items-center justify-center opacity-80 hover:opacity-100 transition-all duration-300 hover:translate-y-[-10px]"
+        className="bg-primary text-primary-foreground font-bold p-3 w-12 h-12 rounded-full shadow-lg flex items-center justify-center opacity-80 hover:opacity-100 transition-all duration-300 hover:translate-y-[-10px]"
         aria-label="Scroll to top"
       >
-        &uarr;
+        <ArrowUp size={24} />
       </button>
     </div>
   );
@@ -8628,6 +8747,15 @@ function useToast() {
 export { useToast, toast }
 
 
+//////////////////////////////////////////// lib\utils.ts //////////////////////////////////////////// 
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
+
 //////////////////////////////////////////// locales\en.json //////////////////////////////////////////// 
 {
   "nav.services": "Services",
@@ -8732,7 +8860,66 @@ export { useToast, toast }
   "footer.copyright": "© 2025 FasterOperations. All rights reserved.",
   "footer.privacy": "Privacy Policy",
   "footer.terms": "Terms of Service",
-  "footer.cookies": "Cookie Policy"
+  "footer.cookies": "Cookie Policy",
+
+  "faq.title": "FAQs",
+  "faq.subtitle": "You have Questions. We have Answers.",
+  "faq.items": [
+    {
+      "question": "What services do you offer?",
+      "answer": "We specialize in AI solutions, including machine learning models, automation, chatbots, predictive analytics, and consulting tailored to your business needs."
+    },
+    {
+      "question": "How long does it take to develop an AI solution?",
+      "answer": "The timeline for developing an AI solution varies depending on the complexity and scope of the project. We work closely with clients to define project milestones and deliver efficient, high-quality solutions within agreed-upon timelines."
+    },
+    {
+      "question": "Do I need technical expertise to work with you?",
+      "answer": "No, you don't need to be an AI expert to work with us. We guide you through every step of the process, from understanding your needs to implementing and maintaining the solution. Our goal is to make AI accessible and beneficial for all businesses."
+    },
+    {
+      "question": "Is my data safe when working with your agency?",
+      "answer": "Data security and privacy are our top priorities. We adhere to strict data protection protocols and compliance standards (e.g., GDPR, HIPAA) to ensure your information is handled with the utmost care and confidentiality."
+    },
+    {
+      "question": "Can AI really help my business grow?",
+      "answer": "Absolutely! AI can revolutionize your business by automating tasks, providing data-driven insights, enhancing customer experiences, and optimizing operations, leading to increased efficiency, reduced costs, and new growth opportunities."
+    }
+  ],
+  "projects.title": "Our Projects",
+  "projects.subtitle": "Explore our successful AI implementations and their measurable impact.",
+  "projects.items": [
+    {
+      "image": "/Artemis-Ken.png",
+      "alt": "Glass shattering, project one",
+      "title": "MedixCare — AI Triage Assistant for Healthcare",
+      "description": "We built a custom AI triage assistant that evaluates symptoms and routes patients to the appropriate care level.",
+      "stats": [
+        { "value": "40%", "label": "Reduced average wait" },
+        { "value": "30%", "label": "Rise in patient satisfaction" }
+      ]
+    },
+    {
+      "image": "/Artemis-Olek.png",
+      "alt": "Computer code visualization, project two",
+      "title": "FinSight — AI-Powered Financial Analytics",
+      "description": "A platform for real-time financial data analytics, empowering clients with intelligent investment insights via NLP.",
+      "stats": [
+        { "value": "50%", "label": "Faster decision making" },
+        { "value": "99.9%", "label": "Data accuracy rate" }
+      ]
+    },
+    {
+      "image": "/Artemis-Vlady.png",
+      "alt": "Mobile app interface, project three",
+      "title": "EduLearn — Personalized AI Learning Platform",
+      "description": "Customizable AI for schools that recommends lessons, automates grading, and adapts content to each student’s pace.",
+      "stats": [
+        { "value": "3x", "label": "Faster content adoption" },
+        { "value": "95%", "label": "Student satisfaction" }
+      ]
+    }
+  ]
 }
 
 //////////////////////////////////////////// locales\es.json //////////////////////////////////////////// 
@@ -8851,7 +9038,7 @@ export { useToast, toast }
   "cta.bookConsultation": "Réserver une consultation",
 
   "hero.title": "Solutions IA qui fournissent",
-  "hero.subtitle": "Nous transformons le fonctionnement des PME grâce à des implémentations d'IA pratiques qui fournissent un ROI mesurable et des résultats commerciaux tangibles.",
+  "hero.subtitle": "Nous transformons le fonctionnement des PME grâce à des implémentations d'IA pratiques qui fournissent un ROI mesurable et des résultats tangibles.",
   "hero.morphingTexts": ["résultats concrets", "coûts réduits", "productivité supérieure", "croissance des revenus"],
   "hero.cta.primary": "Réserver une consultation",
   "hero.cta.secondary": "Explorer les services",
@@ -8922,7 +9109,7 @@ export { useToast, toast }
   "testimonial4.author": "Emily White",
   "testimonial4.position": "Responsable Financier, Prestataire de Services",
 
-  "footer.description": "Solutions d'IA pratiques pour les petites et moyennes entreprises qui offrent un ROI mesurable et des résultats commerciaux tangibles.",
+  "footer.description": "Solutions d'IA pratiques pour les petites et moyennes entreprises qui offrent un ROI mesurable et des résultats tangibles.",
   "footer.services": "Services",
   "footer.company": "Entreprise",
   "footer.contact": "Contact",
@@ -9055,6 +9242,37 @@ export { useToast, toast }
   "footer.terms": "Termini di Servizio",
   "footer.cookies": "Informativa sui Cookie"
 }
+
+//////////////////////////////////////////// components.json //////////////////////////////////////////// 
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "default",
+  "rsc": true,
+  "tsx": true,
+  "tailwind": {
+    "config": "tailwind.config.ts",
+    "css": "app/globals.css",
+    "baseColor": "neutral",
+    "cssVariables": true,
+    "prefix": ""
+  },
+  "aliases": {
+    "components": "@/components",
+    "utils": "@/lib/utils",
+    "ui": "@/components/ui",
+    "lib": "@/lib",
+    "hooks": "@/hooks"
+  },
+  "iconLibrary": "lucide"
+}
+
+//////////////////////////////////////////// next-env.d.ts //////////////////////////////////////////// 
+/// <reference types="next" />
+/// <reference types="next/image-types/global" />
+
+// NOTE: This file should not be edited
+// see https://nextjs.org/docs/app/api-reference/config/typescript for more information.
+
 
 //////////////////////////////////////////// package.json //////////////////////////////////////////// 
 {
@@ -13005,27 +13223,4 @@ export default config
   "exclude": ["node_modules"]
 }
 
-
-//////////////////////////////////////////// components.json //////////////////////////////////////////// 
-{
-  "$schema": "https://ui.shadcn.com/schema.json",
-  "style": "default",
-  "rsc": true,
-  "tsx": true,
-  "tailwind": {
-    "config": "tailwind.config.ts",
-    "css": "app/globals.css",
-    "baseColor": "neutral",
-    "cssVariables": true,
-    "prefix": ""
-  },
-  "aliases": {
-    "components": "@/components",
-    "utils": "@/lib/utils",
-    "ui": "@/components/ui",
-    "lib": "@/lib",
-    "hooks": "@/hooks"
-  },
-  "iconLibrary": "lucide"
-}
 
