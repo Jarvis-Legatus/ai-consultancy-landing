@@ -42,22 +42,25 @@ export function Hero() {
       ref={containerRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-10"
     >
-      <video
+      <motion.video
         className="background-orb"
         autoPlay
         loop
         muted
         playsInline
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
       >
         <source src="/orb.mp4" type="video/mp4" />
-      </video>
+      </motion.video>
 
       <motion.div style={{ opacity, scale, y }} className="container mx-auto px-4 z-10 py-5">
         <div className="max-w-5xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.8, delay: 1.5, ease: [0.22, 1, 0.36, 1] }}
           >
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-foreground leading-tight mb-16 tracking-tight">
               {t("hero.title") as string}
@@ -68,7 +71,7 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: -40 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.8, delay: 1.7, ease: [0.22, 1, 0.36, 1] }}
           >
             <p className="text-lg md:text-xl text-foreground/90 mb-8 max-w-2xl mx-auto">{t("hero.subtitle") as string}</p>
           </motion.div>
@@ -76,7 +79,7 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.8, delay: 2.0, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-col items-center sm:flex-row gap-6 justify-center"
           >
             <InteractiveHoverButton onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>{t("hero.cta.primary") as string}</InteractiveHoverButton>

@@ -19,7 +19,7 @@ export function MagicCard({
   children,
   className,
   gradientSize = 300,
-  gradientOpacity = 0.95,
+  gradientOpacity = 0.1,
   gradientFrom = "rgb(50, 225, 255)",
   gradientTo = "rgb(0, 255, 255)",
 }: MagicCardProps) {
@@ -30,7 +30,7 @@ export function MagicCard({
   const { theme } = useTheme(); // Get the current theme
 
   // Determine spotlight color based on theme internally
-  const spotlightColor = theme === 'light' ? 'rgb(255, 255, 255)' : 'rgb(35, 40, 40)';
+  const spotlightColor = theme === 'light' ? 'rgb(255, 255, 255)' : 'rgb(200, 1, 250)';
 
   const handleMouseMove = useCallback(
     (e: MouseEvent) => {
@@ -119,7 +119,7 @@ export function MagicCard({
           opacity: gradientOpacity,
         }}
       />
-      <div className="relative">{children}</div>
+      <div className="relative z-10 h-full w-full">{children}</div>
     </div>
   );
 }

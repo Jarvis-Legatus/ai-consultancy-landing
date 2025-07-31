@@ -66,7 +66,7 @@ export function BookConsultation() {
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               className="text-center"
             >
-              <h2 className="text-5xl md:text-6xl font-bold text-foreground mb-6">{t("consultation.title")}</h2>
+              <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-6">{t("consultation.title")}</h2>
               <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">{t("consultation.subtitle")}</p>
               <motion.ul
                 variants={container}

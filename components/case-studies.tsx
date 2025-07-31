@@ -74,7 +74,7 @@ export function CaseStudies() {
             initial={{ opacity: 0, y: 50 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="text-4xl md:text-5xl font-bold text-foreground mb-6"
+            className="text-4xl sm:text-5xl font-bold text-foreground mb-6"
           >
             {t("caseStudies.title")}
           </motion.h2>

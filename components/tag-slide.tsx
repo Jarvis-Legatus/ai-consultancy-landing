@@ -2,6 +2,8 @@ import React from 'react';
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/components/language-selector";
 import { User, DollarSign, Clock, Settings, BarChart2, Rocket, Bot, Layers } from "lucide-react";
+import { motion } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
 
 interface TagSlideProps {
   direction?: "left" | "right";
@@ -13,13 +15,31 @@ const TagSlide: React.FC<TagSlideProps> = ({
   speed = "slow",
 }) => {
   const { t } = useLanguage();
-  const containerRef = React.useRef<HTMLDivElement>(null);
-  const [start, setStart] = React.useState(false);
+  const componentRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
-  React.useEffect(() => {
-    if (containerRef.current) {
-      setStart(true);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target); // Stop observing once visible
+        }
+      },
+      {
+        threshold: 0.1, // Trigger when 10% of the component is visible
+      }
+    );
+
+    if (componentRef.current) {
+      observer.observe(componentRef.current);
     }
+
+    return () => {
+      if (componentRef.current) {
+        observer.unobserve(componentRef.current);
+      }
+    };
   }, []);
 
   const tags = [
@@ -50,8 +70,11 @@ const TagSlide: React.FC<TagSlideProps> = ({
   const animationDirection = direction === "left" ? "slide" : "slide-reverse";
 
   return (
-    <div
-      ref={containerRef}
+    <motion.div
+      ref={componentRef}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: isVisible ? 1 : 0 }}
+      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       className={cn(
         "relative flex w-full overflow-hidden max-w-5xl mx-auto px-4",
         "h-24", // Reverted to original height
@@ -66,7 +89,6 @@ const TagSlide: React.FC<TagSlideProps> = ({
         className={cn(
           "flex items-center justify-center md:justify-start [&_li]:mx-3",
           "animate-slide",
-          start && "animate-slide-start"
         )}
         style={{
           animationDuration: animationSpeed[speed],
@@ -97,7 +119,7 @@ const TagSlide: React.FC<TagSlideProps> = ({
           </li>
         ))}
       </ul>
-    </div>
+    </motion.div>
   );
 };
 

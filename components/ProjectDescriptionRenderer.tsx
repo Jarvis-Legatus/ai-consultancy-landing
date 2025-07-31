@@ -76,10 +76,18 @@ export function ProjectDescriptionRenderer({ description }: ProjectDescriptionRe
   };
 
   return (
-    <ScrollArea className="h-[400px] pr-4"> {/* Fixed height for scrollability */}
-      <div className="space-y-4">
-        {contentBlocks.map((block, index) => renderBlock(block, index))}
-      </div>
-    </ScrollArea>
+    <div
+      className="relative h-[400px] overflow-hidden"
+      style={{
+        maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)',
+        WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)',
+      }}
+    >
+      <ScrollArea className="h-full pr-4">
+        <div className="space-y-4 pt-4 pb-4">
+          {contentBlocks.map((block, index) => renderBlock(block, index))}
+        </div>
+      </ScrollArea>
+    </div>
   );
 }

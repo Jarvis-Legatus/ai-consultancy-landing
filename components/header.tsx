@@ -36,7 +36,10 @@ export function Header() {
   return (
     <>
       <ScrollProgress />
-      <header
+      <motion.header
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 1.9, ease: [0.22, 1, 0.36, 1] }}
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled ? "bg-background/75 backdrop-blur-sm shadow-sm py-3" : "bg-transparent py-5",
@@ -87,7 +90,7 @@ export function Header() {
         </motion.div>
       )}
     <ScrollProgress className="absolute bottom-0 left-0 right-0" />
-    </header>
+    </motion.header>
     </>
   )
 }
