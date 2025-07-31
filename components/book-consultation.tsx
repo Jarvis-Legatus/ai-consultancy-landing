@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useRef, useEffect } from "react"
+import { useRef, useEffect, useState } from "react"
 import { motion, useInView } from "framer-motion"
 import { Check, Mail } from "lucide-react"
 import { Card } from "@/components/ui/card" // Added Card import
@@ -100,11 +100,19 @@ export function BookConsultation() {
                     initial={{ opacity: 0, y: 50 }}
                     animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
                     transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                    className="flex items-center justify-center text-center text-orange-400 mt-4 mb-6"
+                    className="flex justify-center text-center text-orange-400 mt-4 mb-2"
                   >
-                    <Mail size={20} className="mr-2" />
+                    <Mail size={24} />
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+                    transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                    className="flex justify-center text-center text-orange-400 mb-6"
+                  >
                     <span>
                       {t("consultation.or_email")}{" "}
+                      <br />
                       <a href="mailto:info@fasteroperations.com" className="underline font-bold">
                         info@fasteroperations.com
                       </a>
@@ -113,7 +121,7 @@ export function BookConsultation() {
                   <Cal
                     namespace="30min"
                     calLink="fasteroperations/20min"
-                    style={{width:"100%",height:"100%",overflow:"scroll"}}
+                    style={{width:"100%",height:"100%",overflow:"hidden", borderRadius: 'var(--radius)'}}
                     config={{"layout":"month_view"}}
                   />
                 </motion.div>

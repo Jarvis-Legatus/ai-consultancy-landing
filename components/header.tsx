@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import { usePathname, useRouter } from "next/navigation"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { LanguageSelector, useLanguage } from "./language-selector"
@@ -16,6 +17,10 @@ export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const { t } = useLanguage()
+
+  const router = useRouter()
+  const pathname = usePathname()
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -95,26 +100,43 @@ export function Header() {
   )
 }
 
-function NavLinks({ isScrolled = false, mobile = false }) {
-  const { t } = useLanguage()
+interface NavLinksProps {
+  isScrolled?: boolean;
+  mobile?: boolean;
+}
 
+function NavLinks({ isScrolled = false, mobile = false }: NavLinksProps) {
+  const { t } = useLanguage()
+ 
   const linkClass = cn(
     "transition-colors font-medium",
     mobile ? "block py-2" : "",
     isScrolled ? "text-foreground hover:text-primary" : "text-foreground hover:text-primary",
   )
-
+ 
   const links = [
     { href: "#services", label: t("nav.services") },
     { href: "#case-studies", label: t("nav.caseStudies") },
     { href: "#about", label: t("nav.about") },
     { href: "#contact", label: t("nav.contact") },
   ]
-
+ 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    document.getElementById(href.substring(1))?.scrollIntoView({
+      behavior: 'smooth'
+    });
+  };
+ 
   return (
     <>
       {links.map((link, index) => (
-        <Link key={index} href={link.href} className={linkClass}>
+        <Link
+          key={index}
+          href={link.href}
+          className={linkClass}
+          onClick={(e) => handleNavClick(e, link.href)}
+        >
           {link.label}
         </Link>
       ))}

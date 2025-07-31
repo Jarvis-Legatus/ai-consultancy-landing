@@ -1,7 +1,7 @@
 // components/trust-indicators.tsx
 "use client"
 
-import { useRef } from "react"
+import { useRef, useState, useEffect } from "react"
 import { motion, useInView } from "framer-motion"
 import Image from "next/image"
 import { useLanguage } from "./language-selector"

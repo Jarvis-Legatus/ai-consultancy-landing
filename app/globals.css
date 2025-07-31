@@ -11,7 +11,7 @@
     /* Core theme colors */
     --background: 40 20% 96%;
     --foreground: 222.2 84% 4.9%;
-    --card: 40 20% 93%;
+    --card: 40 20% 95%;
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
@@ -53,11 +53,11 @@
     /* Core theme colors */
     --background: 0 0% 4%;
     --foreground: 210 40% 98%;
-    --card: 0 0% 8%;
+    --card: 200 10% 7%;
     --card-foreground: 210 40% 98%;
     --popover: 0 0% 0%;
     --popover-foreground: 210 40% 98%;
-    --primary: 181 93% 53%;
+    --primary: 200 98% 50%;
     --primary-foreground: 222.2 47.4% 11.2%;
     --secondary: 0 0% 0%;
     --secondary-foreground: 210 40% 98%;
@@ -209,11 +209,11 @@
   }
 
   .light .background-orb {
-    filter: invert(1) sepia(0.2) saturate(0.2) hue-rotate(150deg) opacity(0.5);
+    filter: invert(1) sepia(0.1) saturate(0.4) hue-rotate(70deg) opacity(0.9) contrast(1.2);
   }
 
   .dark .background-orb {
-    filter: sepia(0.1) saturate(0.4) hue-rotate(290deg) brightness(1.0) opacity(0.8) contrast(1.2);
+    filter: sepia(0.5) saturate(0.4) hue-rotate(320deg) brightness(1.0) opacity(0.8) contrast(1.2);
   }
 }
 

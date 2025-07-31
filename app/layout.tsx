@@ -43,11 +43,10 @@ export default function RootLayout({
                 </head>
                 <body>
                   <ScrollToTop />
-
-                <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-                  {children}
-                  <Toaster />
-                </ThemeProvider>
+                  <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+                    {children}
+                    <Toaster />
+                  </ThemeProvider>
                 </body>
             </LanguageSetter>
           </LanguageProvider>
