@@ -15,11 +15,6 @@ const MagicCard = dynamic(() => import('@/components/magicui/magic-card').then(m
 const NumberTicker = dynamic(() => import('@/components/magicui/number-ticker').then(mod => mod.NumberTicker), { ssr: false });
 
 // Import SVG Icon Components
-import OpenaiIcon from '@/components/icons/Openai';
-import N8nIcon from '@/components/icons/N8n';
-import AnthropicIcon from '@/components/icons/Anthropic';
-import GeminiIcon from '@/components/icons/Gemini';
-import QdrantIcon from '@/components/icons/Qdrant';
 
 
 
@@ -33,13 +28,6 @@ const StarIcon = ({ filled }: { filled: boolean }) => (
   </svg>
 );
 
-const partners = [
-  { name: "OpenAI", LogoComponent: OpenaiIcon },
-  { name: "n8n", LogoComponent: N8nIcon },
-  { name: "Anthropic", LogoComponent: AnthropicIcon },
-  { name: "Gemini", LogoComponent: GeminiIcon },
-  { name: "Qdrant", LogoComponent: QdrantIcon },
-];
 
   // --- Testimonials Below ---
 
@@ -118,29 +106,6 @@ export function TrustIndicators() {
             {t("testimonials.subtitle")}
           </motion.p>
         </div>
-        {/* Partner Logos Section */}
-        <motion.div
-          variants={container}
-          initial="hidden"
-          animate={isInView ? "show" : "hidden"}
-          className="flex flex-wrap justify-center items-center gap-8 md:gap-12 mb-20"
-        >
-          {partners.map((partner, index) => {
-            const Logo = partner.LogoComponent; // Get the component constructor
-            return (
-              <motion.div
-                key={index}
-                variants={item} // Apply item animation to each logo
-                whileHover={{ scale: 1.05 }} // Slightly reduced scale for subtlety
-                className="flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300"
-              >
-                <Logo
-                  className="h-10 w-auto text-foreground" // Applied consistent sizing and text color for currentColor
-                />
-              </motion.div>
-            );
-          })}
-        </motion.div>
 
         {/* Hero Section */}
         <motion.div
