@@ -40,3 +40,6 @@ export { default as Notion } from './Notion';
 export { default as Openrouter } from './Openrouter';
 export { default as Dropbox } from './Dropbox';
 export { default as Pocketbase } from './Pocketbase';
+export { default as Windmill } from './Windmill';
+export { default as Elevenlabs } from './Elevenlabs';
+export { default as Aws } from './Aws';

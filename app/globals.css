@@ -167,6 +167,10 @@
       box-shadow: var(--card-box-shadow-hover-dark);
     }
 
+  .icon-current-color {
+    color: hsl(var(--foreground));
+  }
+
 }
 
 @layer components {

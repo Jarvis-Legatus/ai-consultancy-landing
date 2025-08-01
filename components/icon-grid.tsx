@@ -4,7 +4,14 @@ import React from 'react';
 import * as Icons from '@/components/icons';
 
 export function IconGrid() {
-  const iconComponents = Object.values(Icons);
+  const excludedIconsList = [
+    "Asana", "Facebook", "Gmail", "Google", "Huggingface", "HumeAi",
+    "Instagram", "Linkedin", "Whatsapp", "Youtube", "Twitter",
+  ];
+
+  const iconComponents = Object.entries(Icons)
+    .filter(([name]) => !excludedIconsList.includes(name))
+    .map(([, Icon]) => Icon);
 
   return (
     <section id="icon-grid" className="py-10">
@@ -22,7 +29,7 @@ export function IconGrid() {
           {iconComponents.map((Icon, index) => (
             <div key={index} className="flex items-center justify-center p-4 border rounded-lg shadow-sm bg-card w-24 h-24">
               {React.isValidElement(<Icon />) ? (
-                <Icon className="h-12 w-12 text-primary" />
+                <Icon className="h-12 w-12 text-foreground icon-current-color" />
               ) : (
                 <span className="text-muted-foreground">Invalid Icon</span>
               )}

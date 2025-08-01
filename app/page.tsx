@@ -2,7 +2,7 @@
 
 import { Hero } from "@/components/hero"
 import { FAQ } from "@/components/faq"
-import { FAQ2B } from "@/components/faq2B"
+import { FAQ2B } from "@/components/unused_pages/faq2B"
 import ProjectShowcase from "@/components/projects"
 import { Services } from "@/components/services"
 import { IconGrid } from "@/components/icon-grid"
