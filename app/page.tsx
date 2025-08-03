@@ -1,8 +1,7 @@
 "use client"
 
-import { Hero } from "@/components/hero"
+import { HeroAlternate } from "@/components/HeroAlternate"
 import { FAQ } from "@/components/faq"
-import { FAQ2B } from "@/components/unused_pages/faq2B"
 import ProjectShowcase from "@/components/projects"
 import { Services } from "@/components/services"
 import { IconGrid } from "@/components/icon-grid"
@@ -22,7 +21,7 @@ export default function Home() {
       <div className="min-h-screen app-background">
         <Header />
         <main>
-          <Hero />
+          <HeroAlternate />
           <Services />
           <IconGrid />
           <TagSlide />
